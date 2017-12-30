@@ -15,7 +15,6 @@
                 <th>Surname</th>
                 <th>Age</th>
                 <th>Edit</th>
-                <th>Delete</th>
             </tr>
             <tr th:each="doctor : ${doctors}">
                 <td th:text="${doctor.id}">Id</td>
@@ -23,7 +22,6 @@
                 <td th:text="${doctor.surname}">Surname</td>
                 <td th:text="${doctor.age}">Age</td>
                 <td><a th:href="${'/doctor/edit/' + doctor.id}" class="btn btn-default">Edit</a></td>
-                <td><a th:href="${'/doctor/delete/' + doctor.id}" class="btn btn-danger">Delete</a></td>
             </tr>
         </table>
     </div>
