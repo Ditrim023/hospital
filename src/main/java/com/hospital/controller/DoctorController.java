@@ -24,28 +24,28 @@ public class DoctorController {
         return "index";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String root(Model model) {
+    @RequestMapping(value = "/doctor/list", method = RequestMethod.GET)
+    public String root(final Model model) {
         model.addAttribute("doctors", doctorRepository.findAll());
-        return "list";
+        return "doctor/list";
     }
 
-    @RequestMapping(path = "/doctors/add", method = RequestMethod.GET)
-    public String createDoctor(Model model) {
+    @RequestMapping(path = "/doctor/doctors/add", method = RequestMethod.GET)
+    public String createDoctor(final Model model) {
         model.addAttribute("doctor", new Doctor());
-        return "edit";
+        return "doctor/edit";
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public String saveProduct(Doctor doc) {
+    @RequestMapping(value = "/doctor/list", method = RequestMethod.POST)
+    public String saveProduct(final Doctor doc) {
         doctorRepository.save(doc);
-        return "redirect:/list";
+        return "redirect:/doctor/list";
     }
 
     @RequestMapping(path = "/doctor/edit/{id}", method = RequestMethod.GET)
-    public String editProduct(Model model, @PathVariable("id") final Long id) {
+    public String editProduct(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("doctor", doctorRepository.findOne(id));
-        return "edit";
+        return "doctor/edit";
     }
 
 
