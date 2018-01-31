@@ -4,6 +4,10 @@
 body{
  background-color:#f8f8f8;
 }
+a{
+	   color: white;
+   text-decoration: none; 
+}
 #main{
 	min-width: 960px;
 	max-width: 1600px;
@@ -31,9 +35,7 @@ width:auto;
 	float:left;
 }
 
-.lin{
-   color: white;
-   text-decoration: none;   
+.lin {  
    margin-top:36px;
 }
 #logo{
