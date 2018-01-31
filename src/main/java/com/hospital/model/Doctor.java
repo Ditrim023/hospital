@@ -22,11 +22,11 @@ public class Doctor {
     private String name;
     @Column(nullable = false)
     private String surname;
-    private int age;
+    private Integer age;
     /*@OneToMany(mappedBy = "doctor")
     private List<Patient> patients;*/
 
-    public Doctor(String name, String surname, int age) {
+    public Doctor(String name, String surname, Integer age) {
         this.name = name;
         this.surname = surname;
         this.age = age;

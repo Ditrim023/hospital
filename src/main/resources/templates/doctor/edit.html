@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Edit Product Details</title>
+    <title>Edit Doctor Details</title>
     <th:block th:include="layout/header"></th:block>
 </head>
 <body>
 <div class="container">
-    <h2>Edit Product Details</h2>
+    <h2>Doctor Details</h2>
     <div>
         <form class="form-horizontal" th:object="${doctor}" th:action="@{/doctor/list}" method="post">
-            <div class="form-group">
+                <label class="col-sm-2 control-label">ID:</label>
                 <div class="col-sm-10">
-                    <input type="hidden" class="form-control" th:field="*{id}"/>
+                    <input type="text" class="form-control" th:field="*{id}" readonly="true"/>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <label class="col-sm-2 control-label">Name:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{name}" />
                 </div>
-            </div>
-            <div class="form-group">
+
                 <label class="col-sm-2 control-label">Surname:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{surname}" />
                 </div>
-            </div>
-            <div class="form-group">
+
+
                 <label class="col-sm-2 control-label">Age:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{age}" />
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-primary">Save</button>
                 </div>
-            </div>
 
         </form>
     </div>

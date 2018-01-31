@@ -20,7 +20,7 @@ public class DoctorService {
     public final void add(String name, String surname){
         Random random = new Random();
         int age = 36 + random.nextInt(41 - 36);
-        doctorRepository.save(new Doctor(name.trim(),surname.trim(),age));
+        doctorRepository.save(new Doctor(name.trim(),surname.trim(), age));
     }
     public List<Doctor> findAll() {
         return doctorRepository.findAll();

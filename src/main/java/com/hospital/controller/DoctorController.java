@@ -33,17 +33,17 @@ public class DoctorController {
     @RequestMapping(path = "/doctor/doctors/add", method = RequestMethod.GET)
     public String createDoctor(final Model model) {
         model.addAttribute("doctor", new Doctor());
-        return "doctor/edit";
+        return "doctor/add";
     }
 
     @RequestMapping(value = "/doctor/list", method = RequestMethod.POST)
-    public String saveProduct(final Doctor doc) {
+    public String saveDoctor(final Doctor doc) {
         doctorRepository.save(doc);
         return "redirect:/doctor/list";
     }
 
     @RequestMapping(path = "/doctor/edit/{id}", method = RequestMethod.GET)
-    public String editProduct(final Model model, @PathVariable("id") final Long id) {
+    public String editDoctor(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("doctor", doctorRepository.findOne(id));
         return "doctor/edit";
     }
