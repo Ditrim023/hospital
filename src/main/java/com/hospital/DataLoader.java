@@ -37,6 +37,36 @@ public class DataLoader implements ApplicationRunner {
         doctors.add(new Doctor("Ivan", "LOR", 40));
         doctors.add(new Doctor("Petr", "Terapevt", 42));
         doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
+        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
         doctorRepository.save(doctors);
     }
 

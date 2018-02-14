@@ -21,7 +21,7 @@ public class DoctorController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
-        return "index";
+        return "layout/header";
     }
 
     @RequestMapping(value = "/doctor/list", method = RequestMethod.GET)
@@ -30,7 +30,7 @@ public class DoctorController {
         return "doctor/list";
     }
 
-    @RequestMapping(path = "/doctor/doctors/add", method = RequestMethod.GET)
+    @RequestMapping(path = "/doctor/add", method = RequestMethod.GET)
     public String createDoctor(final Model model) {
         model.addAttribute("doctor", new Doctor());
         return "doctor/add";
@@ -41,6 +41,7 @@ public class DoctorController {
         doctorRepository.save(doc);
         return "redirect:/doctor/list";
     }
+
 
     @RequestMapping(path = "/doctor/edit/{id}", method = RequestMethod.GET)
     public String editDoctor(final Model model, @PathVariable("id") final Long id) {

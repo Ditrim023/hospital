@@ -31,7 +31,10 @@ public class Doctor {
         this.surname = surname;
         this.age = age;
     }
-
+    public Doctor(String name,  Integer age) {
+        this.name = name;
+        this.age = age;
+    }
     public Doctor(String name, String surname) {
         this.name = name;
         this.surname = surname;

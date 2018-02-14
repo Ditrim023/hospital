@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PatientController {
     private final PatientRepository patientRepository;
 
+
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String root(final Model model) {
         model.addAttribute("patients", patientRepository.findAll());
@@ -27,7 +28,7 @@ public class PatientController {
     @RequestMapping(path = "patient/patients/add", method = RequestMethod.GET)
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
-        return "patient/edit";
+        return "patient/add";
     }
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.POST)
