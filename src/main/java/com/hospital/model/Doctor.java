@@ -5,6 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * @author Nikita Krutoguz
@@ -13,7 +17,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Doctor {
+public class Doctor{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
@@ -23,8 +27,8 @@ public class Doctor {
     @Column(nullable = false)
     private String surname;
     private Integer age;
-    /*@OneToMany(mappedBy = "doctor")
-    private List<Patient> patients;*/
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "doctors")
+    private List<Patient> patients;
 
     public Doctor(String name, String surname, Integer age) {
         this.name = name;

@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class DataLoader implements ApplicationRunner {
+    public class DataLoader implements ApplicationRunner {
     private final DoctorRepository doctorRepository;
     private final PatientRepository patientRepository;
 
@@ -31,53 +31,32 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) {
         insertDoctors();
         insertPatients();
+        getValue();
     }
 
     public void insertDoctors() {
         doctors.add(new Doctor("Ivan", "LOR", 40));
         doctors.add(new Doctor("Petr", "Terapevt", 42));
         doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
-        doctors.add(new Doctor("Nikolay", "Sergeon", 32));
         doctorRepository.save(doctors);
     }
 
     public void insertPatients() {
-        patients.add(new Patient("Katya", "Golova", 34));
-        patients.add(new Patient("Andrey", "Jivot", 51));
-        patients.add(new Patient("Vasya", "Noga", 59));
-        patients.add(new Patient("Jeka", "Ryka", 27));
-        patients.add(new Patient("Nikola", "Yho", 11));
-        patients.add(new Patient("Aizek", "Noz", 45));
+        List<Doctor> tempDocs = new ArrayList<>();
+        tempDocs.add(doctorRepository.findOne(1L));
+        tempDocs.add(doctorRepository.findOne(2L));
+        patients.add(new Patient("Katya", "Golova", tempDocs,34));
+        patients.add(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
+        patients.add(new Patient("Vasya", "Noga", doctorRepository.findAll(),59));
+        patients.add(new Patient("Jeka", "Ryka",doctorRepository.findAll(), 27));
+        patients.add(new Patient("Nikola", "Yho",doctorRepository.findAll(), 11));
+        patients.add(new Patient("Aizek", "Noz", doctorRepository.findAll(),45));
         patientRepository.save(patients);
+    }
+
+    public void getValue(){
+        System.out.println(doctorRepository.findOne(1L).getPatients().size());
+        System.out.println(patientRepository.findOne(1L).getDoctors().size());
     }
 }
 

@@ -12,7 +12,7 @@
                                              th:src="@{/images/logo_true.png}" /></a>
         </div>
         <h2>Doctors List</h2>
-        <div class="lin"><a th:href="@{/doctor/doctors/add}">Add Doctor</a></div>
+        <div class="lin"><a th:href="@{/doctor/add}">Add Doctor</a></div>
     </div>
 </div>
 <div class="container">
@@ -23,6 +23,7 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Age</th>
+                <th>Count</th>
                 <th>Edit</th>
             </tr>
             <tr th:each="doctor : ${doctors}">
@@ -30,6 +31,7 @@
                 <td th:text="${doctor.name}">Name</td>
                 <td th:text="${doctor.surname}">Surname</td>
                 <td th:text="${doctor.age}">Age</td>
+                <td th:text="${doctor.getPatients().size()}">Count</td>
                 <td><a th:href="${'/doctor/edit/' + doctor.id}">Edit</a></td>
             </tr>
         </table>
