@@ -23,7 +23,7 @@ public class Patient {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(
             name = "patient_doctor",
             joinColumns = {@JoinColumn(name = "patient_id", referencedColumnName = "id")},

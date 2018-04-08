@@ -46,11 +46,18 @@ import java.util.List;
         tempDocs.add(doctorRepository.findOne(1L));
         tempDocs.add(doctorRepository.findOne(2L));
         patients.add(new Patient("Katya", "Golova", tempDocs,34));
+        System.out.println("1");
         patients.add(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
+        patientRepository.save(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
+        System.out.println("2");
         patients.add(new Patient("Vasya", "Noga", doctorRepository.findAll(),59));
+        System.out.println("3");
         patients.add(new Patient("Jeka", "Ryka",doctorRepository.findAll(), 27));
+        System.out.println("4");
         patients.add(new Patient("Nikola", "Yho",doctorRepository.findAll(), 11));
+        System.out.println("5");
         patients.add(new Patient("Aizek", "Noz", doctorRepository.findAll(),45));
+        System.out.println("Done");
         patientRepository.save(patients);
     }
 
