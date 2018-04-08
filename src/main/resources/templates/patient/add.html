@@ -17,7 +17,7 @@
 	  </div>
     </div>
 <div class="container">
-    <form class="form" th:object="${patient}" th:action="@{/patient/list}" method="post">
+    <form class="form" th:object="${patient}" th:action="@{/patient/save}" method="post">
         <div class="form-input">
             <input type="text" class="inn" th:field="*{name}" placeholder="Name"/>
         </div>

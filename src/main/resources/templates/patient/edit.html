@@ -8,7 +8,7 @@
 <body>
 <div class="container">
     <h2>Patient Details</h2>
-        <form class="form-edit" th:object="${patient}" th:action="@{/patient/list}" method="post">
+        <form class="form-edit" th:object="${patient}" th:action="@{/patient/save}" method="post">
             <div class="form-line">
                 <label class="form-text">Id:</label>
                 <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>

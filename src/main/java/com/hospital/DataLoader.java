@@ -65,8 +65,7 @@ import java.util.List;
     }
 
     public void getValue(){
-        System.out.println(doctorRepository.findOne(1L).getPatients().size());
-        System.out.println(patientRepository.findOne(1L).getDoctors().size());
+
     }
 }
 

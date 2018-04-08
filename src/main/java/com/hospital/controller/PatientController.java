@@ -25,13 +25,13 @@ public class PatientController {
         return "patient/list";
     }
 
-    @RequestMapping(path = "patient/patients/add", method = RequestMethod.GET)
+    @RequestMapping(path = "patient/add", method = RequestMethod.GET)
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
         return "patient/add";
     }
 
-    @RequestMapping(value = "/patient/list", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
     public String savePatient(final Patient pat) {
         patientRepository.save(pat);
         return "redirect:/patient/list";
