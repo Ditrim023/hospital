@@ -45,9 +45,12 @@ import java.util.List;
         List<Doctor> tempDocs = new ArrayList<>();
         tempDocs.add(doctorRepository.findOne(1L));
         tempDocs.add(doctorRepository.findOne(2L));
-        patients.add(new Patient("Katya", "Golova", tempDocs,34));
+        patientRepository.save(new Patient("Katya", "Golova",34));
+        Patient katya = patientRepository.findByName("Katya");
+        katya.setDoctors(tempDocs);
+        patientRepository.save(katya);
         System.out.println("1");
-        patients.add(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
+        /*patients.add(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
         patientRepository.save(new Patient("Andrey", "Jivot",doctorRepository.findAll(), 51));
         System.out.println("2");
         patients.add(new Patient("Vasya", "Noga", doctorRepository.findAll(),59));
@@ -57,7 +60,7 @@ import java.util.List;
         patients.add(new Patient("Nikola", "Yho",doctorRepository.findAll(), 11));
         System.out.println("5");
         patients.add(new Patient("Aizek", "Noz", doctorRepository.findAll(),45));
-        System.out.println("Done");
+        System.out.println("Done");*/
         patientRepository.save(patients);
     }
 

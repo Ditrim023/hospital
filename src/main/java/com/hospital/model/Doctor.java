@@ -27,7 +27,7 @@ public class Doctor{
     @Column(nullable = false)
     private String surname;
     private Integer age;
-    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "doctors")
+    @ManyToMany(mappedBy = "doctors")
     private List<Patient> patients;
 
     public Doctor(String name, String surname, Integer age) {
