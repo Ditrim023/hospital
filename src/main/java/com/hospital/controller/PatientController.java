@@ -2,6 +2,7 @@ package com.hospital.controller;
 
 import com.hospital.model.Patient;
 import com.hospital.repository.PatientRepository;
+import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author Nikita Krutoguz
@@ -17,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientController {
     private final PatientRepository patientRepository;
-
+    private final PatientService patientService;
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String root(final Model model) {
@@ -41,5 +45,11 @@ public class PatientController {
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));
         return "patient/edit";
+    }
+
+    @RequestMapping(value = "/patient/updates", method = RequestMethod.POST)
+    public final String update(final @RequestParam("id") Long id, final @RequestParam("name") String name,final @RequestParam("surname") String surname,final @RequestParam("age") Integer age) {
+        patientService.update(id,name,surname,age);
+        return "redirect:/patient/list";
     }
 }
