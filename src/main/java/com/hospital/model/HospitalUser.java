@@ -5,8 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Nikita Krutoguz
@@ -15,8 +13,8 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "patients")
-public class Patient {
+@Table(name = "hospital_users")
+public class HospitalUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
@@ -25,20 +23,12 @@ public class Patient {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "patients_hospital_users",
-            joinColumns = {@JoinColumn(name = "patient_id")},
-            inverseJoinColumns = {@JoinColumn(name = "hospital_users_id")}
-    )
-    private List<HospitalUser> hospitalUsers;
+    @Column(nullable = false)
+    private String login;
 
-    private int age;
-
-    public Patient(String name, String surname, int age) {
+    public HospitalUser(String name, String surname, String login) {
         this.name = name;
         this.surname = surname;
-        this.age = age;
+        this.login = login;
     }
-
 }

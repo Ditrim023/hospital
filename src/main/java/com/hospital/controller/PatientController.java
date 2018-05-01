@@ -23,6 +23,11 @@ public class PatientController {
     private final PatientRepository patientRepository;
     private final PatientService patientService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "index";
+    }
+
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String root(final Model model) {
         model.addAttribute("patients", patientRepository.findAll());
@@ -47,9 +52,9 @@ public class PatientController {
         return "patient/edit";
     }
 
-    @RequestMapping(value = "/patient/updates", method = RequestMethod.POST)
-    public final String update(final @RequestParam("id") Long id, final @RequestParam("name") String name,final @RequestParam("surname") String surname,final @RequestParam("age") Integer age) {
+    /*@RequestMapping(value = "/patient/updates", method = RequestMethod.POST)
+    public final String update(final @RequestParam Long id, final @RequestParam String name,final @RequestParam String surname,final @RequestParam Integer age) {
         patientService.update(id,name,surname,age);
         return "redirect:/patient/list";
-    }
+    }*/
 }
