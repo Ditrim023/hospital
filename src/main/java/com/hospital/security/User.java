@@ -1,4 +1,4 @@
-package com.hospital.security.model;
+package com.hospital.security;
 
 import org.springframework.security.core.GrantedAuthority;
 

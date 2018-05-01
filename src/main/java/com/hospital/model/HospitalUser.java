@@ -26,6 +26,8 @@ public class HospitalUser {
     private String surname;
     @Column(nullable = false)
     private String login;
+    @Column(nullable = false)
+    private String password;
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(
             name = "hospital_users_patients",
@@ -41,5 +43,12 @@ public class HospitalUser {
         this.name = name;
         this.surname = surname;
         this.login = login;
+    }
+
+    public HospitalUser(String name, String surname, String login, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
     }
 }

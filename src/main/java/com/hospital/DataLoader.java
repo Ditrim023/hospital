@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class DataLoader implements ApplicationRunner {
         // insertPatients();
         insertRoles();
         insertHospitalUsers();
-        getValue();
+        //getValue();
     }
 
     private void insertRoles() {
@@ -46,12 +47,15 @@ public class DataLoader implements ApplicationRunner {
          userRoleRepository.save(receptionist);
     }
     private void insertHospitalUsers() {
-        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0");
+        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0",new BCryptPasswordEncoder(10).encode("123456"));
         hospitalUser1.setRole(userRoleRepository.findOne(1L));
-        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knishenko", "user1");
+        hospitalUsers.add(hospitalUser1);
+        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knishenko", "user1",new BCryptPasswordEncoder(10).encode("123456"));
         hospitalUser2.setRole(userRoleRepository.findOne(2L));
-        HospitalUser hospitalUser3 = new HospitalUser("Jeka", "Belousov", "user2");
+        hospitalUsers.add(hospitalUser2);
+        HospitalUser hospitalUser3 = new HospitalUser("Jeka", "Belousov", "user2",new BCryptPasswordEncoder(10).encode("123456"));
         hospitalUser3.setRole(userRoleRepository.findOne(3L));
+        hospitalUsers.add(hospitalUser3);
         hospitalUserRepository.save(hospitalUsers);
     }
 
