@@ -4,6 +4,8 @@ import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.PatientRepository;
+import com.hospital.repository.UserRoleRepository;
+import com.hospital.model.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -21,21 +23,35 @@ import java.util.List;
 public class DataLoader implements ApplicationRunner {
     private final PatientRepository patientRepository;
     private final HospitalUserRepository hospitalUserRepository;
+    private final UserRoleRepository userRoleRepository;
 
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
 
+    private final UserRole admin = new UserRole("ROLE_ADMIN");
+    private final UserRole doctor = new UserRole("ROLE_DOCTOR");
+    private final UserRole receptionist = new UserRole("ROLE_RECEPTIONIST");
+
     @Override
     public void run(ApplicationArguments args) {
         // insertPatients();
+        insertRoles();
         insertHospitalUsers();
-      //  getValue();
+        getValue();
     }
 
-    private void insertHospitalUsers(){
-        hospitalUsers.add(new HospitalUser("Nikita","Krutoguz","user0"));
-        hospitalUsers.add(new HospitalUser("Yra","Knishenko","user1"));
-        hospitalUsers.add(new HospitalUser("Jeka","Belousov","user2"));
+    private void insertRoles() {
+         userRoleRepository.save(admin);
+         userRoleRepository.save(doctor);
+         userRoleRepository.save(receptionist);
+    }
+    private void insertHospitalUsers() {
+        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0");
+        hospitalUser1.setRole(userRoleRepository.findOne(1L));
+        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knishenko", "user1");
+        hospitalUser2.setRole(userRoleRepository.findOne(2L));
+        HospitalUser hospitalUser3 = new HospitalUser("Jeka", "Belousov", "user2");
+        hospitalUser3.setRole(userRoleRepository.findOne(3L));
         hospitalUserRepository.save(hospitalUsers);
     }
 
@@ -43,10 +59,10 @@ public class DataLoader implements ApplicationRunner {
 
     }
 
-    /*private void getValue() {
+    private void getValue() {
       HospitalUser hospitalUser = hospitalUserRepository.findUserByLogin("user2");
-        System.out.println(hospitalUser.getName());
-    }*/
+        System.out.println(hospitalUser.getRole().getRole());
+    }
 }
 
 

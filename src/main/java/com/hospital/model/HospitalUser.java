@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author Nikita Krutoguz
@@ -25,6 +26,16 @@ public class HospitalUser {
     private String surname;
     @Column(nullable = false)
     private String login;
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "hospital_users_patients",
+            joinColumns = {@JoinColumn(name = "hospital_users_id")},
+            inverseJoinColumns = {@JoinColumn(name = "patient_id")}
+    )
+    private List<Patient> patients;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private UserRole role;
 
     public HospitalUser(String name, String surname, String login) {
         this.name = name;

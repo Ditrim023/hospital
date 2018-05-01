@@ -25,12 +25,7 @@ public class Patient {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "patients_hospital_users",
-            joinColumns = {@JoinColumn(name = "patient_id")},
-            inverseJoinColumns = {@JoinColumn(name = "hospital_users_id")}
-    )
+    @ManyToMany(mappedBy = "patients")
     private List<HospitalUser> hospitalUsers;
 
     private int age;
