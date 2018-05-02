@@ -7,10 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Nikita Krutoguz
@@ -21,20 +18,7 @@ public class PatientController {
     private final PatientRepository patientRepository;
     private final PatientService patientService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index() {
-        return "index";
-    }
 
-    @GetMapping("login")
-    public String login() {
-        return "login";
-    }
-
-    @GetMapping("403")
-    public String error403() {
-        return "403";
-    }
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String root(final Model model) {
@@ -60,9 +44,9 @@ public class PatientController {
         return "patient/edit";
     }
 
-    /*@RequestMapping(value = "/patient/updates", method = RequestMethod.POST)
-    public final String update(final @RequestParam Long id, final @RequestParam String name,final @RequestParam String surname,final @RequestParam Integer age) {
-        patientService.update(id,name,surname,age);
+    @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
+    public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname) {
+        patientService.update(id,name,surname);
         return "redirect:/patient/list";
-    }*/
+    }
 }

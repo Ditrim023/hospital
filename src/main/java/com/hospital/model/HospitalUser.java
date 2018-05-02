@@ -28,12 +28,11 @@ public class HospitalUser {
     private String login;
     @Column(nullable = false)
     private String password;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "hospital_users_patients",
-            joinColumns = {@JoinColumn(name = "hospital_users_id")},
-            inverseJoinColumns = {@JoinColumn(name = "patient_id")}
-    )
+    @Column(nullable = false)
+    private String dateBirth;
+    @Column(nullable = false)
+    private String position;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     private List<Patient> patients;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -50,5 +49,14 @@ public class HospitalUser {
         this.surname = surname;
         this.login = login;
         this.password = password;
+    }
+
+    public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.dateBirth = dateBirth;
+        this.position = position;
     }
 }

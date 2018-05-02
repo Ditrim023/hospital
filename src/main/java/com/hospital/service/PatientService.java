@@ -1,5 +1,6 @@
 package com.hospital.service;
 
+import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,14 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientService {
      private final PatientRepository patientRepository;
-
-    /* public final void update(final Long id,final String name,final String surname,final Integer age){
+     public final void update(final Long id,final String name,final String surname){
           final Patient fromBase = patientRepository.findOne(id);
-          List<Doctor> doctors = fromBase.getDoctors();
+          final HospitalUser doctor = fromBase.getDoctor();
           fromBase.setName(name);
           fromBase.setSurname(surname);
-          fromBase.setAge(age);
-          fromBase.setDoctors(doctors);
+          fromBase.setDoctor(doctor);
           patientRepository.save(fromBase);
-     }*/
+     }
 }

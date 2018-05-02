@@ -25,8 +25,14 @@ public class Patient {
     private String name;
     @Column(nullable = false)
     private String surname;
-    @ManyToMany(mappedBy = "patients")
-    private List<HospitalUser> hospitalUsers;
+    /*@Column(nullable = false)*/
+    private String dateBirth;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private HospitalUser doctor;
 
-
+    public Patient(String name, String surname, String dateBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.dateBirth = dateBirth;
+    }
 }

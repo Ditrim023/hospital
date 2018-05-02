@@ -30,14 +30,15 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
-                .antMatchers("/admin","/patient/list").hasRole("ADMIN")
+                .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR","RECEPTIONIST")
+                .antMatchers("/admin","/patient/**").hasRole("ADMIN")
                 .and().exceptionHandling()
                 .and().formLogin()
                 .loginPage("/login").failureUrl("/403")
                 .loginProcessingUrl("/j_spring_security_check")
                 .usernameParameter("login")
                 .passwordParameter("password")
-                .defaultSuccessUrl("/list")
+                .defaultSuccessUrl("/profile")
                 .and().logout()
                 .logoutSuccessUrl("/");
 

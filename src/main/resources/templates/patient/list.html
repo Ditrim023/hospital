@@ -23,16 +23,14 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Age</th>
-                <th>Count</th>
+                <th>Doctor Name</th>
                 <th>Edit</th>
             </tr>
             <tr th:each="patient : ${patients}">
                 <td th:text="${patient.id}">Id</td>
                 <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.surname}">Surname</td>
-                <td th:text="${patient.age}">Age</td>
-                <td th:text="${patient.getDoctors().size()}">Count</td>
+                <td th:text="${patient.getDoctor().name}">Doctor Name</td>
                 <td><a th:href="${'/patient/edit/' + patient.id}">Edit</a></td>
             </tr>
         </table>
