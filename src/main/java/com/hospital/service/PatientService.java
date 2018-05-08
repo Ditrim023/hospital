@@ -17,9 +17,9 @@ public class PatientService {
     private final PatientRepository patientRepository;
     private final HospitalUserRepository hospitalUserRepository;
 
-    public final void update(final Long id, final String name, final String surname) {
+    public final void update(final Long id, final String name, final String surname,final Long doctorId) {
         final Patient fromBase = patientRepository.findOne(id);
-        final HospitalUser doctor = fromBase.getDoctor();
+        final HospitalUser doctor = hospitalUserRepository.findOne(doctorId);
         fromBase.setName(name);
         fromBase.setSurname(surname);
         fromBase.setDoctor(doctor);

@@ -45,12 +45,13 @@ public class PatientController {
     @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));
+        model.addAttribute("doctors",hospitalUserService.getDoctors());
         return "patient/edit";
     }
 
     @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
-    public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname) {
-        patientService.update(id,name,surname);
+    public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname,final @RequestParam Long doctorId) {
+        patientService.update(id,name,surname,doctorId);
         return "redirect:/patient/list";
     }
 }
