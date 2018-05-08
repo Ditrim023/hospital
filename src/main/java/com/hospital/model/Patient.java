@@ -35,4 +35,10 @@ public class Patient {
         this.surname = surname;
         this.dateBirth = dateBirth;
     }
+
+    public Patient(String name, String surname, HospitalUser doctor) {
+        this.name = name;
+        this.surname = surname;
+        this.doctor = doctor;
+    }
 }

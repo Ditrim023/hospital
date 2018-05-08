@@ -34,8 +34,10 @@ public class HospitalUser {
     private String position;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     private List<Patient> patients;
-
+    @Column(nullable = false, insertable = false, updatable = false)
+    private Long positionId;
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "positionId")
     private UserRole role;
 
     public HospitalUser(String name, String surname, String login) {

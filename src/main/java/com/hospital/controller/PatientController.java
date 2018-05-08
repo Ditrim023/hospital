@@ -2,6 +2,7 @@ package com.hospital.controller;
 
 import com.hospital.model.Patient;
 import com.hospital.repository.PatientRepository;
+import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class PatientController {
     private final PatientRepository patientRepository;
     private final PatientService patientService;
-
+    private final HospitalUserService hospitalUserService;
 
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
@@ -29,12 +30,15 @@ public class PatientController {
     @RequestMapping(path = "patient/add", method = RequestMethod.GET)
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
+        model.addAttribute("doctors",hospitalUserService.getDoctors());
         return "patient/add";
     }
 
     @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
-    public String savePatient(final Patient pat) {
-        patientRepository.save(pat);
+    public final String savePatient(final @RequestParam("name") String name,
+                                    final @RequestParam("surname") String surname,
+                                    final @RequestParam("doctorId") Long doctorId) {
+        patientService.create(name,surname,doctorId);
         return "redirect:/patient/list";
     }
 

@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css" />
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
 </head>
 <body>
 	   <div id="header">
 <div id="header-inner">
 <div id="logo">
-                 <a href="#" th:href="@{/}"> <img src="../../static/images/logo_true.png" 
+                 <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
                      th:src="@{/images/logo_true.png}" /></a>
 </div>
 	  <div id="main-page">
@@ -18,9 +18,12 @@
 		  <li><a th:href="@{/patient/add}">Add Patient</a></li>
 		  <li>|</li>
 		  <li><a th:href="@{/login}">Login</a></li>
+		  <li>|</li>
+		  <li><a th:href="@{/profile}">Profile</a></li>
 	  </ul>
 	  </div>
     </div>
 </div>
+
 </body>
 </html>

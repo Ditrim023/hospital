@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Profile Page</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/}"> <img src="../../static/images/logo_true.png"
+                                             th:src="@{/images/logo_true.png}"/></a>
+        </div>
+        <div id="main-page">
+            <ul>
+                <li><a th:href="@{/patient/list}">Patients List</a></li>
+                <li>|</li>
+                <li><a th:href="@{/patient/add}">Add Patient</a></li>
+                <li>|</li>
+                <li><a th:href="@{/profile}">Profile</a></li>
+                <li>
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" class="but" value="Sig Out"/>
+                </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2>My profile</h2>
+    <form class="form-edit" th:object="${currentUser}" th:action="@{/currentUser/update}" method="post">
+        <div class="form-line">
+            <label class="form-text">Id:</label>
+            <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>
+        </div>
+        <div class="form-line">
+            <label class="form-text">Name:</label>
+            <input type="text" class="form-control" th:field="*{name}" />
+        </div>
+        <div class="form-line">
+            <label class="form-text">Surname:</label>
+            <input type="text" class="form-control" th:field="*{surname}" />
+        </div>
+        <div class="form-line">
+            <label class="form-text">Login:</label>
+            <input type="text" class="form-control" th:field="*{login}" />
+        </div>
+        <div class="form-line">
+            <label class="form-text">Position:</label>
+            <input type="text" class="form-control" th:field="*{position}" />
+        </div>
+        <button type="submit" class = "button">Save</button>
+    </form>
+</div>
+</body>
+</html>

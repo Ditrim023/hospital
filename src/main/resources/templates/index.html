@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
-    <title>Hospital</title>
-    <th:block th:include="layout/header"></th:block>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css" />
+    <title>Hello page</title>
 </head>
 <body>
-
+<h1>Hello user</h1>
+<h2>Please <a th:href="@{/login}">Sign in</a></h2>
 </body>
 </html>

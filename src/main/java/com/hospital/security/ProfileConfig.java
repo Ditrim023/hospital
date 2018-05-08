@@ -31,7 +31,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR","RECEPTIONIST")
-                .antMatchers("/admin","/patient/**").hasRole("ADMIN")
+                .antMatchers("/patient/**").hasRole("ADMIN")
                 .and().exceptionHandling()
                 .and().formLogin()
                 .loginPage("/login").failureUrl("/403")

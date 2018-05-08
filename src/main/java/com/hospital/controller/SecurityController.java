@@ -26,19 +26,18 @@ public class SecurityController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
-        return "login";
+        return "/system/login";
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
     public String error() {
-        return "/403";
+        return "/system/403";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         final HospitalUser currentUser = hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
         model.addAttribute("currentUser",currentUser);
-       // model.addAttribute("hospSurname",currentUser.getName());
-        return "/profile";
+        return "/system/profile";
     }
 }

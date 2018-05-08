@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author Nikita Krutoguz
  */
@@ -13,4 +15,10 @@ import org.springframework.stereotype.Repository;
 public interface HospitalUserRepository extends JpaRepository<HospitalUser,Long>{
     @Query(value = "SELECT u FROM HospitalUser u WHERE u.login = :login")
     HospitalUser findUserByLogin(final @Param("login") String login);
+
+    /*@Query(value = "SELECT u FROM HospitalUser u WHERE u.position = :position")
+    HospitalUser findUserByPosition(final @Param("position") String login);*/
+
+    @Query(value = "SELECT u FROM HospitalUser u WHERE u.positionId = :positionId")
+    List<HospitalUser> findAllUserByPosition(final @Param("positionId") Long positionId);
 }

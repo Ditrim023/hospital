@@ -2,17 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Edit Patient Details</title>
-    <th:block th:include="layout/header"></th:block>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
 </head>
 <body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>Add Patient</h2>
+        <div class="lin"><a th:href="@{/patient/list}">Patient List</a></div>
+    </div>
+</div>
 <div class="container">
     <h2>Patient Details</h2>
         <form class="form-edit" th:object="${patient}" th:action="@{/patient/update}" method="post">
             <div class="form-line">
                 <label class="form-text">Id:</label>
                 <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>
-                <p th:field="*{name}"></p>
             </div>
             <div class="form-line">
                 <label class="form-text">Name:</label>

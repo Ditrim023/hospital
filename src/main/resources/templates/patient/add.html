@@ -3,13 +3,13 @@
 <head lang="en">
     <title>Edit Patient Details</title>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
     </head>
 <body>
 <div id="header">
 <div id="header-inner">
 <div id="logo">
-                 <a href="#" th:href="@{/}"> <img src="../../static/images/logo_true.png" 
+                 <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
                      th:src="@{/images/logo_true.png}" /></a>
 </div>
        <h2>Add Patient</h2>
@@ -24,9 +24,16 @@
         <div class="form-input">
             <input type="text" class="inn" th:field="*{surname}" placeholder="Surname" />
         </div>
+        <div class="form-input">
+            <select class="form-control" name="doctorId">
+                <option value="">Select Doctor</option>
+                <option th:each="doctor : ${doctors}"
+                        th:value="${doctor.id}"
+                        th:text="${doctor.surname}+' : '+${doctor.position}"></option>
+            </select>
+        </div>
         <button type="submit" class = "button">Save</button>
     </form>
-
 </div>
 </body>
 </html>
