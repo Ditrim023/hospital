@@ -1,8 +1,10 @@
 package com.hospital;
 
+import com.hospital.model.Comment;
 import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.model.UserRole;
+import com.hospital.repository.CommentRepository;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.PatientRepository;
 import com.hospital.repository.UserRoleRepository;
@@ -25,9 +27,11 @@ public class DataLoader implements ApplicationRunner {
     private final PatientRepository patientRepository;
     private final HospitalUserRepository hospitalUserRepository;
     private final UserRoleRepository userRoleRepository;
+    private final CommentRepository commentRepository;
 
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
+    private final List<Comment> comments = new ArrayList<>();
 
     private final UserRole admin = new UserRole("ROLE_ADMIN");
     private final UserRole doctor = new UserRole("ROLE_DOCTOR");
@@ -38,7 +42,7 @@ public class DataLoader implements ApplicationRunner {
         insertRoles();
         insertHospitalUsers();
         insertPatients();
-        getValue();
+
     }
 
     private void insertRoles() {
@@ -67,7 +71,11 @@ public class DataLoader implements ApplicationRunner {
     }
 
     private void insertPatients() {
-        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2000");
+        comments.add(new Comment("Hello"));
+        comments.add(new Comment("My"));
+        comments.add(new Comment("Dear"));
+        comments.add(new Comment("Patients"));
+        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2000",comments);
         patient1.setDoctor(hospitalUserRepository.findOne(5L));
         patients.add(patient1);
         Patient patient2 = new Patient("Petr", "Petrov", "01.01.2000");
@@ -88,9 +96,16 @@ public class DataLoader implements ApplicationRunner {
         patientRepository.save(patients);
     }
 
+    private void insertComment() {
+        comments.add(new Comment("Hello"));
+        comments.add(new Comment("My"));
+        comments.add(new Comment("Dear"));
+        comments.add(new Comment("Patients"));
+        commentRepository.save(comments);
+    }
+
     private void getValue() {
-        HospitalUser hospitalUser = hospitalUserRepository.findUserByLogin("user3");
-        System.out.println(hospitalUser.getPatients().size());
+
     }
 }
 

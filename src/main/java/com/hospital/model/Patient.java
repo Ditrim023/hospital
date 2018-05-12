@@ -29,7 +29,13 @@ public class Patient {
     private String dateBirth;
     @ManyToOne(fetch = FetchType.EAGER)
     private HospitalUser doctor;
-
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "patient_comment",
+            joinColumns = {@JoinColumn(name = "patient_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "comment_id", referencedColumnName = "id")}
+    )
+    private List<Comment> comments;
     public Patient(String name, String surname, String dateBirth) {
         this.name = name;
         this.surname = surname;
@@ -40,5 +46,18 @@ public class Patient {
         this.name = name;
         this.surname = surname;
         this.doctor = doctor;
+    }
+
+    public Patient(String name, String surname, List<Comment> comments) {
+        this.name = name;
+        this.surname = surname;
+        this.comments = comments;
+    }
+
+    public Patient(String name, String surname, String dateBirth, List<Comment> comments) {
+        this.name = name;
+        this.surname = surname;
+        this.dateBirth = dateBirth;
+        this.comments = comments;
     }
 }

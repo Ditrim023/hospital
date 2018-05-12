@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.model.Comment;
 import com.hospital.model.Patient;
 import com.hospital.repository.PatientRepository;
 import com.hospital.service.HospitalUserService;
@@ -8,7 +9,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * @author Nikita Krutoguz
@@ -20,7 +27,6 @@ public class PatientController {
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
 
-
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String root(final Model model) {
         model.addAttribute("patients", patientRepository.findAll());
@@ -30,7 +36,7 @@ public class PatientController {
     @RequestMapping(path = "patient/add", method = RequestMethod.GET)
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
-        model.addAttribute("doctors",hospitalUserService.getDoctors());
+        model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "patient/add";
     }
 
@@ -38,20 +44,29 @@ public class PatientController {
     public final String savePatient(final @RequestParam("name") String name,
                                     final @RequestParam("surname") String surname,
                                     final @RequestParam("doctorId") Long doctorId) {
-        patientService.create(name,surname,doctorId);
+        patientService.create(name, surname, doctorId);
         return "redirect:/patient/list";
     }
+
+    @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
+    public String saveComment(final @RequestParam Long id,final @RequestParam String text) {
+        patientService.saveComment(id,text);
+        return "redirect:/patient/edit/"+id;
+    }
+
 
     @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));
-        model.addAttribute("doctors",hospitalUserService.getDoctors());
+        model.addAttribute("doctors", hospitalUserService.getDoctors());
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", patientService.getReverselist(id));
         return "patient/edit";
     }
 
     @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
-    public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname,final @RequestParam Long doctorId) {
-        patientService.update(id,name,surname,doctorId);
+    public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
+        patientService.update(id, name, surname, doctorId);
         return "redirect:/patient/list";
     }
 }
