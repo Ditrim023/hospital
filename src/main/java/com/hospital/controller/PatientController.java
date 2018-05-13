@@ -51,22 +51,27 @@ public class PatientController {
     @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
     public String saveComment(final @RequestParam Long id,final @RequestParam String text) {
         patientService.saveComment(id,text);
-        return "redirect:/patient/edit/"+id;
+        return "redirect:/patient/info/"+id;
     }
 
+    @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
+    public String infoPatient(final Model model, @PathVariable("id") final Long id) {
+        model.addAttribute("patient", patientRepository.findOne(id));
+        model.addAttribute("comment", new Comment());
+        model.addAttribute("comments", patientService.getReverselist(id));
+        return "patient/info";
+    }
 
     @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));
         model.addAttribute("doctors", hospitalUserService.getDoctors());
-        model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", patientService.getReverselist(id));
         return "patient/edit";
     }
 
     @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
     public final String update(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
         patientService.update(id, name, surname, doctorId);
-        return "redirect:/patient/list";
+        return "redirect:/patient/info/"+id;
     }
 }

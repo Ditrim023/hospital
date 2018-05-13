@@ -5,8 +5,15 @@ body {
 }
 
 a {
-    color: #ff605a;
+    color: #ff1c19;
     text-decoration: none;
+}
+#info-table{
+	width:540px;
+	 border: 3px solid #000; 
+}
+.leftcol{
+	font-weight:bold;
 }
 
 #profile {
@@ -118,9 +125,7 @@ span input {
     border: 1px solid;
 }
 
-.form-line p {
-    text-align: left;
-}
+
 
 .container a {
     color: green;
@@ -140,13 +145,22 @@ span input {
     padding-left: 2px;
     padding-right: 2px;
 }
-
+.form-input textarea {
+    margin-left: 23%;
+    height: 90px;
+    width: 400px;
+    border-radius: 1px;
+    border-color: #cfd2c9;
+    margin-bottom: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
 .inn {
     padding-left: 5px;
 }
 
 .form-line {
-    text-align: right;
+    text-align: left;
     padding-bottom: 3px;
     padding-top: 3px;
 }

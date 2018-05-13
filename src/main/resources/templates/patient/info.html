@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Patient Info</title>
+    <link rel="stylesheet" th:href="@{/css/style2.css}" href="../../static/css/style2.css"/>
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}"/></a>
+        </div>
+        <h2>Patient Info</h2>
+        <div class="lin"><a th:href="@{/patient/list}">Patient List</a></div>
+    </div>
+</div>
+<div class="container">
+    <h2><a class="rightcol" th:href="${'/patient/edit/' + patient.id}">Edit</a> Patient Info</h2>
+    <table id="info-table">
+        <tr>
+            <td class="leftcol">Id:</td>
+            <td class="rightcol" th:text="*{patient.id}">Правая колонка</td>
+        </tr>
+        <tr>
+            <td class="leftcol">Name:</td>
+            <td class="rightcol" th:text="*{patient.name}">Правая колонка</td>
+        </tr>
+		<tr>
+            <td class="leftcol">Surname:</td>
+            <td class="rightcol" th:text="*{patient.surname}">Правая колонка</td>
+        </tr>
+		<tr>
+            <td class="leftcol">Doctor:</td>
+            <td class="rightcol" th:text="${patient.getDoctor().name}+' '+${patient.getDoctor().surname}+' - '+${patient.getDoctor().position}">Правая колонка</td>
+        </tr>
+    </table>
+	<div class="clear"></div>
+    <!-- <div class="form-line">
+         <label class="form-text">Id:</label>
+        <p type="text" class="form-control" th:text="*{patient.id}"></p>
+     </div>
+     <div class="form-line">
+         <label class="form-text">Name:</label>
+         <p type="text" class="form-control" th:text="*{patient.name}"></p>
+     </div>
+     <div class="form-line">
+         <label class="form-text">Surname:</label>
+         <p type="text" class="form-control" th:text="*{patient.surname}"></p>
+     </div>
+     <div class="form-line">
+         <label class="form-text">Doctor:</label>
+         <p type="text" class="form-control" th:text="${patient.getDoctor().surname}+' : '+${patient.getDoctor().position}"></p>
+     </div>
+     <div class="form-input">
+         <select class="form-control" name="doctorId">
+             <option value="">Select Doctor</option>
+             <option th:each="doctor : ${doctors}"
+                     th:value="${doctor.id}"
+                     th:text="${doctor.surname}+' : '+${doctor.position}"></option>
+         </select>
+     </div>-->
+</div>
+<div class="container">
+    <div id="create-comment">
+        <form class="form" th:object="${comment}" th:action="@{/comment/save/}" method="post">
+            <span><input type="hidden" class="form-control" name="id" th:value="${patient.id}"
+                         readonly="readonly"/></span>
+            <div class="form-input">
+                <textarea class="inn" th:field="*{text}" placeholder="Add"></textarea>
+            </div>
+            <button type="submit" class="button">Save</button>
+        </form>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(comments)}">
+        <div th:each="comment : ${comments}">
+            <p th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy')}">Date</p>
+            <p th:text="${comment.text}">Name</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

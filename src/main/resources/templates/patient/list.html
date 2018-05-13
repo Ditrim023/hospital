@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Patients</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
+    <link rel="stylesheet" th:href="@{/css/style2.css}" href="../../static/css/style2.css"/>
 </head>
 <body>
 <div id="header">
@@ -24,14 +24,14 @@
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Doctor Name</th>
-                <th>Edit</th>
+                <th>Info</th>
             </tr>
             <tr th:each="patient : ${patients}">
                 <td th:text="${patient.id}">Id</td>
                 <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.surname}">Surname</td>
                 <td th:text="${patient.getDoctor().name}">Doctor Name</td>
-                <td><a th:href="${'/patient/edit/' + patient.id}">Edit</a></td>
+                <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
             </tr>
         </table>
     </div>
