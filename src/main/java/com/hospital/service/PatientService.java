@@ -24,7 +24,7 @@ public class PatientService {
     private final CommentRepository commentRepository;
 
 
-    public final void update(final Long id, final String name, final String surname, final Long doctorId) {
+    public final void patientUpdate(final Long id, final String name, final String surname, final Long doctorId) {
         final Patient fromBase = patientRepository.findOne(id);
         final HospitalUser doctor = hospitalUserRepository.findOne(doctorId);
         fromBase.setName(name);
@@ -50,4 +50,12 @@ public class PatientService {
         Collections.reverse(reversList);
         return reversList;
     }
+
+   /* public final void commentUpdate(final Long id, final String text, final Long patientId) {
+        final Comment fromBase = commentRepository.findOne(id);
+        final Patient patient = patientRepository.findOne(patientId);
+        fromBase.setText(text);
+        fromBase.setPatients();
+        patientRepository.save(fromBase);
+    }*/
 }

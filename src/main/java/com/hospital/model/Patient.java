@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,13 +28,9 @@ public class Patient {
     private String dateBirth;
     @ManyToOne(fetch = FetchType.EAGER)
     private HospitalUser doctor;
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "patient_comment",
-            joinColumns = {@JoinColumn(name = "patient_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "comment_id", referencedColumnName = "id")}
-    )
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
     private List<Comment> comments;
+
     public Patient(String name, String surname, String dateBirth) {
         this.name = name;
         this.surname = surname;

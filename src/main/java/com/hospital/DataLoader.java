@@ -32,6 +32,7 @@ public class DataLoader implements ApplicationRunner {
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
     private final List<Comment> comments = new ArrayList<>();
+    private final List<Comment> comments2 = new ArrayList<>();
 
     private final UserRole admin = new UserRole("ROLE_ADMIN");
     private final UserRole doctor = new UserRole("ROLE_DOCTOR");
@@ -42,6 +43,8 @@ public class DataLoader implements ApplicationRunner {
         insertRoles();
         insertHospitalUsers();
         insertPatients();
+        insertComments();
+
 
     }
 
@@ -71,12 +74,9 @@ public class DataLoader implements ApplicationRunner {
     }
 
     private void insertPatients() {
-        comments.add(new Comment("Hello"));
-        comments.add(new Comment("My"));
-        comments.add(new Comment("Dear"));
-        comments.add(new Comment("Patients"));
-        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2000",comments);
+        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2000");
         patient1.setDoctor(hospitalUserRepository.findOne(5L));
+        patient1.setComments(comments2);
         patients.add(patient1);
         Patient patient2 = new Patient("Petr", "Petrov", "01.01.2000");
         patient2.setDoctor(hospitalUserRepository.findOne(3L));
@@ -96,17 +96,22 @@ public class DataLoader implements ApplicationRunner {
         patientRepository.save(patients);
     }
 
-    private void insertComment() {
-        comments.add(new Comment("Hello"));
-        comments.add(new Comment("My"));
-        comments.add(new Comment("Dear"));
-        comments.add(new Comment("Patients"));
+    private void insertComments(){
+        Comment comment1 = new Comment("Hello");
+        comment1.setPatient(patientRepository.findOne(1L));
+        comments.add(comment1);
+        Comment comment2 = new Comment("My");
+        comment2.setPatient(patientRepository.findOne(1L));
+        comments.add(comment2);
+        Comment comment3 = new Comment("Dear");
+        comment3.setPatient(patientRepository.findOne(1L));
+        comments.add(comment3);
+        Comment comment4 = new Comment("Patients");
+        comment4.setPatient(patientRepository.findOne(1L));
+        comments.add(comment4);
         commentRepository.save(comments);
     }
 
-    private void getValue() {
-
-    }
 }
 
 

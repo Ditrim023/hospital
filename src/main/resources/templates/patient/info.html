@@ -36,36 +36,13 @@
         </tr>
     </table>
 	<div class="clear"></div>
-    <!-- <div class="form-line">
-         <label class="form-text">Id:</label>
-        <p type="text" class="form-control" th:text="*{patient.id}"></p>
-     </div>
-     <div class="form-line">
-         <label class="form-text">Name:</label>
-         <p type="text" class="form-control" th:text="*{patient.name}"></p>
-     </div>
-     <div class="form-line">
-         <label class="form-text">Surname:</label>
-         <p type="text" class="form-control" th:text="*{patient.surname}"></p>
-     </div>
-     <div class="form-line">
-         <label class="form-text">Doctor:</label>
-         <p type="text" class="form-control" th:text="${patient.getDoctor().surname}+' : '+${patient.getDoctor().position}"></p>
-     </div>
-     <div class="form-input">
-         <select class="form-control" name="doctorId">
-             <option value="">Select Doctor</option>
-             <option th:each="doctor : ${doctors}"
-                     th:value="${doctor.id}"
-                     th:text="${doctor.surname}+' : '+${doctor.position}"></option>
-         </select>
-     </div>-->
+
 </div>
 <div class="container">
     <div id="create-comment">
         <form class="form" th:object="${comment}" th:action="@{/comment/save/}" method="post">
-            <span><input type="hidden" class="form-control" name="id" th:value="${patient.id}"
-                         readonly="readonly"/></span>
+            <span><input type="hidden" class="form-input" name="id" th:value="${patient.id}"
+            /></span>
             <div class="form-input">
                 <textarea class="inn" th:field="*{text}" placeholder="Add"></textarea>
             </div>
@@ -73,11 +50,12 @@
         </form>
     </div>
 </div>
+
 <div class="container">
     <div th:if="${not #lists.isEmpty(comments)}">
         <div th:each="comment : ${comments}">
-            <p th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy')}">Date</p>
-            <p th:text="${comment.text}">Name</p>
+            <h2 th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy')}">Date</h2><h2><a th:href="${'/patient/comment/' + comment.id}">Change</a></h2>
+            <p th:text="${comment.text}">Text</p>
         </div>
     </div>
 </div>
