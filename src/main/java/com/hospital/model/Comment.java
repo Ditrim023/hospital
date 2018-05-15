@@ -30,6 +30,8 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
+    /*@Column(nullable = false, insertable = false, updatable = false) add when project will be a ready*/
+    private String author;
 
     public Comment(String text) {
         this.text = text;
@@ -43,5 +45,11 @@ public class Comment {
     public Comment(String text, Patient patient) {
         this.text = text;
         this.patient = patient;
+    }
+
+    public Comment(String text, Patient patient, String author) {
+        this.text = text;
+        this.patient = patient;
+        this.author = author;
     }
 }

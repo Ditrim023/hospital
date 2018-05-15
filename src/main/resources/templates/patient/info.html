@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Patient Info</title>
-    <link rel="stylesheet" th:href="@{/css/style2.css}" href="../../static/css/style2.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
 <div id="header">
@@ -53,9 +53,16 @@
 
 <div class="container">
     <div th:if="${not #lists.isEmpty(comments)}">
-        <div th:each="comment : ${comments}">
-            <h2 th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy')}">Date</h2><h2><a th:href="${'/patient/comment/' + comment.id}">Change</a></h2>
-            <p th:text="${comment.text}">Text</p>
+        <div id="comm-list" th:each="comment : ${comments}">
+		<ul>
+            <li th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy')}">Date</li>
+			<li>|</li>
+            <li th:text="${comment.author}">Author</li>
+			<li>|</li>
+            <li><a th:href="${'/patient/comment/' + comment.id}">Change</a></li>
+		</ul>
+		<br/>
+		<p th:text="${comment.text}">Text</p>
         </div>
     </div>
 </div>

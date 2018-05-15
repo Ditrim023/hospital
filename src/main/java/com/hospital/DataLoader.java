@@ -44,8 +44,6 @@ public class DataLoader implements ApplicationRunner {
         insertHospitalUsers();
         insertPatients();
         insertComments();
-
-
     }
 
     private void insertRoles() {

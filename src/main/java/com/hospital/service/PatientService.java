@@ -6,6 +6,7 @@ import com.hospital.model.Patient;
 import com.hospital.repository.CommentRepository;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.PatientRepository;
+import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,9 +41,9 @@ public class PatientService {
 
     public final void saveComment(final Long patientId, final String text) {
         final Patient patient = patientRepository.findOne(patientId);
-        final Comment comment = new Comment(text);
-        comment.setPatient(patient);
-        commentRepository.save(comment);
+        final HospitalUser currentUser = hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
+        String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        commentRepository.save(new Comment(text, patient, author));
     }
 
     public final List<Comment> getReverselist(final Long id) {

@@ -1,11 +1,13 @@
 package com.hospital.controller;
 
 import com.hospital.model.Comment;
+import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.repository.CommentRepository;
 import com.hospital.repository.PatientRepository;
 import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
+import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +54,7 @@ public class PatientController {
         patientService.patientUpdate(id, name, surname, doctorId);
         return "redirect:/patient/info/" + id;
     }
+
     @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));
@@ -73,15 +76,15 @@ public class PatientController {
         return "patient/comment";
     }
 
-   @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
+    @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
     public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text) {
         patientService.commentUpdate(id, text);
-       final Long patientId = commentRepository.findOne(id).getPatient().getId();
+        final Long patientId = commentRepository.findOne(id).getPatient().getId();
         return "redirect:/patient/info/" + patientId;
     }
 
     @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
-    public String saveComment(final @RequestParam Long id, final @RequestParam String text) {
+    public final String saveComment(final @RequestParam Long id, final @RequestParam String text) {
         patientService.saveComment(id, text);
         return "redirect:/patient/info/" + id;
     }
