@@ -57,6 +57,7 @@ public class PatientService {
         final Patient patient = patientRepository.findOne(fromBase.getPatient().getId());
         fromBase.setText(text);
         fromBase.setPatient(patient);
+        fromBase.setDateLastChange(System.currentTimeMillis());
         commentRepository.save(fromBase);
     }
 }

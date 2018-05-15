@@ -26,7 +26,6 @@ public class PatientController {
     private final PatientRepository patientRepository;
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
-    private final CommentRepository commentRepository;
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String listPatients(final Model model) {
@@ -41,19 +40,6 @@ public class PatientController {
         return "patient/add";
     }
 
-    @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
-    public final String savePatient(final @RequestParam("name") String name,
-                                    final @RequestParam("surname") String surname,
-                                    final @RequestParam("doctorId") Long doctorId) {
-        patientService.create(name, surname, doctorId);
-        return "redirect:/patient/list";
-    }
-
-    @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
-    public final String patientUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
-        patientService.patientUpdate(id, name, surname, doctorId);
-        return "redirect:/patient/info/" + id;
-    }
 
     @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
@@ -70,22 +56,17 @@ public class PatientController {
         return "patient/edit";
     }
 
-    @RequestMapping(path = "/patient/comment/{id}", method = RequestMethod.GET)
-    public String editComment(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("comment", commentRepository.findOne(id));
-        return "patient/comment";
+    @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
+    public final String savePatient(final @RequestParam("name") String name,
+                                    final @RequestParam("surname") String surname,
+                                    final @RequestParam("doctorId") Long doctorId) {
+        patientService.create(name, surname, doctorId);
+        return "redirect:/patient/list";
     }
 
-    @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
-    public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text) {
-        patientService.commentUpdate(id, text);
-        final Long patientId = commentRepository.findOne(id).getPatient().getId();
-        return "redirect:/patient/info/" + patientId;
-    }
-
-    @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
-    public final String saveComment(final @RequestParam Long id, final @RequestParam String text) {
-        patientService.saveComment(id, text);
+    @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
+    public final String patientUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
+        patientService.patientUpdate(id, name, surname, doctorId);
         return "redirect:/patient/info/" + id;
     }
 }

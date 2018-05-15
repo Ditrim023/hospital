@@ -27,7 +27,8 @@ public class Comment {
 
     @Column(nullable = false)
     private Long dateCreate = System.currentTimeMillis();
-
+    @Column(nullable = false)
+    private Long dateLastChange = System.currentTimeMillis();
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
     /*@Column(nullable = false, insertable = false, updatable = false) add when project will be a ready*/
