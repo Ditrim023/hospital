@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Edit Patient Details</title>
+    <link rel="stylesheet" th:href="@{/css/style2.css}" href="../static/css/style2.css" />
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>Add Patient</h2>
+        <div class="lin"><a th:href="@{/patient/list}">Patient List</a></div>
+    </div>
+</div>
+<div class="container">
+    <h2>Patient Details</h2>
+    <form class="form-edit" th:object="${comment}" th:action="@{/comment/update}" method="post">
+        <span><input type="hidden" class="form-input" name="id" th:value="${comment.id}"
+        /></span>
+        <div class="form-input">
+            <textarea class="inn" th:field="*{text}" placeholder="Add"></textarea>
+        </div>
+        <button type="submit" class = "button">Save</button>
+    </form>
+</div>
+
+</body>
+</html>

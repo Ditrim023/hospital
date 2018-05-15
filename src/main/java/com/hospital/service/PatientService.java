@@ -38,24 +38,24 @@ public class PatientService {
         patientRepository.save(new Patient(name, surname, doctor));
     }
 
-    public final void saveComment(final Long patientId,final String text){
+    public final void saveComment(final Long patientId, final String text) {
         final Patient patient = patientRepository.findOne(patientId);
         final Comment comment = new Comment(text);
+        comment.setPatient(patient);
         commentRepository.save(comment);
-        patient.getComments().add(comment);
-        patientRepository.save(patient);
     }
-    public final List<Comment> getReverselist(final Long id){
+
+    public final List<Comment> getReverselist(final Long id) {
         List<Comment> reversList = patientRepository.findOne(id).getComments();
         Collections.reverse(reversList);
         return reversList;
     }
 
-   /* public final void commentUpdate(final Long id, final String text, final Long patientId) {
+    public final void commentUpdate(final Long id, final String text) {
         final Comment fromBase = commentRepository.findOne(id);
-        final Patient patient = patientRepository.findOne(patientId);
+        final Patient patient = patientRepository.findOne(fromBase.getPatient().getId());
         fromBase.setText(text);
-        fromBase.setPatients();
-        patientRepository.save(fromBase);
-    }*/
+        fromBase.setPatient(patient);
+        commentRepository.save(fromBase);
+    }
 }

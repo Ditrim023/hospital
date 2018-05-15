@@ -73,11 +73,12 @@ public class PatientController {
         return "patient/comment";
     }
 
-   /*@RequestMapping(value = "/patient/update", method = RequestMethod.POST)
-    public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text, final @RequestParam Long patientId) {
-        patientService.commentUpdate(id, text, patientId);
-        return "redirect:/patient/info/" + id;
-    }*/
+   @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
+    public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text) {
+        patientService.commentUpdate(id, text);
+       final Long patientId = commentRepository.findOne(id).getPatient().getId();
+        return "redirect:/patient/info/" + patientId;
+    }
 
     @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
     public String saveComment(final @RequestParam Long id, final @RequestParam String text) {
