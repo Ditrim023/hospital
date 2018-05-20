@@ -25,13 +25,13 @@ public class HospitalController {
         return "doctor/list";
     }
 
-   /* @RequestMapping(path = "/doctor/info/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/doctor/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientRepository.findOne(id));
-        model.addAttribute("comments", patientService.getReverselist(id));
+        model.addAttribute("doctor", hospitalUserRepository.findOne(id));
+        model.addAttribute("patients", hospitalUserService.patients(id));
         return "doctor/info";
     }
-
+/*
     @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientRepository.findOne(id));

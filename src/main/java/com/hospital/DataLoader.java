@@ -64,23 +64,23 @@ public class DataLoader implements ApplicationRunner {
     }
 
     private void insertPatients() {
-        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2000");
+        Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2001");
         patient1.setDoctor(hospitalUserRepository.findOne(4L));
         patient1.setComments(comments);
         patients.add(patient1);
-        Patient patient2 = new Patient("Petr", "Petrov", "01.01.2000");
+        Patient patient2 = new Patient("Petr", "Petrov", "01.01.2002");
         patient2.setDoctor(hospitalUserRepository.findOne(2L));
         patients.add(patient2);
-        Patient patient3 = new Patient("Sidr", "Sidirov", "01.01.2000");
+        Patient patient3 = new Patient("Sidr", "Sidirov", "01.01.2003");
         patient3.setDoctor(hospitalUserRepository.findOne(2L));
         patients.add(patient3);
-        Patient patient4 = new Patient("Sergei", "Sergeev", "01.01.2000");
+        Patient patient4 = new Patient("Sergei", "Sergeev", "01.01.2004");
         patient4.setDoctor(hospitalUserRepository.findOne(2L));
         patients.add(patient4);
-        Patient patient5 = new Patient("Anton", "Antonenko", "01.01.2000");
+        Patient patient5 = new Patient("Anton", "Antonenko", "01.01.2005");
         patient5.setDoctor(hospitalUserRepository.findOne(3L));
         patients.add(patient5);
-        Patient patient6 = new Patient("Fedr", "Fedorov", "01.01.2000");
+        Patient patient6 = new Patient("Fedr", "Fedorov", "01.01.2006");
         patient6.setDoctor(hospitalUserRepository.findOne(3L));
         patients.add(patient6);
         patientRepository.save(patients);

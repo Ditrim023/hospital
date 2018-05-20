@@ -68,8 +68,9 @@ span input {
 #header-inner {
     overflow: hidden;
     border-radius: 4px;
-    margin-left:28%;
+    margin-left:27%;
     clear: both;
+	width:810px;
 }
 
 #header h2 {
@@ -92,7 +93,9 @@ span input {
     padding-right: 15px;
     color: white;
 }
-
+#main-page ul li:last-child {
+    float:right;
+}
 #logo {
     float: left;
     padding: 15px 40px 15px 12px;

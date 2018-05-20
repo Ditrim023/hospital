@@ -33,7 +33,7 @@
                 <td th:text="${doctor.surname}">Surname</td>
                 <td th:text="${doctor.position}">Position</td>
                 <td th:text="${doctor.getPatients().size()}">Count patients</td>
-                <td><a th:href="${'/doctor/info/' + doctor.id}">Info</a></td>
+                <td><a th:href="${'/doctor/edit/' + doctor.id}">Edit</a></td>
             </tr>
         </table>
     </div>

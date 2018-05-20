@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Patient Info</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}"/></a>
+        </div>
+        <h2>Doctor Info</h2>
+        <div class="lin"><a th:href="@{/doctor/list}">Doctors List</a></div>
+    </div>
+</div>
+<div class="container">
+    <h2>Doctor Info</h2>
+    <table id="info-table">
+        <tr>
+            <td class="leftcol">Id:</td>
+            <td class="rightcol" th:text="*{doctor.id}">Правая колонка</td>
+        </tr>
+        <tr>
+            <td class="leftcol">Name:</td>
+            <td class="rightcol" th:text="*{doctor.name}">Правая колонка</td>
+        </tr>
+        <tr>
+            <td class="leftcol">Surname:</td>
+            <td class="rightcol" th:text="*{doctor.surname}">Правая колонка</td>
+        </tr>
+        <tr>
+            <td class="leftcol">Position:</td>
+            <td class="rightcol" th:text="*{doctor.position}">Правая колонка</td>
+        </tr>
+    </table>
+    <div class="clear"></div>
+
+</div>
+<div class="container">
+<div th:if="${not #lists.isEmpty(patients)}">
+    <h2>All Patients</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Date Birth</th>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}">Id</td>
+            <td th:text="${patient.name}">Name</td>
+            <td th:text="${patient.surname}">Surname</td>
+            <td th:text="${patient.dateBirth}">Date Birth</td>
+        </tr>
+    </table>
+</div>
+</div>
+</body>
+</html>
