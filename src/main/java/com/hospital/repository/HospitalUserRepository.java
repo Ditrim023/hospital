@@ -19,6 +19,6 @@ public interface HospitalUserRepository extends JpaRepository<HospitalUser,Long>
     /*@Query(value = "SELECT u FROM HospitalUser u WHERE u.position = :position")
     HospitalUser findUserByPosition(final @Param("position") String login);*/
 
-    @Query(value = "SELECT u FROM HospitalUser u WHERE u.positionId = :positionId")
-    List<HospitalUser> findAllUserByPosition(final @Param("positionId") Long positionId);
+    @Query(value = "SELECT u FROM HospitalUser u WHERE u.roleId = :roleId")
+    List<HospitalUser> findAllUserByRoleId(final @Param("roleId") Long roleId);
 }

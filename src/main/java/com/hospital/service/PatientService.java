@@ -34,7 +34,7 @@ public class PatientService {
         patientRepository.save(fromBase);
     }
 
-    public final void create(final String name, final String surname, final Long doctorId) {
+    public final void createPatient(final String name, final String surname, final Long doctorId) {
         HospitalUser doctor = hospitalUserRepository.findOne(doctorId);
         patientRepository.save(new Patient(name, surname, doctor));
     }

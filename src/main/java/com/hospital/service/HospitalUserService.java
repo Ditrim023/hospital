@@ -18,7 +18,7 @@ public class HospitalUserService {
     private final HospitalUserRepository hospitalUserRepository;
 
     public final List<HospitalUser> getDoctors() {
-        final List<HospitalUser> doctors = hospitalUserRepository.findAllUserByPosition(2L);
+        final List<HospitalUser> doctors = hospitalUserRepository.findAllUserByRoleId(2L);
         return doctors;
     }
 }

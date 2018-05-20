@@ -27,12 +27,12 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-        http.csrf().disable().
+        http.
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
-                .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR","RECEPTIONIST")
-                .antMatchers("/patient/**").hasRole("ADMIN")
-                .and().exceptionHandling()
+                .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR")
+                .antMatchers("/patient/list").hasRole("ADMIN")
+                .and().exceptionHandling().accessDeniedPage("/403")
                 .and().formLogin()
                 .loginPage("/login").failureUrl("/403")
                 .loginProcessingUrl("/j_spring_security_check")
@@ -40,7 +40,10 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password")
                 .defaultSuccessUrl("/profile")
                 .and().logout()
-                .logoutSuccessUrl("/");
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/")
+                .and()
+                .csrf();
 
     }
 

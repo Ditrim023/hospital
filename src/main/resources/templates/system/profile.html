@@ -19,11 +19,12 @@
                 <li>|</li>
                 <li><a th:href="@{/patient/add}">Add Patient</a></li>
                 <li>|</li>
-                <li><a th:href="@{/profile}">Profile</a></li>
-                <li>
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" class="but" value="Sig Out"/>
-                </form>
+                <li><a th:href="@{/doctor/list}">Doctor List</a></li>
+                <li>|</li>
+                <li><a th:href="@{/logout}">Logout</a>
+                   <!-- <form th:action="@{/logout}" method="post">
+                        <input type="submit" class="but" value="Sig Out"/>
+                    </form>-->
                 </li>
             </ul>
         </div>
@@ -32,28 +33,43 @@
 <div class="container">
     <h2>My profile</h2>
     <form class="form-edit" th:object="${currentUser}" th:action="@{/currentUser/update}" method="post">
-        <div class="form-line">
-            <label class="form-text">Id:</label>
-            <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>
-        </div>
-        <div class="form-line">
-            <label class="form-text">Name:</label>
-            <input type="text" class="form-control" th:field="*{name}" />
-        </div>
-        <div class="form-line">
-            <label class="form-text">Surname:</label>
-            <input type="text" class="form-control" th:field="*{surname}" />
-        </div>
-        <div class="form-line">
-            <label class="form-text">Login:</label>
-            <input type="text" class="form-control" th:field="*{login}" />
-        </div>
-        <div class="form-line">
-            <label class="form-text">Position:</label>
-            <input type="text" class="form-control" th:field="*{position}" />
-        </div>
-        <button type="submit" class = "button">Save</button>
+        <table id="info-table">
+            <tr>
+                <td class="leftcol">Id:</td>
+                <td class="rightcol" th:text="${currentUser.id}">Правая колонка</td>
+            </tr>
+            <tr>
+                <td class="leftcol">Name:</td>
+                <td class="rightcol" th:text="${currentUser.name}">Правая колонка</td>
+            </tr>
+            <tr>
+                <td class="leftcol">Surname:</td>
+                <td class="rightcol" th:text="${currentUser.surname}">Правая колонка</td>
+            </tr>
+            <tr>
+                <td class="leftcol">Position:</td>
+                <td class="rightcol" th:text="${currentUser.position}">Правая колонка</td>
+            </tr>
+        </table>
     </form>
+
+</div>
+<div th:if="${not #lists.isEmpty(patients)}">
+    <h2>All Patients</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Info</th>
+        </tr>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}">Id</td>
+            <td th:text="${patient.name}">Name</td>
+            <td th:text="${patient.surname}">Surname</td>
+            <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

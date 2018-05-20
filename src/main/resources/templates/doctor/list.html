@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Patients</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>Patients List</h2>
+        <div class="lin"><a th:href="@{/doctor/add}">Add Patient</a></div>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(doctors)}">
+        <h2>All Patients</h2>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Position</th>
+                <th>Count Patients</th>
+                <th>Info</th>
+            </tr>
+            <tr th:each="doctor : ${doctors}">
+                <td th:text="${doctor.id}">Id</td>
+                <td th:text="${doctor.name}">Name</td>
+                <td th:text="${doctor.surname}">Surname</td>
+                <td th:text="${doctor.position}">Position</td>
+                <td th:text="${doctor.getPatients().size()}">Count patients</td>
+                <td><a th:href="${'/doctor/info/' + doctor.id}">Info</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

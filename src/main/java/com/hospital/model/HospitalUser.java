@@ -35,9 +35,9 @@ public class HospitalUser {
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "doctor")
     private List<Patient> patients;
     @Column(nullable = false, insertable = false, updatable = false)
-    private Long positionId;
+    private Long roleId;
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "positionId")
+    @JoinColumn(name = "roleId")
     private UserRole role;
 
     public HospitalUser(String name, String surname, String login) {
@@ -60,5 +60,12 @@ public class HospitalUser {
         this.password = password;
         this.dateBirth = dateBirth;
         this.position = position;
+    }
+    public HospitalUser(String name, String surname, String login, String password, String dateBirth) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+        this.dateBirth = dateBirth;
     }
 }
