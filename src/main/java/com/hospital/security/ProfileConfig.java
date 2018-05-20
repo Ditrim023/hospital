@@ -28,7 +28,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-        http.
+        http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR")
@@ -42,9 +42,9 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/profile")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/")
-                .and()
-                .csrf();
+                .logoutSuccessUrl("/");
+
+
 
     }
 

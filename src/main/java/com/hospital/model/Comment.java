@@ -34,6 +34,8 @@ public class Comment {
     /*@Column(nullable = false, insertable = false, updatable = false) add when project will be a ready*/
     private String author;
 
+    private Long authorId;
+
     public Comment(String text) {
         this.text = text;
     }
@@ -52,5 +54,12 @@ public class Comment {
         this.text = text;
         this.patient = patient;
         this.author = author;
+    }
+
+    public Comment(String text, Patient patient, String author, Long authorId) {
+        this.text = text;
+        this.patient = patient;
+        this.author = author;
+        this.authorId = authorId;
     }
 }

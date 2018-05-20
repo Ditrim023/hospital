@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Edit Patient Details</title>
+    <title>Edit Doctor Details</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
 </head>
 <body>
@@ -11,12 +11,12 @@
             <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
                                                     th:src="@{/images/logo_true.png}" /></a>
         </div>
-        <h2>Add Patient</h2>
+        <h2>Edit Doctor</h2>
         <div class="lin"><a th:href="@{/doctor/list}">Doctor List</a></div>
     </div>
 </div>
 <div class="container">
-    <h2>Patient Edit</h2>
+    <h2>Doctor Edit</h2>
     <form class="form-edit" th:object="${doctor}" th:action="@{/doctor/update}" method="post">
         <div class="form-line">
             <label class="form-text">Id:</label>

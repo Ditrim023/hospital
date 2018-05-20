@@ -2,6 +2,7 @@ package com.hospital.controller;
 
 import com.hospital.model.HospitalUser;
 import com.hospital.repository.HospitalUserRepository;
+import com.hospital.service.HospitalUserService;
 import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityController {
 
-    private final HospitalUserRepository hospitalUserRepository;
+    private final HospitalUserService hospitalUserService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -42,7 +43,7 @@ public class SecurityController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
-        final HospitalUser currentUser = hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
+        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
         model.addAttribute("currentUser",currentUser);
         model.addAttribute("patients",currentUser.getPatients());
         return "/system/profile";

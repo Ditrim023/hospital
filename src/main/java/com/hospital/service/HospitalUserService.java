@@ -4,6 +4,7 @@ import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.UserRoleRepository;
+import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,6 +42,10 @@ public class HospitalUserService {
         doctorFromBase.setSurname(surname);
         doctorFromBase.setPosition(position);
         hospitalUserRepository.save(doctorFromBase);
+    }
+
+    public final HospitalUser findUserByLogin(){
+      return  hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
     }
 
     public List<HospitalUser> findAll() {

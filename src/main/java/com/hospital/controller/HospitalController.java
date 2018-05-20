@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HospitalController {
-    private final HospitalUserRepository hospitalUserRepository;
     private final HospitalUserService hospitalUserService;
 
     @RequestMapping(value = "/doctor/list", method = RequestMethod.GET)
