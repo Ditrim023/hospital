@@ -1,5 +1,6 @@
 package com.hospital.controller;
 
+import com.hospital.model.HospitalUser;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.service.HospitalUserService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * @author Nikita Krutoguz
@@ -27,20 +29,25 @@ public class HospitalController {
 
     @RequestMapping(path = "/doctor/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("doctor", hospitalUserRepository.findOne(id));
+        model.addAttribute("doctor", hospitalUserService.findOne(id));
         model.addAttribute("patients", hospitalUserService.patients(id));
         return "doctor/info";
     }
-/*
-    @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
+
+    @RequestMapping(path = "/doctor/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientRepository.findOne(id));
-        model.addAttribute("doctors", hospitalUserService.getDoctors());
-        return "patient/edit";
+        final HospitalUser doctor = hospitalUserService.findOne(id);
+        model.addAttribute("doctor", doctor);
+        model.addAttribute("patients", doctor.getPatients());
+        return "doctor/edit";
     }
 
-
-
+    @RequestMapping(value = "/doctor/update", method = RequestMethod.POST)
+    public final String doctorUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam String position) {
+        hospitalUserService.hospitalUserUpdate(id, name, surname, position);
+        return "redirect:/doctor/info/" + id;
+    }
+/*
    @RequestMapping(path = "patient/add", method = RequestMethod.GET)
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
@@ -56,9 +63,5 @@ public class HospitalController {
         return "redirect:/patient/list";
     }
 
-    @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
-    public final String patientUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
-        patientService.patientUpdate(id, name, surname, doctorId);
-        return "redirect:/patient/info/" + id;
-    }*/
+    */
 }

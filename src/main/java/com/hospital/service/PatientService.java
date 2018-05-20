@@ -46,7 +46,7 @@ public class PatientService {
         commentRepository.save(new Comment(text, patient, author));
     }
 
-    public final List<Comment> getReverselist(final Long id) {
+    public final List<Comment> getReverseList(final Long id) {
         List<Comment> reversList = patientRepository.findOne(id).getComments();
         Collections.reverse(reversList);
         return reversList;
@@ -59,5 +59,14 @@ public class PatientService {
         fromBase.setPatient(patient);
         fromBase.setDateLastChange(System.currentTimeMillis());
         commentRepository.save(fromBase);
+    }
+
+
+    public List<Patient> findAll() {
+        return patientRepository.findAll();
+    }
+
+    public final Patient findOne(final Long patientId) {
+        return patientRepository.findOne(patientId);
     }
 }

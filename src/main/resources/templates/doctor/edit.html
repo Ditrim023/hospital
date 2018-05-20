@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Edit Patient Details</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>Add Patient</h2>
+        <div class="lin"><a th:href="@{/doctor/list}">Doctor List</a></div>
+    </div>
+</div>
+<div class="container">
+    <h2>Patient Edit</h2>
+    <form class="form-edit" th:object="${doctor}" th:action="@{/doctor/update}" method="post">
+        <div class="form-line">
+            <label class="form-text">Id:</label>
+            <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>
+        </div>
+        <div class="form-line">
+            <label class="form-text">Name:</label>
+            <input type="text" class="form-control" th:field="*{name}" />
+        </div>
+        <div class="form-line">
+            <label class="form-text">Surname:</label>
+            <input type="text" class="form-control" th:field="*{surname}" />
+        </div>
+        <div class="form-line">
+            <label class="form-text">Position:</label>
+            <input type="text" class="form-control" th:field="*{position}" />
+        </div>
+        <button type="submit" class = "button">Save</button>
+    </form>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(patients)}">
+        <h2>All Patients</h2>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Info</th>
+            </tr>
+            <tr th:each="patient : ${patients}">
+                <td th:text="${patient.id}">Id</td>
+                <td th:text="${patient.name}">Name</td>
+                <td th:text="${patient.surname}">Surname</td>
+                <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

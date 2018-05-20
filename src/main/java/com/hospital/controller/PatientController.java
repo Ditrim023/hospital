@@ -29,7 +29,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String listPatients(final Model model) {
-        model.addAttribute("patients", patientRepository.findAll());
+        model.addAttribute("patients", patientService.findAll());
         return "patient/list";
     }
 
@@ -43,15 +43,15 @@ public class PatientController {
 
     @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientRepository.findOne(id));
+        model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", patientService.getReverselist(id));
+        model.addAttribute("comments", patientService.getReverseList(id));
         return "patient/info";
     }
 
     @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientRepository.findOne(id));
+        model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "patient/edit";
     }
