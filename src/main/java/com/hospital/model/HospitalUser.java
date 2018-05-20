@@ -28,7 +28,7 @@ public class HospitalUser {
     private String login;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    /*@Column(nullable = false)*/
     private String dateBirth;
     @Column(nullable = false)
     private String position;
@@ -40,10 +40,13 @@ public class HospitalUser {
     @JoinColumn(name = "roleId")
     private UserRole role;
 
-    public HospitalUser(String name, String surname, String login) {
+    public HospitalUser(String name, String surname, String login, String password, String position, UserRole role) {
         this.name = name;
         this.surname = surname;
         this.login = login;
+        this.password = password;
+        this.position = position;
+        this.role = role;
     }
 
     public HospitalUser(String name, String surname, String login, String password) {
@@ -61,11 +64,5 @@ public class HospitalUser {
         this.dateBirth = dateBirth;
         this.position = position;
     }
-    public HospitalUser(String name, String surname, String login, String password, String dateBirth) {
-        this.name = name;
-        this.surname = surname;
-        this.login = login;
-        this.password = password;
-        this.dateBirth = dateBirth;
-    }
+
 }

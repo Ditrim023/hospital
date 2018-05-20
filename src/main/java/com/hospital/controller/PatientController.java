@@ -1,13 +1,10 @@
 package com.hospital.controller;
 
 import com.hospital.model.Comment;
-import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
-import com.hospital.repository.CommentRepository;
 import com.hospital.repository.PatientRepository;
 import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
-import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientController {
-    private final PatientRepository patientRepository;
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
 

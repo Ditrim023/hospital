@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Edit Patient Details</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>Add Patient</h2>
+        <div class="lin"><a th:href="@{/doctor/list}">Doctor List</a></div>
+    </div>
+</div>
+<div class="container">
+    <form class="form" th:object="${doctor}" th:action="@{/doctor/save}" method="post">
+        <div class="form-input">
+            <input type="text" class="inn" th:field="*{name}" placeholder="Name"/>
+        </div>
+        <div class="form-input">
+            <input type="text" class="inn" th:field="*{surname}" placeholder="Surname" />
+        </div>
+        <div class="form-input">
+            <input type="text" class="inn" th:field="*{login}" placeholder="Login" />
+        </div>
+        <div class="form-input">
+            <input type="text" class="inn" th:field="*{password}" placeholder="Password" />
+        </div>
+        <div class="form-input">
+            <input type="text" class="inn" th:field="*{position}" placeholder="Position" />
+        </div>
+        <button type="submit" class = "button">Save</button>
+    </form>
+</div>
+</body>
+</html>
