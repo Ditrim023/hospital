@@ -24,12 +24,17 @@ public class PatientService {
 
 
     public final void patientUpdate(final Long id, final String name, final String surname, final Long doctorId) {
-        final Patient fromBase = patientRepository.findOne(id);
+        final Patient patient = patientRepository.findOne(id);
         final HospitalUser doctor = hospitalUserService.findOne(doctorId);
-        fromBase.setName(name);
-        fromBase.setSurname(surname);
-        fromBase.setDoctor(doctor);
-        patientRepository.save(fromBase);
+        String author = doctor.getName() + " " + doctor.getSurname() + " - " + doctor.getPosition();
+        final Long authorId = doctor.getId();
+        patient.setName(name);
+        patient.setSurname(surname);
+        if (patient.getDoctor() != doctor) {
+            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, authorId));
+        }
+        patient.setDoctor(doctor);
+        patientRepository.save(patient);
     }
 
     public final void createPatient(final String name, final String surname, final Long doctorId) {
