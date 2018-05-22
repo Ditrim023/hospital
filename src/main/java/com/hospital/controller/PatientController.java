@@ -55,8 +55,9 @@ public class PatientController {
     @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
     public final String savePatient(final @RequestParam("name") String name,
                                     final @RequestParam("surname") String surname,
+                                    final @RequestParam("dateBirth") String dateBirth,
                                     final @RequestParam("doctorId") Long doctorId) {
-        patientService.createPatient(name, surname, doctorId);
+        patientService.createPatient(name, surname, dateBirth ,doctorId);
         return "redirect:/patient/list";
     }
 

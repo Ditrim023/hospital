@@ -10,18 +10,16 @@
 <div id="header">
     <div id="header-inner">
         <div id="logo">
-            <a href="#" th:href="@{/}"> <img src="../../static/images/logo_true.png"
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
                                              th:src="@{/images/logo_true.png}"/></a>
         </div>
         <div id="main-page">
             <ul>
                 <li><a th:href="@{/patient/list}">Patients List</a></li>
                 <li>|</li>
-                <li><a th:href="@{/patient/add}">Add Patient</a></li>
-                <li>|</li>
                 <li><a th:href="@{/doctor/list}">Doctor List</a></li>
                 <li>|</li>
-                <li><a th:href="@{/doctor/add}">Doctor Add</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
                 <li><a  th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>

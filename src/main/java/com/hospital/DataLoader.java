@@ -48,16 +48,16 @@ public class DataLoader implements ApplicationRunner {
 
 
     private void insertHospitalUsers() {
-        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0", new BCryptPasswordEncoder(10).encode("123456"), "07.02.1990", "Admin");
+        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0", new BCryptPasswordEncoder(10).encode("123456"), "07-02-1990", "Admin");
         hospitalUser1.setRole(userRoleRepository.findOne(1L));
         hospitalUsers.add(hospitalUser1);
-        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knish", "user1", new BCryptPasswordEncoder(10).encode("123456"), "24.05.1990", "LOR");
+        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knish", "user1", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1990", "LOR");
         hospitalUser2.setRole(userRoleRepository.findOne(2L));
         hospitalUsers.add(hospitalUser2);
-        HospitalUser hospitalUser3 = new HospitalUser("Leha", "Evty", "user2", new BCryptPasswordEncoder(10).encode("123456"), "26.02.1989", "Therapist");
+        HospitalUser hospitalUser3 = new HospitalUser("Leha", "Evty", "user2", new BCryptPasswordEncoder(10).encode("123456"), "26-02-1989", "Therapist");
         hospitalUser3.setRole(userRoleRepository.findOne(2L));
         hospitalUsers.add(hospitalUser3);
-        HospitalUser hospitalUser4 = new HospitalUser("Maks", "Kop", "user3", new BCryptPasswordEncoder(10).encode("123456"), "15.07.1990", "Surgeon");
+        HospitalUser hospitalUser4 = new HospitalUser("Maks", "Kop", "user3", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
         hospitalUser4.setRole(userRoleRepository.findOne(2L));
         hospitalUsers.add(hospitalUser4);
         hospitalUserRepository.save(hospitalUsers);

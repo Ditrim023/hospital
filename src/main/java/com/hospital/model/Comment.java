@@ -31,7 +31,7 @@ public class Comment {
     private Long dateLastChange = System.currentTimeMillis();
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
-    /*@Column(nullable = false, insertable = false, updatable = false) add when project will be a ready*/
+
     private String author;
 
     private Long authorId;

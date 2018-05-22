@@ -1,6 +1,8 @@
 package com.hospital.controller;
 
+import com.hospital.model.Activity;
 import com.hospital.model.HospitalUser;
+import com.hospital.repository.ActivityRepository;
 import com.hospital.repository.HospitalUserRepository;
 import com.hospital.service.HospitalUserService;
 import com.hospital.utils.Util;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author Nikita Krutoguz
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityController {
 
     private final HospitalUserService hospitalUserService;
+    private final ActivityRepository activityRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
@@ -47,5 +51,11 @@ public class SecurityController {
         model.addAttribute("currentUser",currentUser);
         model.addAttribute("patients",currentUser.getPatients());
         return "/system/profile";
+    }
+    @RequestMapping(value = "/activity", method = RequestMethod.GET)
+    public String activity(Model model) {
+        final List<Activity> activities = activityRepository.findAll();
+        model.addAttribute("activities",activities);
+        return "/system/activity";
     }
 }

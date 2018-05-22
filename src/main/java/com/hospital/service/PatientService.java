@@ -26,8 +26,9 @@ public class PatientService {
     public final void patientUpdate(final Long id, final String name, final String surname, final Long doctorId) {
         final Patient patient = patientRepository.findOne(id);
         final HospitalUser doctor = hospitalUserService.findOne(doctorId);
-        String author = doctor.getName() + " " + doctor.getSurname() + " - " + doctor.getPosition();
-        final Long authorId = doctor.getId();
+        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        final Long authorId = currentUser.getId();
         patient.setName(name);
         patient.setSurname(surname);
         if (patient.getDoctor() != doctor) {
@@ -37,16 +38,16 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
-    public final void createPatient(final String name, final String surname, final Long doctorId) {
+    public final void createPatient(final String name, final String surname,final String dateBirth, final Long doctorId) {
         HospitalUser doctor = hospitalUserService.findOne(doctorId);
-        patientRepository.save(new Patient(name, surname, doctor));
+        patientRepository.save(new Patient(name, surname,dateBirth, doctor));
     }
 
     public final void saveComment(final Long patientId, final String text) {
         final Patient patient = patientRepository.findOne(patientId);
         final HospitalUser currentUser = hospitalUserService.findUserByLogin();
         String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
-        Long authorId = currentUser.getId();
+        final Long authorId = currentUser.getId();
         commentRepository.save(new Comment(text, patient, author, authorId));
     }
 

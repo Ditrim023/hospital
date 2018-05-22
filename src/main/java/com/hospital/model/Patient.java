@@ -28,7 +28,7 @@ public class Patient {
     private String dateBirth;
     @ManyToOne(fetch = FetchType.EAGER)
     private HospitalUser doctor;
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "patient")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Comment> comments;
 
     public Patient(String name, String surname, String dateBirth) {
@@ -40,6 +40,13 @@ public class Patient {
     public Patient(String name, String surname, HospitalUser doctor) {
         this.name = name;
         this.surname = surname;
+        this.doctor = doctor;
+    }
+
+    public Patient(String name, String surname, String dateBirth, HospitalUser doctor) {
+        this.name = name;
+        this.surname = surname;
+        this.dateBirth = dateBirth;
         this.doctor = doctor;
     }
 

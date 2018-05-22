@@ -55,11 +55,11 @@
     <div th:if="${not #lists.isEmpty(comments)}">
         <div id="comm-list" th:each="comment : ${comments}">
 		<ul>
-            <li th:text="${#dates.format(comment.dateCreate, 'dd-MM-yyyy HH:mm')}">Date</li>
-			<li>|</li>
-            <li th:text="${#dates.format(comment.dateLastChange, 'dd-MM-yyyy HH:mm')}">Date</li>
-            <li>|</li>
             <li ><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></li>
+            <li>|</li>
+            <li th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}">Date</li>
+			<li>|</li>
+            <li th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}">Date</li>
 			<li>|</li>
             <li><a th:href="${'/patient/comment/' + comment.id}">Change</a></li>
 		</ul>

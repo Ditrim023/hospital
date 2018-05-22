@@ -25,6 +25,9 @@
             <input type="text" class="inn" th:field="*{surname}" placeholder="Surname" />
         </div>
         <div class="form-input">
+            <input type="date" class="inn" th:field="*{dateBirth}" placeholder="DateBirth" />
+        </div>
+        <div class="form-input">
             <select class="form-control" name="doctorId">
                 <option value="">Select Doctor</option>
                 <option th:each="doctor : ${doctors}"

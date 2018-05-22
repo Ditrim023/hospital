@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <title>Patients</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+</head>
+<body>
+<div id="header">
+    <div id="header-inner">
+        <div id="logo">
+            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                    th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <h2>List of Activities</h2>
+    </div>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(activities)}">
+        <h2>All Activities</h2>
+        <table>
+            <tr>
+                <th>Login</th>
+                <th>Date</th>
+            </tr>
+            <tr th:each="activ : ${activities}">
+                <td th:text="${activ.login}">Login</td>
+                <td th:text="${#dates.format(activ.dateActive, 'dd-MM-yyyy HH:mm')}">Date</td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -23,6 +23,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Surname</th>
+                <th>Date Birth</th>
                 <th>Doctor Name</th>
                 <th>Info</th>
             </tr>
@@ -30,6 +31,7 @@
                 <td th:text="${patient.id}">Id</td>
                 <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.surname}">Surname</td>
+                <td th:text="${patient.dateBirth}">Date Birth</td>
                 <td th:text="${patient.getDoctor().name}">Doctor Name</td>
                 <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
             </tr>
