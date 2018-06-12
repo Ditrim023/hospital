@@ -12,5 +12,9 @@ public final class Util {
         final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return user.getUsername();
     }
-
+    public static String getRealDate(String dateFromForm){
+        String temp [] = dateFromForm.split("-");
+        String myDate = temp[2]+"."+temp[1]+"."+temp[0];
+        return myDate;
+    }
 }
