@@ -11,17 +11,18 @@
     <div id="header-inner">
         <div id="logo">
             <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                             th:src="@{/images/logo_true.png}"/></a>
+                                                    th:src="@{/images/logo_true.png}"/></a>
         </div>
         <div id="main-page">
-            <ul>
+            <div id="bar">
+                <ul>
                 <li><a th:href="@{/patient/list}">Patients List</a></li>
                 <li>|</li>
                 <li><a th:href="@{/doctor/list}">Doctor List</a></li>
                 <li>|</li>
-                <li><a th:href="@{/activity}">Activities</a></li>
-                <li><a  th:href="@{/logout}">Logout</a></li>
-            </ul>
+                <li><a th:href="@{/activity}">Activities</a></li></ul>
+            </div>
+            <div id="logout"><a th:href="@{/logout}">Logout</a></div>
         </div>
     </div>
 </div>
@@ -39,13 +40,14 @@
             </tr>
             <tr>
                 <td class="leftcol">Surname:</td>
-                <td class="rightcol" th:text="${currentUser.surname}">Правая колонка</td>
+                <td class="rightcol" id="cli" th:text="${currentUser.surname}">Правая колонка</td>
             </tr>
             <tr>
                 <td class="leftcol">Position:</td>
-                <td class="rightcol" th:text="${currentUser.position}">Правая колонка</td>
+                <td class="rightcol" id="position" th:text="${currentUser.position}">Правая колонка</td>
             </tr>
         </table>
+        <span id="here"></span>
     </form>
 
 </div>
@@ -65,6 +67,8 @@
             <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
         </tr>
     </table>
+
 </div>
+<script type="text/javascript" th:src="@{/js/log.js}"></script>
 </body>
 </html>
