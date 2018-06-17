@@ -17,24 +17,30 @@
     </div>
 </div>
 <div class="container">
-    <form class="form" th:object="${doctor}" th:action="@{/doctor/save}" method="post">
+    <form class="form" onsubmit="return save();" th:object="${doctor}" th:action="@{/doctor/save}" method="post">
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{name}" placeholder="Name"/>
+            <input type="text" class="inn" id="name" th:field="*{name}" placeholder="Name"/>
+            <span id="aftername"></span>
         </div>
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{surname}" placeholder="Surname" />
+            <input type="text" class="inn" id="surname" th:field="*{surname}" placeholder="Surname" />
+            <span id="aftersurname"></span>
         </div>
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{login}" placeholder="Login" />
+            <input type="text" class="inn" id="login" th:field="*{login}" placeholder="Login" />
+            <span id="afterlogin"></span>
         </div>
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{password}" placeholder="Password" />
+            <input type="text" class="inn" id="psw" th:field="*{password}" placeholder="Password" />
+            <span id="afterpsw"></span>
         </div>
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{position}" placeholder="Position" />
+            <input type="text" class="inn" id="pos" th:field="*{position}" placeholder="Position" />
+            <span id="afterposition"></span>
         </div>
-        <button type="submit" class = "button">Save</button>
+        <button type="submit" class = "button" >Save</button>
     </form>
 </div>
+<script type="text/javascript" th:src="@{/js/doctor.js}"></script>
 </body>
 </html>
