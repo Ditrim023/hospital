@@ -53,11 +53,11 @@ body{
     box-shadow: 9px 6px 23px 0px rgba(0,0,0,0.75);
     overflow: auto;
 }
-#patient-form,#doctor-form{
+#add-form{
     width: 50%;
     margin: 17px auto;
 }
-#patient-form button,#doctor-form button{
+#add-form button{
     margin-left: 125px;
     margin-top: 10px;
 }

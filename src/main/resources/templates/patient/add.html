@@ -28,19 +28,19 @@
     </div>
 </nav>
 <div id="add">
-    <h2 class="text-center">Edit Patient</h2>
-    <form id="patient-form" th:action="@{/patient/update}" method="post">
+    <h2 class="text-center">Add Patient</h2>
+    <form id="add-form" th:action="@{/patient/update}" method="post">
         <div class="form-group">
             <label>Id:</label>
-            <input id="input-name" class="form-control" th:value="${patient.id}"  name="id" placeholder="Id" readonly=true>
+            <input id="input-id" class="form-control" th:value="${patient.id}"  name="id" placeholder="Id" readonly="readonly"/>
         </div>
         <div class="form-group">
             <label>Name:</label>
-            <input id="input-name" class="form-control" th:value="${patient.name}"  name="name" placeholder="Name">
+            <input id="input-name" class="form-control" th:value="${patient.name}"  name="name" placeholder="Name"/>
         </div>
         <div class="form-group">
             <label>Surname:</label>
-            <input id="input-surname" class="form-control" th:value="${patient.surname}" name="surname" placeholder="Surname">
+            <input id="input-surname" class="form-control" th:value="${patient.surname}" name="surname" placeholder="Surname"/>
         </div>
         <div class="form-group">
             <label>DateBirth:</label>

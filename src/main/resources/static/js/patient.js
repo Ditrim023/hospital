@@ -1,4 +1,4 @@
-$('#patient-form').validate({
+$('#add-form').validate({
     rules:{
         name:{
             required:true
