@@ -2,59 +2,66 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Edit Doctor Details</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
-<div id="header">
-    <div id="header-inner">
-        <div id="logo">
-            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                    th:src="@{/images/logo_true.png}" /></a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                                         th:src="@{/images/logo_true.png}" /></a>
         </div>
-        <h2>Edit Doctor</h2>
-        <div class="lin"><a th:href="@{/doctor/list}">Doctor List</a></div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/patient/list}">Patients List</a></li>
+                <li><a th:href="@{/doctor/add}">Doctor Add</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}">Logout</a></li>
+
+            </ul>
+        </div>
     </div>
-</div>
-<div class="container">
-    <h2>Doctor Edit</h2>
-    <form class="form-edit" th:object="${doctor}" th:action="@{/doctor/update}" method="post">
-        <div class="form-line">
-            <label class="form-text">Id:</label>
-            <span><input type="text" class="form-control" th:field="*{id}"  readonly="readonly"/></span>
+</nav>
+<div id="add">
+    <h2 class="text-center">Edit Doctor</h2>
+    <form id="input-form" th:action="@{/doctor/update}" method="post">
+        <div class="form-group">
+            <label>Id:</label>
+            <input id="input-id" class="form-control" th:value="${doctor.id}"  name="id" placeholder="Id" readonly="readonly"/>
         </div>
-        <div class="form-line">
-            <label class="form-text">Name:</label>
-            <input type="text" class="form-control" th:field="*{name}" />
+        <div class="form-group">
+            <label for="input-name">Name:</label>
+            <input id="input-name" class="form-control" name="name" th:value="${doctor.name}" placeholder="Name"/>
         </div>
-        <div class="form-line">
-            <label class="form-text">Surname:</label>
-            <input type="text" class="form-control" th:field="*{surname}" />
+        <div class="form-group">
+            <label for="input-surname">Surname:</label>
+            <input id="input-surname" class="form-control"  name="surname" th:value="${doctor.surname}" placeholder="Surname"/>
         </div>
-        <div class="form-line">
-            <label class="form-text">Position:</label>
-            <input type="text" class="form-control" th:field="*{position}" />
+        <div class="form-group">
+            <label for="input-login">Login:</label>
+            <input id="input-login" class="form-control"  name="login" th:value="${doctor.login}" placeholder="Login"/>
         </div>
-        <button type="submit" class = "button">Save</button>
+        <div class="form-group">
+            <label for="input-position">Position:</label>
+            <input id="input-position" class="form-control" name="position" th:value="${doctor.position}" placeholder="Position" />
+        </div>
+        <div class="form-group">
+            <label for="input-datebirth">DateBirth:</label>
+            <input id="input-datebirth" class="form-control" type="date" name="dateBirth" th:value="${doctor.dateBirth}" placeholder="DateBirth" />
+        </div>
+        <button class="btn btn-primary">Edit
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        </button>
     </form>
 </div>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(patients)}">
-        <h2>All Patients</h2>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Info</th>
-            </tr>
-            <tr th:each="patient : ${patients}">
-                <td th:text="${patient.id}">Id</td>
-                <td th:text="${patient.name}">Name</td>
-                <td th:text="${patient.surname}">Surname</td>
-                <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
-            </tr>
-        </table>
-    </div>
-</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script type="text/javascript" th:src="@{/js/doctor.js}"></script>
 </body>
 </html>

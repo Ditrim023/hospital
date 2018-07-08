@@ -1,4 +1,4 @@
-$('#add-form').validate({
+$('#input-form').validate({
     rules:{
         name:{
             required:true

@@ -29,7 +29,7 @@
 </nav>
 <div id="add">
     <h2 class="text-center">Add Patient</h2>
-    <form id="add-form" th:action="@{/patient/update}" method="post">
+    <form id="input-form" th:action="@{/patient/update}" method="post">
         <div class="form-group">
             <label>Id:</label>
             <input id="input-id" class="form-control" th:value="${patient.id}"  name="id" placeholder="Id" readonly="readonly"/>
