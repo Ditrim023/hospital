@@ -2,42 +2,62 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Edit Patient Details</title>
-    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
     </head>
 <body>
-<div id="header">
-<div id="header-inner">
-<div id="logo">
-                 <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                     th:src="@{/images/logo_true.png}" /></a>
-</div>
-       <h2>Add Patient</h2>
-	  <div class="lin"><a th:href="@{/patient/list}">Patient List</a></div>
-	  </div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                                         th:src="@{/images/logo_true.png}" /></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/patient/list}">Patients List</a></li>
+                <li><a th:href="@{/doctor/list}">Doctor List</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}">Logout</a></li>
+
+            </ul>
+        </div>
     </div>
-<div class="container">
-    <form class="form" th:action="@{/patient/save}" method="post">
-        <div class="form-input">
-            <input type="text" class="inn" name="name"  placeholder="Name"/>
+</nav>
+<div id="add">
+    <h2 class="text-center">Add Patient</h2>
+    <form id="patient-form" th:action="@{/patient/save}" method="post">
+        <div class="form-group">
+            <label for="input-name">Name:</label>
+            <input id="input-name" class="form-control" name="name" placeholder="Name"/>
         </div>
-        <div class="form-input">
-            <input type="text" class="inn" name="surname" placeholder="Surname" />
+        <div class="form-group">
+            <label for="input-surname">Surname:</label>
+            <input id="input-surname" class="form-control"  name="surname" placeholder="Surname"/>
         </div>
-        <div class="form-input">
-            <input type="date" class="inn" name="dateBirth" placeholder="DateBirth" />
+        <div class="form-group">
+            <label for="input-datebirth">DateBirth:</label>
+            <input id="input-datebirth" class="form-control" type="date" name="dateBirth"  placeholder="DateBirth" />
         </div>
-        <div class="form-input">
-            <select class="form-control" name="doctorId">
+        <div class="form-group">
+            <label for="input-doc">Doctor:</label>
+            <select id="input-doc" class="form-control" name="doctorId">
                 <option value="">Select Doctor</option>
                 <option th:each="doctor : ${doctors}"
                         th:value="${doctor.id}"
                         th:text="${doctor.surname}+' : '+${doctor.position}"></option>
             </select>
         </div>
-        <button type="submit" class = "button">Save</button>
+        <button class="btn btn-primary">Save
+            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+        </button>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 <script type="text/javascript" th:src="@{/js/patient.js}"></script>
 </body>
 </html>

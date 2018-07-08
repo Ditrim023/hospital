@@ -25,9 +25,7 @@ body{
 #container-login button{
     margin-left: 110px;
 }
-.btn-primary{
-    float: left;
-}
+
 .navbar-brand {
     height: 80px;
 }
