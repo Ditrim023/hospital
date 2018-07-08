@@ -33,7 +33,7 @@ public class HospitalUserService {
         List<Patient> patients = doctor.getPatients();
         return patients;
     }
-    public final void createDoctor(final String name, final String surname,final String login, final String password ,final String position, final String dateBirth) {
+    public final void createDoctor(final String name, final String surname,final String login, final String password ,final String position, final String dateBirt) {
         hospitalUserRepository.save(new HospitalUser(name, surname, login, new BCryptPasswordEncoder(10).encode(password),dateBirth, position,userRoleRepository.findOne(2L)));
     }
     public void hospitalUserUpdate(final Long id, final String name, final String surname, final String position){
