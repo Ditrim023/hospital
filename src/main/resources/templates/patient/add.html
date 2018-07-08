@@ -17,15 +17,15 @@
 	  </div>
     </div>
 <div class="container">
-    <form class="form" th:object="${patient}" th:action="@{/patient/save}" method="post">
+    <form class="form" th:action="@{/patient/save}" method="post">
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{name}" placeholder="Name"/>
+            <input type="text" class="inn" name="name"  placeholder="Name"/>
         </div>
         <div class="form-input">
-            <input type="text" class="inn" th:field="*{surname}" placeholder="Surname" />
+            <input type="text" class="inn" name="surname" placeholder="Surname" />
         </div>
         <div class="form-input">
-            <input type="date" class="inn" th:field="*{dateBirth}" placeholder="DateBirth" />
+            <input type="date" class="inn" name="dateBirth" placeholder="DateBirth" />
         </div>
         <div class="form-input">
             <select class="form-control" name="doctorId">

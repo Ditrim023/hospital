@@ -1,241 +1,138 @@
-@import url(reset.css);
+/*@import url(reset.css);*/
 
-body {
-    background-color: #f8f8f8;
-}
-
-a {
-    color: #25ff33;
-    text-decoration: none;
-}
-#info-table{
-	border: 3px solid #ffffff; 
-}
-
-#info-table .leftcol{
-	font-weight:bold;
-	text-align:right;
-	width:345px;
-	border: 3px solid #ffffff; 
-}
-#info-table .rightcol{
-    width:auto;
-	text-align:left;
-	border: 3px solid #ffffff; 
-}
-
-#profile {
-    width: 460px;
-    margin-left: 450px;
-    margin-top: 70px;
-}
-
-#profile p {
-    font-size: 30px;
-    padding-bottom: 10px;
-}
-
-#profile .but {
-    background-color: #33ff54;
-    border-radius: 5px;
-    border: none;
-}
-#profile span{
-	float:right;
-}
-
-#main {
-    min-width: 960px;
-    max-width: 1600px;
-    width: 1200px;
-    margin: 0 auto;
-}
-
-input {
-    outline: none;
-}
-
-#header {
-    background-color: #222222;
-    width: auto;
-	margin: 0 auto;
-}
-
-span input {
-    background-color: #afb0b0;
-}
-
-#header-inner {
-    overflow: hidden;
-    border-radius: 4px;
-    margin-left:27%;
-    clear: both;
-	width:800px;
-}
-
-#header h2 {
-    color: white;
-    font-size: 25px;
-    padding-top: 30px;
-    padding-right: 30px;
-    font-weight: bold;
-    float: left;
-}
-
-.lin {
-    margin-top: 36px;
-    padding-left: 2px;
-}
-#main-page{
-
-}
-#bar ul li {
-    margin-top: 36px;
-    float: left;
-    padding-right: 15px;
-    color: white;
-    display: block;
-}
-#logout{
-    margin-top:36px;
-    float:right;
-}
-#logo {
-    float: left;
-    padding: 15px 40px 15px 12px;
-    margin-left: 15px;
-}
-#create-comment{
-	
-}
-.container {
-    width: 790px;
-    margin-top: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 28%;
-    font-size: 20px;
-    border-radius: 2px;
-    box-shadow: 0 0 2px 0 rgba(51, 51, 51, .05), 0 1px 4px 0 rgba(51, 51, 51, .15);
-    background-color: white;
-}
-#comm-list ul li{
-	float:left;
-	margin-left:3px;
-}
-#comm-list p{
-	margin-top:5px;
-	margin-bottom:7px;
-}
-.container h2 {
-    text-align: center;
-    padding-bottom: 15px;
-}
-
-.container table {
-    width: 750px;
-    margin: 0 auto;
-    font-size: 20px;
-    border-radius: 2px;
-    background-color: white;
-}
-
-.container table th {
-    font-weight: bold;
-    border: 3px solid black;
-}
-
-.container table td {
-    text-align: center;
-    border: 1px solid;
-}
-.container table td a{
-  color: green;
-}
-
-.container h2 a{
-color: #001aea;
-font-weight:bold;
-}
-.form {
-    padding: 70px 0;
-}
-.form-input input,
-.form-input input:focus {
-    margin-left: 29%;
-    height: 20px;
-    width: 300px;
-    border-radius: 1px;
-    border-color: #cfd2c9;
-    margin-bottom: 10px;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-.form-input textarea {
-    margin-left: 23%;
-    height: 90px;
-    width: 400px;
-    border-radius: 1px;
-    border-color: #cfd2c9;
-    margin-bottom: 10px;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-.inn {
-    padding-left: 5px;
-}
-
-.form-line {
-    text-align: left;
-    padding-bottom: 3px;
-    padding-top: 3px;
-}
-
-.form-edit input {
-    margin-right: 233px;
-    border-radius: 1px;
-    border-color: #cfd2c9;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-#hello-page h1{
-	font-size:100px;
-	margin-top:15%;
-    text-align:center;
-}
-#login-page{
-	 width: 790px;
-    margin-top: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-left: 28%;
-    font-size: 20px;
-    border-radius: 2px;
-    box-shadow: 0 0 2px 0 rgba(51, 51, 51, .05), 0 1px 4px 0 rgba(51, 51, 51, .15);
-    background-color: white;
-	height:200px;
+body{
+    background-color: #ccc;
 }
 #login-form{
-	text-align:center;
-}
-.form-control {
-    width: 308px;
-}
-select{
-	margin-left:29%;
-}
-.button {
-    border-radius: 5px;
-    width: 100px;
-    height: 30px;
-    margin-left: 338px;
-    margin-top: 35px;
-    margin-bottom: 25px;
-}
- .clear{
-	clear:both;
+    background-color: white;
+    /*
+        margin-top:150px;
+        margin-left:35%;
+    */
+    margin: 10% auto 0px auto;
+    width: 600px;
+    height: 300px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.form-input span{
+#container-login{
+    margin-left: 140px;
+    padding-top: 40px;
+}
+#container-login h2{
+    margin-left: 48px;
+}
+#container-login button{
+    margin-left: 110px;
+}
+.btn-primary{
+    float: left;
+}
+.navbar-brand {
+    height: 80px;
+}
+#input-name,#input-surname,#input-datebirth,#input-doc,
+#input-login,#input-password,#input-position{
+    width: 350px;
+    margin-bottom: 10px;
+    float:left;
+}
+.nav >li >a {
+    padding-top: 32px;
+    padding-bottom: 40px;
     color: red;
+    font-size:20px;
+}
+.navbar-toggle {
+    padding: 10px;
+    margin: 25px 15px 25px 0;
+}
+#add{
+    background-color: white;
+    margin: 120px auto 0 auto;
+    width: 35%;
+    height: auto;
+    box-shadow: 9px 6px 23px 0px rgba(0,0,0,0.75);
+    overflow: auto;
+}
+#patient-form,#doctor-form{
+    width: 50%;
+    margin: 17px auto;
+}
+#patient-form button,#doctor-form button{
+    margin-left: 125px;
+    margin-top: 10px;
+}
+
+#list-table{
+    margin: 110px auto 0px auto;
+    width: 65%;
+    overflow: auto;
+}
+#profile{
+    background-color: white;
+    margin: 110px auto 0px auto;
+    width: 30%;
+    height: auto;
+    box-shadow: 9px 6px 23px 0px rgba(0,0,0,0.75);
+    overflow: auto;
+}
+#profile h3{
+    padding-top: 14px;
+}
+#info-table{
+    margin: 15px auto;
+    padding-bottom: 10px;
+}
+#butt-comm{
+    width: 135px;
+    margin: 25px auto;
+}
+.leftcol{
+    text-align: right;
+    padding-right: 2px;
+    font-weight: bold;
+}
+.rightcol{
+    text-align: left;
+}
+.table{
+    background-color: white;
+    margin: 0 auto;
+    width: 80%;
+}
+ul li h2{
+    padding-top: 3px;
+    color: aqua;
+}
+#list h2{
+    padding-left: 15px;
+}
+.clear{
+    clear:both;
+    display: block;
+}
+
+.table-responsive{
+    padding-top: 50px;
+}
+textarea{
+    width: 100px;
+}
+
+#save-comment button{
+    margin-left: 400px;
+    margin-bottom: 20px;
+}
+#save-comment textarea{
+    margin: 15px auto;
+    width: 80%;
+}
+.error{
+    color: red;
+    float:right;
+}
+input.error,select.error {
+    border-color: red;
+    background: #fff0f0;
 }

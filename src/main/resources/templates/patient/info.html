@@ -3,6 +3,10 @@
 <head lang="en">
     <title>Patient Info</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 </head>
 <body>
 <div id="header">
@@ -51,22 +55,44 @@
     </div>
 </div>
 
-<div class="container">
-    <div th:if="${not #lists.isEmpty(comments)}">
-        <div id="comm-list" th:each="comment : ${comments}">
-		<ul>
-            <li ><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></li>
-            <li>|</li>
-            <li th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}">Date</li>
-			<li>|</li>
-            <li th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}">Date</li>
-			<li>|</li>
-            <li><a th:href="${'/patient/comment/' + comment.id}">Change</a></li>
-		</ul>
-		<br/>
-		<p th:text="${comment.text}">Text</p>
-        </div>
+<!--<div class="container">-->
+    <!--<div th:if="${not #lists.isEmpty(comments)}">-->
+        <!--<div id="comm-list" th:each="comment : ${comments}">-->
+		<!--<ul>-->
+            <!--<li ><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></li>-->
+            <!--<li>|</li>-->
+            <!--<li th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}">Date</li>-->
+			<!--<li>|</li>-->
+            <!--<li th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}">Date</li>-->
+			<!--<li>|</li>-->
+            <!--<li><a th:href="${'/patient/comment/' + comment.id}">Change</a></li>-->
+		<!--</ul>-->
+		<!--<br/>-->
+		<!--<p th:text="${comment.text}">Text</p>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<div id="list-pat">
+    <h2 class="text-center">Patients</h2>
+    <div class="text-center" th:if="${not #lists.isEmpty(comments)}">
+        <table class="table table-hover table-bordered">
+            <tr class="info" th:each="comment : ${comments}">
+                <th class="text-center">Author</th>
+                <td><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></td>
+                <th class="text-center">Date Create</th>
+                <td th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}"></td>
+                <th class="text-center">Last Changes</th>
+                <td th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}"></td>
+                <td><a th:href="${'/patient/comment/' + comment.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+            <tr>
+                <td colspan="7" th:text="${comment.text}"></td>
+            </tr>
+            </tr>
+
+        </table>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
