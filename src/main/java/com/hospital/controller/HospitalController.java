@@ -48,18 +48,19 @@ public class HospitalController {
     }
 
     @RequestMapping(path = "doctor/add", method = RequestMethod.GET)
-    public String createPatient(final Model model) {
+    public String createDoctor(final Model model) {
         model.addAttribute("doctor", new HospitalUser());
         return "doctor/add";
     }
 
     @RequestMapping(value = "/doctor/save", method = RequestMethod.POST)
-    public final String savePatient(final @RequestParam("name") String name,
+    public final String saveDoctor(final @RequestParam("name") String name,
                                     final @RequestParam("surname") String surname,
                                     final @RequestParam("login") String login,
                                     final @RequestParam("password") String password,
-                                    final @RequestParam("position") String position) {
-        hospitalUserService.createDoctor(name, surname, login, password, position);
+                                    final @RequestParam("position") String position,
+                                   final @RequestParam("dateBirth") String dateBirth) {
+        hospitalUserService.createDoctor(name, surname, login, password, position,dateBirth);
         return "redirect:/doctor/list";
     }
 

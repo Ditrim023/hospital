@@ -1,39 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Doctor List</title>
+    <title>Doctors</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
-<div id="header">
-    <div id="header-inner">
-        <div id="logo">
-            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                    th:src="@{/images/logo_true.png}" /></a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                                         th:src="@{/images/logo_true.png}" /></a>
         </div>
-        <h2>Doctors List</h2>
-        <div class="lin"><a th:href="@{/doctor/add}">Add Doctor</a></div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/doctor/add}">Add Doctor</a></li>
+                <li><a th:href="@{/doctor/list}">Doctor List</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}">Logout</a></li>
+
+            </ul>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(doctors)}">
-        <h2>All Patients</h2>
-        <table>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Position</th>
-                <th>Count Patients</th>
-                <th>Info</th>
+</nav>
+<div id="list-table">
+    <h2 class="text-center">Doctors</h2>
+    <div class="text-center" th:if="${not #lists.isEmpty(doctors)}">
+        <table class="table table-hover table-bordered">
+            <tr class="info">
+                <th class="text-center">Id</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Surname</th>
+                <th class="text-center">Position</th>
+                <th class="text-center">Date Birth</th>
+                <th class="text-center">Info</th>
             </tr>
-            <tr th:each="doctor : ${doctors}">
+            <tr class="text-center" th:each="doctor : ${doctors}">
                 <td th:text="${doctor.id}">Id</td>
                 <td th:text="${doctor.name}">Name</td>
                 <td th:text="${doctor.surname}">Surname</td>
                 <td th:text="${doctor.position}">Position</td>
-                <td th:text="${doctor.getPatients().size()}">Count patients</td>
-                <td><a th:href="${'/doctor/edit/' + doctor.id}">Edit</a></td>
+                <td th:text="${doctor.dateBirth}">Date Birth</td>
+                <td><a th:href="${'/doctor/info/' + doctor.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
             </tr>
         </table>
     </div>
