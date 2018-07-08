@@ -28,22 +28,26 @@
     </div>
 </nav>
 <div id="add">
-    <h2 class="text-center">Add Patient</h2>
-    <form id="patient-form" th:action="@{/patient/save}" method="post">
+    <h2 class="text-center">Edit Patient</h2>
+    <form id="patient-form" th:action="@{/patient/update}" method="post">
         <div class="form-group">
-            <label for="input-name">Name:</label>
-            <input id="input-name" class="form-control" name="name" placeholder="Name"/>
+            <label>Id:</label>
+            <input id="input-name" class="form-control" th:value="${patient.id}"  name="id" placeholder="Id" readonly=true>
         </div>
         <div class="form-group">
-            <label for="input-surname">Surname:</label>
-            <input id="input-surname" class="form-control"  name="surname" placeholder="Surname"/>
+            <label>Name:</label>
+            <input id="input-name" class="form-control" th:value="${patient.name}"  name="name" placeholder="Name">
         </div>
         <div class="form-group">
-            <label for="input-datebirth">DateBirth:</label>
-            <input id="input-datebirth" class="form-control" type="date" name="dateBirth"  placeholder="DateBirth" />
+            <label>Surname:</label>
+            <input id="input-surname" class="form-control" th:value="${patient.surname}" name="surname" placeholder="Surname">
         </div>
         <div class="form-group">
-            <label for="input-doc">Doctor:</label>
+            <label>DateBirth:</label>
+            <input id="input-datebirth" class="form-control" th:value="${patient.dateBirth}" type="date" name="dateBirth" placeholder="DateBirth" />
+        </div>
+        <div class="form-group">
+            <label>Doctor:</label>
             <select id="input-doc" class="form-control" name="doctorId">
                 <option value="">Select Doctor</option>
                 <option th:each="doctor : ${doctors}"
@@ -51,8 +55,8 @@
                         th:text="${doctor.surname}+' : '+${doctor.position}"></option>
             </select>
         </div>
-        <button class="btn btn-primary">Save
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+        <button class="btn btn-primary">Edit
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
         </button>
     </form>
 </div>

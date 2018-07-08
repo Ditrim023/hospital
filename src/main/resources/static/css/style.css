@@ -30,7 +30,7 @@ body{
     height: 80px;
 }
 #input-name,#input-surname,#input-datebirth,#input-doc,
-#input-login,#input-password,#input-position{
+#input-login,#input-password,#input-position,#input-id{
     width: 350px;
     margin-bottom: 10px;
     float:left;
