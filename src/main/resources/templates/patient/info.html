@@ -2,25 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
     <title>Patient Info</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous"/>
 </head>
 <body>
-<div id="header">
-    <div id="header-inner">
-        <div id="logo">
-            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                    th:src="@{/images/logo_true.png}"/></a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                                         th:src="@{/images/logo_true.png}" /></a>
         </div>
-        <h2>Patient Info</h2>
-        <div class="lin"><a th:href="@{/patient/list}">Patient List</a></div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/patient/list}">Patients List</a></li>
+                <li><a th:href="@{/doctor/list}">Doctor List</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}">Logout</a></li>
+
+            </ul>
+        </div>
     </div>
-</div>
-<div class="container">
-    <h2><a class="rightcol" th:href="${'/patient/edit/' + patient.id}">Edit</a> Patient Info</h2>
+</nav>
+<div id="profile">
+    <h2 class="text-center">Patient Info <a class="rightcol" th:href="${'/patient/edit/' + patient.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
     <table id="info-table">
         <tr>
             <td class="leftcol">Id:</td>
@@ -30,51 +38,46 @@
             <td class="leftcol">Name:</td>
             <td class="rightcol" th:text="*{patient.name}">Правая колонка</td>
         </tr>
-		<tr>
+        <tr>
             <td class="leftcol">Surname:</td>
             <td class="rightcol" th:text="*{patient.surname}">Правая колонка</td>
         </tr>
-		<tr>
+        <tr>
             <td class="leftcol">Doctor:</td>
             <td class="rightcol" th:text="${patient.getDoctor().name}+' '+${patient.getDoctor().surname}+' - '+${patient.getDoctor().position}">Правая колонка</td>
         </tr>
     </table>
-	<div class="clear"></div>
 
 </div>
-<div class="container">
-    <div id="create-comment">
-        <form class="form" th:object="${comment}" th:action="@{/comment/save/}" method="post">
-            <span><input type="hidden" class="form-input" name="id" th:value="${patient.id}"
-            /></span>
-            <div class="form-input">
-                <textarea class="inn" th:field="*{text}" placeholder="Add"></textarea>
+<div id="butt-comm">
+    <button  class="btn btn-info" data-toggle="modal" data-target="#addComment">Write comment  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button></div>
+
+<div id="addComment" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">х</button>
+                <h4 class="modal-title">Write Comment</h4>
             </div>
-            <button type="submit" class="button">Save</button>
-        </form>
+            <form id="save-comment" th:object="${comment}" th:action="@{/comment/save/}" method="post">
+                <span><input type="hidden" class="form-input" name="id" th:value="${comment.id}"
+                /></span>
+                <div class="form-group">
+                    <textarea class="form-control" th:field="*{text}" id="controlTextarea" rows="10"></textarea>
+                </div>
+                <button class="btn btn-primary" data-dismiss="modal">Save
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div>
     </div>
 </div>
 
-<!--<div class="container">-->
-    <!--<div th:if="${not #lists.isEmpty(comments)}">-->
-        <!--<div id="comm-list" th:each="comment : ${comments}">-->
-		<!--<ul>-->
-            <!--<li ><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></li>-->
-            <!--<li>|</li>-->
-            <!--<li th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}">Date</li>-->
-			<!--<li>|</li>-->
-            <!--<li th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}">Date</li>-->
-			<!--<li>|</li>-->
-            <!--<li><a th:href="${'/patient/comment/' + comment.id}">Change</a></li>-->
-		<!--</ul>-->
-		<!--<br/>-->
-		<!--<p th:text="${comment.text}">Text</p>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
-<div id="list-pat">
-    <h2 class="text-center">Patients</h2>
+
+
+<div id="list-table">
     <div class="text-center" th:if="${not #lists.isEmpty(comments)}">
+        <h2 class="text-center">Comments</h2>
         <table class="table table-hover table-bordered">
             <tr class="info" th:each="comment : ${comments}">
                 <th class="text-center">Author</th>
