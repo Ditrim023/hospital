@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <title>Patients</title>
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
-<div id="header">
-    <div id="header-inner">
-        <div id="logo">
-            <a href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                    th:src="@{/images/logo_true.png}" /></a>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
+                                                                         th:src="@{/images/logo_true.png}" /></a>
         </div>
-        <h2>List of Activities</h2>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/patient/list}">Patients List</a></li>
+                <li><a th:href="@{/doctor/list}">Doctor List</a></li>
+                <li><a th:href="@{/activity}">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a th:href="@{/logout}">Logout</a></li>
+
+            </ul>
+        </div>
     </div>
-</div>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(activities)}">
-        <h2>All Activities</h2>
-        <table>
-            <tr>
-                <th>Login</th>
-                <th>Date</th>
+</nav>
+<div id="list-table">
+    <h2 class="text-center">Doctors</h2>
+    <div class="text-center" th:if="${not #lists.isEmpty(activities)}">
+        <table class="table table-hover table-bordered">
+            <tr class="info">
+                <th class="text-center">Login</th>
+                <th class="text-center">Date</th>
             </tr>
-            <tr th:each="activ : ${activities}">
+            <tr class="text-center" th:each="activ : ${activities}">
                 <td th:text="${activ.login}">Login</td>
                 <td th:text="${#dates.format(activ.dateActive, 'dd-MM-yyyy HH:mm')}">Date</td>
             </tr>
