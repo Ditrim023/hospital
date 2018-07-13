@@ -11,8 +11,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ComponentScan(basePackages = {"com.hospital"})
 @EntityScan("com.hospital.model")
 @EnableJpaRepositories(basePackages = {"com.hospital.repository"})
-@EnableAsync
-@EnableScheduling
 @SpringBootApplication
 public class HospitalApplication {
 

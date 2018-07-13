@@ -4,7 +4,6 @@
     <title>Patient Info</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
@@ -50,22 +49,22 @@
 
 </div>
 <div id="butt-comm">
-    <button  class="btn btn-info" data-toggle="modal" data-target="#addComment">Write comment  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button></div>
+    <button  class="btn btn-info" data-toggle="modal" data-target="#amodal">Write comment  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button></div>
 
-<div id="addComment" class="modal fade" tabindex="-1">
+<div id="amodal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close" data-dismiss="modal">х</button>
                 <h4 class="modal-title">Write Comment</h4>
             </div>
-            <form id="save-comment" th:object="${comment}" th:action="@{/comment/save/}" method="post">
-                <span><input type="hidden" class="form-input" name="id" th:value="${comment.id}"
+            <form id="save-comment" role="form"  th:object="${comment}" th:action="@{/comment/save/}" method="post">
+                <span><input type="hidden" class="form-input" name="id" th:value="${patient.id}"
                 /></span>
                 <div class="form-group">
-                    <textarea class="form-control" th:field="*{text}" id="controlTextarea" rows="10"></textarea>
+                    <textarea class="form-control" th:field="*{text}" rows="10"></textarea>
                 </div>
-                <button class="btn btn-primary" data-dismiss="modal">Save
+                <button type="submit" class="btn btn-primary">Save
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
                 </button>
             </form>
