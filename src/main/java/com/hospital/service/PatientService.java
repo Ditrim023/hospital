@@ -28,12 +28,13 @@ public class PatientService {
         final Patient patient = patientRepository.findOne(id);
         final HospitalUser doctor = hospitalUserService.findOne(doctorId);
         final HospitalUser currentUser = hospitalUserService.findUserByLogin();
-        String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        String lastEditor = author;
         final Long authorId = currentUser.getId();
         patient.setName(name);
         patient.setSurname(surname);
         if (patient.getDoctor() != doctor) {
-            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, authorId));
+            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author,lastEditor , authorId, authorId));
         }
         patient.setDoctor(doctor);
         patientRepository.save(patient);
@@ -47,9 +48,10 @@ public class PatientService {
     public final void saveComment(final Long patientId, final String text) {
         final Patient patient = patientRepository.findOne(patientId);
         final HospitalUser currentUser = hospitalUserService.findUserByLogin();
-        String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
+        String lastEditor = author;
         final Long authorId = currentUser.getId();
-        commentRepository.save(new Comment(text, patient, author, authorId));
+        commentRepository.save(new Comment(text, patient, author,lastEditor, authorId, authorId));
     }
 
     public final List<Comment> getReverseList(final Long id) {
@@ -61,9 +63,13 @@ public class PatientService {
     public final void commentUpdate(final Long id, final String text) {
         final Comment fromBase = commentRepository.findOne(id);
         final Patient patient = patientRepository.findOne(fromBase.getPatient().getId());
+        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        final String lastEditor = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         fromBase.setText(text);
         fromBase.setPatient(patient);
         fromBase.setDateLastChange(System.currentTimeMillis());
+        fromBase.setLastEditor(lastEditor);
+        fromBase.setLastEditorId(currentUser.getId());
         commentRepository.save(fromBase);
     }
 

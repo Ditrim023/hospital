@@ -31,10 +31,14 @@ public class Comment {
     private Long dateLastChange = System.currentTimeMillis();
     @ManyToOne(fetch = FetchType.EAGER)
     private Patient patient;
-
+    @Column(nullable = false, updatable = false)
     private String author;
-
+    @Column(nullable = false, updatable = false)
     private Long authorId;
+    private String lastEditor;
+    private Long lastEditorId;
+
+
 
     public Comment(String text) {
         this.text = text;
@@ -56,10 +60,12 @@ public class Comment {
         this.author = author;
     }
 
-    public Comment(String text, Patient patient, String author, Long authorId) {
+    public Comment(String text, Patient patient,String lastEditor ,String author, Long authorId, Long lastEditorId) {
         this.text = text;
         this.patient = patient;
         this.author = author;
+        this.lastEditor = lastEditor;
         this.authorId = authorId;
+        this.lastEditorId = lastEditorId;
     }
 }

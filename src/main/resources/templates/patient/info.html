@@ -83,11 +83,13 @@
                 <td class="text-center"><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></td>
                 <th class="text-center">Date Create</th>
                 <td class="text-center" th:text="${#dates.format(comment.dateCreate, 'dd.MM.yyyy HH:mm')}"></td>
+                <th class="text-center">Last Editor</th>
+                <td class="text-center"><a th:href="${'/doctor/info/' + comment.lastEditorId}" th:text="${comment.lastEditor}"></a></td>
                 <th class="text-center">Last Changes</th>
                 <td class="text-center" th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}"></td>
                 <td class="text-center"><a th:href="${'/patient/comment/' + comment.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             <tr>
-                <td colspan="7" th:text="${comment.text}"></td>
+                <td colspan="9" th:text="${comment.text}"></td>
             </tr>
             </tr>
 
