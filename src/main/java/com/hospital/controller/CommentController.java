@@ -23,7 +23,7 @@ public class CommentController {
     @RequestMapping(path = "/patient/comment/{id}", method = RequestMethod.GET)
     public String editComment(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("comment", commentRepository.findOne(id));
-        return "patient/info";
+        return "patient/comment";
     }
 
     @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
