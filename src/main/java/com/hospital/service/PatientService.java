@@ -81,4 +81,10 @@ public class PatientService {
     public final Patient findOne(final Long patientId) {
         return patientRepository.findOne(patientId);
     }
+
+    public final String getOneComment(final Long id){
+        final Comment comment = commentRepository.findOne(id);
+         String info = comment.getText();
+         return info;
+    }
 }

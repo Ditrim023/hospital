@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -72,7 +73,26 @@
     </div>
 </div>
 
-
+<div id="umodal" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">х</button>
+                <h4 class="modal-title">Edit Comment</h4>
+            </div>
+            <form id="update-comment" role="form"  th:object="${comment}" th:action="@{/comment/update/}" method="post">
+                <span><input type="hidden" class="form-input" id="update-id" th:field="*{id}" th:value="${comment.id}"
+                /></span>
+                <div class="form-group">
+                    <textarea class="form-control" id="update-text" th:field="*{text}" th:value="${comment.text}" rows="10"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Edit
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div id="list-table">
     <div th:if="${not #lists.isEmpty(comments)}">
@@ -87,7 +107,9 @@
                 <td class="text-center"><a th:href="${'/doctor/info/' + comment.lastEditorId}" th:text="${comment.lastEditor}"></a></td>
                 <th class="text-center">Last Changes</th>
                 <td class="text-center" th:text="${#dates.format(comment.dateLastChange, 'dd.MM.yyyy HH:mm')}"></td>
-                <td class="text-center"><a th:href="${'/patient/comment/' + comment.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+
+                <td class="text-center"><a data-toggle="modal" data-target="#umodal" id="edit" th:onclick="'showEditModal(' + ${comment.id} + ')'">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             <tr>
                 <td colspan="9" th:text="${comment.text}"></td>
             </tr>
@@ -96,7 +118,12 @@
         </table>
     </div>
 </div>
+<div id="result">
+
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
+<script type="text/javascript" th:src="@{/js/ajax.js}"></script>
 </body>
 </html>

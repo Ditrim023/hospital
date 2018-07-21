@@ -118,11 +118,11 @@ textarea{
     width: 100px;
 }
 
-#save-comment button{
+#save-comment button,#update-comment button{
     margin-left: 400px;
     margin-bottom: 20px;
 }
-#save-comment textarea{
+#save-comment textarea,#update-comment textarea{
     margin: 15px auto;
     width: 80%;
 }

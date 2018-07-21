@@ -1,15 +1,13 @@
 package com.hospital.controller;
 
+import com.hospital.model.Comment;
 import com.hospital.repository.CommentRepository;
 import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Nikita Krutoguz
@@ -20,12 +18,12 @@ public class CommentController {
     private final PatientService patientService;
     private final CommentRepository commentRepository;
 
-    @RequestMapping(path = "/patient/comment/{id}", method = RequestMethod.GET)
-    public String editComment(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("comment", commentRepository.findOne(id));
-        return "patient/comment";
+    @ResponseBody
+    @RequestMapping(value = "/patient/comment/{id}", method = RequestMethod.GET)
+    public String getComment(@PathVariable("id") final Long id) {
+        String info = patientService.getOneComment(id);
+        return info;
     }
-
     @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
     public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text) {
         patientService.commentUpdate(id, text);
