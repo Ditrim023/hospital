@@ -43,8 +43,8 @@
             <input id="input-surname" class="form-control" th:value="${patient.surname}" name="surname" placeholder="Surname"/>
         </div>
         <div class="form-group">
-            <label>DateBirth:</label>
-            <input id="input-datebirth" class="form-control" th:value="${patient.dateBirth}" type="date" name="dateBirth" placeholder="DateBirth" />
+            <label for="input-datebirth">DateBirth:</label>
+            <input id="input-datebirth" class="form-control" type="text" name="dateBirth" th:value="${patient.dateBirth}" placeholder="DateBirth" />
         </div>
         <div class="form-group">
             <label>Doctor:</label>

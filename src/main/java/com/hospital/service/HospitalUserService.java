@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.dom.DocType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,15 +26,17 @@ public class HospitalUserService {
         return doctors;
     }
 
-    public final List<Patient> patients(final Long id){
+    public final List<Patient> patients(final Long id) {
         final HospitalUser doctor = hospitalUserRepository.findOne(id);
         List<Patient> patients = doctor.getPatients();
         return patients;
     }
-    public final void createDoctor(final String name, final String surname,final String login, final String password ,final String position, final String dateBirth) {
-        hospitalUserRepository.save(new HospitalUser(name, surname, login, new BCryptPasswordEncoder(10).encode(password),dateBirth, position,userRoleRepository.findOne(2L)));
+
+    public final void createDoctor(final String name, final String surname, final String login, final String password, final String position, final String dateBirth) {
+        hospitalUserRepository.save(new HospitalUser(name, surname, login, new BCryptPasswordEncoder(10).encode(password), dateBirth, position, userRoleRepository.findOne(2L)));
     }
-    public void hospitalUserUpdate(final Long id, final String name, final String surname, final String position){
+
+    public void hospitalUserUpdate(final Long id, final String name, final String surname, final String position) {
         final HospitalUser doctorFromBase = hospitalUserRepository.findOne(id);
         doctorFromBase.setName(name);
         doctorFromBase.setSurname(surname);
@@ -44,12 +44,20 @@ public class HospitalUserService {
         hospitalUserRepository.save(doctorFromBase);
     }
 
-    public final HospitalUser findUserByLogin(){
-      return  hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
+    public final HospitalUser findUserByLogin() {
+        return hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
     }
 
     public List<HospitalUser> findAll() {
         return hospitalUserRepository.findAll();
+    }
+
+    public final Boolean isDuplicateUser(String login) {
+        final HospitalUser hospitalUser = hospitalUserRepository.findUserByLogin(login);
+       if (hospitalUser != null) {
+           return false;
+        }
+        return true;
     }
 
     public final HospitalUser findOne(final Long hospitalUserId) {

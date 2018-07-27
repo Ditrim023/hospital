@@ -3,6 +3,7 @@ package com.hospital.controller;
 import com.hospital.model.Comment;
 import com.hospital.model.Patient;
 import com.hospital.repository.PatientRepository;
+import com.hospital.service.CommentService;
 import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PatientController {
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
+    private final CommentService commentService;
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String listPatients(final Model model) {
@@ -41,7 +43,7 @@ public class PatientController {
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("comment", new Comment());
-        model.addAttribute("comments", patientService.getReverseList(id));
+        model.addAttribute("comments", commentService.getReverseList(id));
         return "patient/info";
     }
 

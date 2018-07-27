@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -34,43 +33,15 @@ public class PatientService {
         patient.setName(name);
         patient.setSurname(surname);
         if (patient.getDoctor() != doctor) {
-            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author,lastEditor , authorId, authorId));
+            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, lastEditor, authorId, authorId));
         }
         patient.setDoctor(doctor);
         patientRepository.save(patient);
     }
 
-    public final void createPatient(final String name, final String surname,final String dateBirth, final Long doctorId) {
+    public final void createPatient(final String name, final String surname, final String dateBirth, final Long doctorId) {
         HospitalUser doctor = hospitalUserService.findOne(doctorId);
-        patientRepository.save(new Patient(name, surname, Util.getRealDate(dateBirth), doctor));
-    }
-
-    public final void saveComment(final Long patientId, final String text) {
-        final Patient patient = patientRepository.findOne(patientId);
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
-        final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
-        String lastEditor = author;
-        final Long authorId = currentUser.getId();
-        commentRepository.save(new Comment(text, patient, author,lastEditor, authorId, authorId));
-    }
-
-    public final List<Comment> getReverseList(final Long id) {
-        List<Comment> reversList = patientRepository.findOne(id).getComments();
-        Collections.reverse(reversList);
-        return reversList;
-    }
-
-    public final void commentUpdate(final Long id, final String text) {
-        final Comment fromBase = commentRepository.findOne(id);
-        final Patient patient = patientRepository.findOne(fromBase.getPatient().getId());
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
-        final String lastEditor = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
-        fromBase.setText(text);
-        fromBase.setPatient(patient);
-        fromBase.setDateLastChange(System.currentTimeMillis());
-        fromBase.setLastEditor(lastEditor);
-        fromBase.setLastEditorId(currentUser.getId());
-        commentRepository.save(fromBase);
+        patientRepository.save(new Patient(name, surname, dateBirth, doctor));
     }
 
 
@@ -82,9 +53,5 @@ public class PatientService {
         return patientRepository.findOne(patientId);
     }
 
-    public final String getOneComment(final Long id){
-        final Comment comment = commentRepository.findOne(id);
-         String info = comment.getText();
-         return info;
-    }
+
 }
