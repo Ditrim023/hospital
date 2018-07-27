@@ -49,10 +49,10 @@
         <div class="form-group">
             <label>Doctor:</label>
             <select id="input-doc" class="form-control" name="doctorId">
-                <option value="">Select Doctor</option>
                 <option th:each="doctor : ${doctors}"
                         th:value="${doctor.id}"
-                        th:text="${doctor.surname}+' : '+${doctor.position}"></option>
+                        th:text="${doctor.surname}+' : '+${doctor.position}"
+                        th:selected="${patient.doctor.id==doctor.id}"></option>
             </select>
         </div>
         <button class="btn btn-primary">Edit

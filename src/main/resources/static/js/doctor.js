@@ -62,9 +62,9 @@ $('#input-datebirth').datetimepicker({
 
 var result = true;
 
-function getResult() {
-    return result;
-}
+// function getResult() {
+//     return result;
+// }
 
 function isDuplicate() {
     var login = $('#input-login').val();
@@ -76,7 +76,7 @@ function isDuplicate() {
             result = data;
         }
     });
-    return getResult();
+    return result;
 }
 
 
