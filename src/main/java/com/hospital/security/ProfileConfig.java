@@ -31,8 +31,8 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable().
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
-                .antMatchers("/profile").hasAnyRole("ADMIN","DOCTOR")
-                .antMatchers("/patient/list","/activity").hasRole("ADMIN")
+                .antMatchers("/profile").hasAnyRole("ADMIN", "DOCTOR")
+                .antMatchers("/patient/list", "/activity").hasRole("ADMIN")
                 .and().exceptionHandling().accessDeniedPage("/403")
                 .and().formLogin()
                 .loginPage("/login").failureUrl("/403")
@@ -43,8 +43,6 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
-
-
 
     }
 
