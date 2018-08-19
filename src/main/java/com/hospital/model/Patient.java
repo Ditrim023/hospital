@@ -30,6 +30,8 @@ public class Patient {
     private HospitalUser doctor;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
     private List<Comment> comments;
+    @Column(nullable = false)
+    private Long dateTransfer = System.currentTimeMillis();
 
     public Patient(String name, String surname, String dateBirth) {
         this.name = name;

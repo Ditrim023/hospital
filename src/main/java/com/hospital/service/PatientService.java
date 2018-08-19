@@ -5,13 +5,10 @@ import com.hospital.model.HospitalUser;
 import com.hospital.model.Patient;
 import com.hospital.repository.CommentRepository;
 import com.hospital.repository.PatientRepository;
-import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
@@ -31,11 +28,12 @@ public class PatientService {
         final HospitalUser currentUser = hospitalUserService.findUserByLogin();
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         String lastEditor = author;
-        final Long authorId = currentUser.getId();
+        final Long lastEditorId = currentUser.getId();
         patient.setName(name);
         patient.setSurname(surname);
+        patient.setDateTransfer(System.currentTimeMillis());
         if (patient.getDoctor() != doctor) {
-            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, lastEditor, authorId, authorId));
+            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, lastEditor, doctorId, lastEditorId));
         }
         patient.setDoctor(doctor);
         patientRepository.save(patient);
@@ -46,13 +44,10 @@ public class PatientService {
         patientRepository.save(new Patient(name, surname, dateBirth, doctor));
     }
 
-
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
-    public Page<Patient> findAll(Pageable pageable) {
-        return patientRepository.findAll(pageable);
-    }
+
     public final Patient findOne(final Long patientId) {
         return patientRepository.findOne(patientId);
     }

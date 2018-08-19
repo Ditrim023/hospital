@@ -1,6 +1,7 @@
 package com.hospital.repository;
 
 import com.hospital.model.HospitalUser;
+import com.hospital.model.Patient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,8 +17,8 @@ public interface HospitalUserRepository extends JpaRepository<HospitalUser,Long>
     @Query(value = "SELECT u FROM HospitalUser u WHERE u.login = :login")
     HospitalUser findUserByLogin(final @Param("login") String login);
 
-    /*@Query(value = "SELECT u FROM HospitalUser u WHERE u.position = :position")
-    HospitalUser findUserByPosition(final @Param("position") String login);*/
+    @Query(value = "SELECT u FROM Patient u WHERE u.doctor.id = :id ORDER BY u.dateTransfer DESC")
+    List<Patient> findAllPatientsByTransfer(final @Param("id") Long id);
 
     @Query(value = "SELECT u FROM HospitalUser u WHERE u.roleId = :roleId")
     List<HospitalUser> findAllUserByRoleId(final @Param("roleId") Long roleId);
