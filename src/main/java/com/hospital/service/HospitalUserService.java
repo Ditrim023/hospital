@@ -27,7 +27,6 @@ public class HospitalUserService {
     }
 
     public final List<Patient> patients(final Long id) {
-       // final HospitalUser doctor = hospitalUserRepository.findOne(id);
         List<Patient> patients = hospitalUserRepository.findAllPatientsByTransfer(id);
         return patients;
     }
