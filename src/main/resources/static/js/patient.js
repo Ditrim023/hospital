@@ -38,7 +38,7 @@ $('#input-form').validate({
 });
 
 $('#input-datebirth').datetimepicker({
-    format:'dd-mm-yyyy',
+    format: 'dd-mm-yyyy',
     autoclose: 1,
     minView: 2
 });

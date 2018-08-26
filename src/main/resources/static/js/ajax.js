@@ -4,15 +4,16 @@ function showEditModal(index) {
         type: 'GET',
         url: editUrl,
         success: function (data) {
-            $('#update-id').val(index);
-            $('#update-text').val(data);
+            if (data.includes("Sent from")){
+                $('#update-id').val(index);
+                $('#update-text').val(data).attr('readonly','readonly');
+            }else{
+                $('#update-id').val(index);
+                $('#update-text').val(data);
+            }
+
         }
     });
 }
-
-
-
-
-
 
 

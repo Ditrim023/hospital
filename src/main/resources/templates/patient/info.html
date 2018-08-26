@@ -97,7 +97,7 @@
 <div id="list-table">
     <div th:if="${not #lists.isEmpty(comments)}">
         <h2 class="text-center">Comments</h2>
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered" id="patients-comment">
             <tr class="info" th:each="comment : ${comments}">
                 <th class="text-center">Author</th>
                 <td class="text-center"><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></td>
@@ -111,7 +111,7 @@
                 <td class="text-center"><a data-toggle="modal" data-target="#umodal" id="edit" th:onclick="'showEditModal(' + ${comment.id} + ')'">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
             <tr>
-                <td colspan="9" th:text="${comment.text}"></td>
+                <td colspan="9" class="comm-text" th:text="${comment.text}"></td>
             </tr>
             </tr>
 
@@ -125,5 +125,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 <script type="text/javascript" th:src="@{/js/ajax.js}"></script>
+<script type="text/javascript" th:src="@{/js/patientInfo.js}"></script>
 </body>
 </html>

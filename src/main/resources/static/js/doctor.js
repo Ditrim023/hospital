@@ -82,6 +82,7 @@ function myFunctionId() {
     filter = input.value.toUpperCase();
     table = document.getElementById("sort");
     tr = table.getElementsByTagName("tr");
+    console.log(tr.length);
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
