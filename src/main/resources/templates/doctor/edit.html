@@ -27,7 +27,7 @@
         </div>
     </div>
 </nav>
-<div id="add">
+<div id="person-form">
     <h2 class="text-center">Edit Doctor</h2>
     <form id="input-form" th:action="@{/doctor/update}" method="post">
         <div class="form-group">
@@ -52,7 +52,7 @@
         </div>
         <div class="form-group">
             <label for="input-datebirth">DateBirth:</label>
-            <input id="input-datebirth" class="form-control" type="text" name="dateBirth" th:value="${doctor.dateBirth}" placeholder="DateBirth" />
+            <input id="input-datebirth" class="form-control" type="text" name="dateBirth" th:value="${doctor.dateBirth}" placeholder="DateBirth" autocomplete="off"/>
         </div>
         <button class="btn btn-primary">Edit
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
