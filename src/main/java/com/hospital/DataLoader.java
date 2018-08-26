@@ -24,7 +24,6 @@ public class DataLoader implements ApplicationRunner {
     private final PatientRepository patientRepository;
     private final HospitalUserRepository hospitalUserRepository;
     private final UserRoleRepository userRoleRepository;
-    private final CommentRepository commentRepository;
 
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
@@ -38,7 +37,6 @@ public class DataLoader implements ApplicationRunner {
         insertRoles();
         insertHospitalUsers();
         insertPatients();
-       // insertComments();
     }
 
     private void insertRoles() {
