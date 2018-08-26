@@ -6,17 +6,16 @@ import com.hospital.repository.PatientRepository;
 import com.hospital.service.CommentService;
 import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
-import com.hospital.utils.PageWrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 /**
  * @author Nikita Krutoguz
@@ -30,11 +29,9 @@ public class PatientController {
     private final CommentService commentService;
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
-    public String listPatients(final Model model, Pageable pageable) {
-        Page<Patient> patientPage = patientRepository.findAll(pageable);
-        PageWrapper<Patient> page = new PageWrapper<>(patientPage, "/patient/list");
-        model.addAttribute("patients", page.getContent());
-        model.addAttribute("page", page);
+    public String listPatients(final Model model) {
+        List<Patient> patients = patientRepository.findAll();
+        model.addAttribute("patients", patients);
         return "patient/list";
     }
 

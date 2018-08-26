@@ -60,6 +60,15 @@ public class DataLoader implements ApplicationRunner {
         HospitalUser hospitalUser4 = new HospitalUser("Maks", "Kop", "user3", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
         hospitalUser4.setRole(userRoleRepository.findOne(2L));
         hospitalUsers.add(hospitalUser4);
+        HospitalUser hospitalUser5 = new HospitalUser("Alfred", "All", "user4", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
+        hospitalUser5.setRole(userRoleRepository.findOne(2L));
+        hospitalUsers.add(hospitalUser5);
+        HospitalUser hospitalUser6 = new HospitalUser("Balfred", "All", "user5", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
+        hospitalUser6.setRole(userRoleRepository.findOne(2L));
+        hospitalUsers.add(hospitalUser6);
+        HospitalUser hospitalUser7 = new HospitalUser("Seven", "Sevenovich", "user6", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
+        hospitalUser7.setRole(userRoleRepository.findOne(2L));
+        hospitalUsers.add(hospitalUser7);
         hospitalUserRepository.save(hospitalUsers);
     }
 
@@ -84,22 +93,6 @@ public class DataLoader implements ApplicationRunner {
         patient6.setDoctor(hospitalUserRepository.findOne(3L));
         patients.add(patient6);
         patientRepository.save(patients);
-    }
-
-    private void insertComments(){
-        Comment comment1 = new Comment("Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв и пробелов в абзацах, которое не получается при простой дубликации \"Здесь ваш текст.. Здесь ваш текст.. Здесь ваш текст..\" Многие программы электронной вёрстки и редакторы HTML используют Lorem Ipsum в качестве текста по умолчанию, так что поиск по ключевым словам \"lorem ipsum\" сразу показывает, как много веб-страниц всё ещё дожидаются своего настоящего рождения. За прошедшие годы текст Lorem Ipsum получил много версий. Некоторые версии появились по ошибке, некоторые - намеренно (например, юмористические варианты).");
-        comment1.setPatient(patientRepository.findOne(1L));
-        comments.add(comment1);
-        Comment comment2 = new Comment("My");
-        comment2.setPatient(patientRepository.findOne(1L));
-        comments.add(comment2);
-        Comment comment3 = new Comment("Dear");
-        comment3.setPatient(patientRepository.findOne(1L));
-        comments.add(comment3);
-        Comment comment4 = new Comment("Patients");
-        comment4.setPatient(patientRepository.findOne(1L));
-        comments.add(comment4);
-        commentRepository.save(comments);
     }
 
 }

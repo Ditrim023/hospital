@@ -11,7 +11,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                                         th:src="@{/images/logo_true.png}" /></a>
+                                                                         th:src="@{/images/logo_true.png}"/></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -28,28 +28,37 @@
 </nav>
 <div id="list-table">
     <h2 class="text-center">Doctors</h2>
+    <div id="search">
+        <input type="text" onkeyup="myFunctionId()" class="form-control" id="findById" placeholder="Filter by id"/>
+        <input type="text" onkeyup="myFunctionPosition()" class="form-control" id="findByPosition" placeholder="Filter by position"/>
+        <input type="text"  onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
+    </div>
     <div class="text-center" th:if="${not #lists.isEmpty(doctors)}">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-stripped" id="sort">
+            <thead>
             <tr class="info">
-                <th class="text-center">Id</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Surname</th>
-                <th class="text-center">Position</th>
-                <th class="text-center">Date Birth</th>
-                <th class="text-center">Info</th>
+                <th class="text-center"><a href="#">Id</a></th>
+                <th class="text-center"><a href="#">Surname</a></th>
+                <th class="text-center"><a href="#">Name</a></th>
+                <th class="text-center"><a href="#">Position</a></th>
+                <th class="text-center"><a href="#">Date Birth</a></th>
             </tr>
+            </thead>
+            <tbody>
             <tr class="text-center" th:each="doctor : ${doctors}">
-                <td th:text="${doctor.id}">Id</td>
-                <td th:text="${doctor.name}">Name</td>
+                <td><a th:href="${'/doctor/info/' + doctor.id}" th:text="${doctor.id}"></a></td>
                 <td th:text="${doctor.surname}">Surname</td>
+                <td th:text="${doctor.name}">Name</td>
                 <td th:text="${doctor.position}">Position</td>
                 <td th:text="${doctor.dateBirth}">Date Birth</td>
-                <td><a th:href="${'/doctor/info/' + doctor.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
             </tr>
+            </tbody>
         </table>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/doctor.js}"></script>
+<script type="text/javascript" th:src="@{/js/slimtable.js}"></script>
 </body>
 </html>

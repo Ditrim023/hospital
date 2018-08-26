@@ -4,7 +4,6 @@
     <title>Patients</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
 </head>
 <body>
@@ -29,51 +28,37 @@
 </nav>
 <div id="list-table">
     <h2 class="text-center">Patients</h2>
+    <div id="search">
+        <input type="text" onkeyup="myFunctionId()" class="form-control" id="findById" placeholder="Filter by id"/>
+        <input type="text" onkeyup="myFunctionDoctor()" class="form-control" id="findByDoctor" placeholder="Filter by doctor"/>
+        <input type="text"  onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
+    </div>
     <div class="text-center" th:if="${not #lists.isEmpty(patients)}">
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-stripped" id="sort">
+            <thead>
             <tr class="info">
-                <th class="text-center">Id</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Surname</th>
-                <th class="text-center">Date Birth</th>
-                <th class="text-center">Doctor Name</th>
-                <th class="text-center">Info</th>
+                <th class="text-center"><a href="#">Id</a></th>
+                <th class="text-center"><a href="#">Surname</a></th>
+                <th class="text-center"><a href="#">Name</a></th>
+                <th class="text-center"><a href="#">Date Birth</a></th>
+                <th class="text-center"><a href="#">Doctor Name</a></th>
             </tr>
+            </thead>
+            <tbody>
             <tr class="text-center" th:each="patient : ${patients}">
-                <td th:text="${patient.id}">Id</td>
-                <td th:text="${patient.name}">Name</td>
+                <td><a th:href="${'/patient/info/' + patient.id}" th:text="${patient.id}"></a></td>
                 <td th:text="${patient.surname}">Surname</td>
+                <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.dateBirth}">Date Birth</td>
-                <td th:text="${patient.getDoctor().name}">Doctor Name</td>
-                <td><a th:href="${'/patient/info/' + patient.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                <td th:text="${patient.getDoctor().surname}">Doctor Surname</td>
             </tr>
+            </tbody>
         </table>
     </div>
 </div>
-<div class="text-center">
-    <ul class='pagination pagination-centered'>
-        <li th:class="${page.firstPage}?'disabled':''">
-            <span th:if='${page.firstPage}'>← First</span>
-            <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a>
-        </li>
-        <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
-            <span th:if='${not page.hasPreviousPage}'>«</span>
-            <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>«</a>
-        </li>
-        <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
-            <span th:if='${item.current}' th:text='${item.number}'>1</span>
-            <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
-        </li>
-        <li th:class="${page.hasNextPage}? '' : 'disabled'">
-            <span th:if='${not page.hasNextPage}'>»</span>
-            <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>»</a>
-        </li>
-        <li th:class="${page.lastPage}? 'disabled' : ''">
-            <span th:if='${page.lastPage}'>Last →</span>
-            <a th:if='${not page.lastPage}' th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last →</a>
-        </li>
-    </ul>
-</div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/patient.js}"></script>
+<script type="text/javascript" th:src="@{/js/slimtable.js}"></script>
 </body>
 </html>

@@ -1,8 +1,10 @@
 /*@import url(reset.css);*/
 
 body{
-    background-color: #ccc;
+    background-color: #d2d2d2;
+    min-width: 900px;
 }
+
 #login-form{
     background-color: white;
     /*
@@ -14,7 +16,29 @@ body{
     height: 300px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
-
+#search{
+    width:80%;
+    margin: 0 auto 2px;
+}
+#search input,#search input::placeholder{
+    text-align: center;
+}
+#findById{
+    float: left;
+    width: 33%;
+}
+#findBySurName{
+    width: 34%;
+    margin: 0 auto;
+}
+#findByPosition,#findByDoctor{
+    float: right;
+    width: 33%;
+}
+#sort a{
+    font-weight: bold;
+    text-decoration: none;
+}
 #container-login{
     margin-left: 140px;
     padding-top: 40px;
@@ -134,3 +158,4 @@ input.error,select.error {
     border-color: red;
     background: #fff0f0;
 }
+
