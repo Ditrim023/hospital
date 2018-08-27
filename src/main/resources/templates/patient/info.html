@@ -98,7 +98,7 @@
 <div id="list-table">
     <div th:if="${not #lists.isEmpty(comments)}">
         <h2 class="text-center">Comments</h2>
-        <table class="table table-hover table-bordered" id="patients-comment">
+        <table class="table table-hover table-bordered" id="sort">
             <tr class="info" th:each="comment : ${comments}">
                 <th class="text-center">Author</th>
                 <td class="text-center"><a th:href="${'/doctor/info/' + comment.authorId}" th:text="${comment.author}"></a></td>
@@ -111,21 +111,40 @@
 
                 <td class="text-center"><a data-toggle="modal" data-target="#umodal" id="edit" th:onclick="'showEditModal(' + ${comment.id} + ')'">
                     <span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
-            <tr>
-                <td colspan="9" class="comm-text" th:text="${comment.text}"></td>
-            </tr>
+                <tr>
+                    <td colspan="9" th:text="${comment.text}"></td>
+                </tr>
             </tr>
 
         </table>
     </div>
 </div>
-<div id="result">
-
+<div class="text-center">
+    <ul class='pagination pagination-centered'>
+        <li th:class="${page.firstPage}?'disabled':''">
+            <span th:if='${page.firstPage}'>← First</span>
+            <a th:if='${not page.firstPage}' th:href='@{${page.url}(page=0,size=${page.size})}'>← First</a>
+        </li>
+        <li th:class="${page.hasPreviousPage}? '' : 'disabled'">
+            <span th:if='${not page.hasPreviousPage}'>«</span>
+            <a th:if='${page.hasPreviousPage}' th:href='@{${page.url}(page=${page.number-2},size=${page.size})}' title='Go to previous page'>«</a>
+        </li>
+        <li th:each='item : ${page.items}' th:class="${item.current}? 'active' : ''">
+            <span th:if='${item.current}' th:text='${item.number}'>1</span>
+            <a th:if='${not item.current}' th:href='@{${page.url}(page=${item.number-1},size=${page.size})}'><span th:text='${item.number}'>1</span></a>
+        </li>
+        <li th:class="${page.hasNextPage}? '' : 'disabled'">
+            <span th:if='${not page.hasNextPage}'>»</span>
+            <a th:if='${page.hasNextPage}' th:href='@{${page.url}(page=${page.number},size=${page.size})}' title='Go to next page'>»</a>
+        </li>
+        <li th:class="${page.lastPage}? 'disabled' : ''">
+            <span th:if='${page.lastPage}'>Last →</span>
+            <a th:if='${not page.lastPage}' th:href='@{${page.url}(page=${page.totalPages - 1},size=${page.size})}'>Last →</a>
+        </li>
+    </ul>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.10/js/jquery.dataTables.js"></script>
 <script type="text/javascript" th:src="@{/js/ajax.js}"></script>
-<script type="text/javascript" th:src="@{/js/patientInfo.js}"></script>
 </body>
 </html>

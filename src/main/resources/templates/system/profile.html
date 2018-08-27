@@ -55,24 +55,33 @@
 <div id="list-table">
     <div class="text-center" th:if="${not #lists.isEmpty(patients)}">
         <h2 class="text-center">Patients</h2>
-        <table class="table table-hover table-bordered">
+        <div id="search">
+            <input type="text" onkeyup="myFunctionId()"  style="width: 50%" class="form-control" id="findById" placeholder="Filter by id"/>
+            <input type="text"  onkeyup="myFunctionSurName()"  style="width: 50%" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
+        </div>
+        <table class="table table-hover table-bordered" id="sort">
+            <thead>
             <tr class="info">
-                <th class="text-center">Id</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Surname</th>
-                <th class="text-center">Date Birth</th>
-                <th class="text-center">Info</th>
+                <th class="text-center"><a href="#">Id</a></th>
+                <th class="text-center"><a href="#">Surname</a></th>
+                <th class="text-center"><a href="#">Name</a></th>
+                <th class="text-center"><a href="#">Date Birth</a></th>
             </tr>
+            </thead>
+           <tbody>
             <tr class="text-center" th:each="patient : ${patients}">
-                <td th:text="${patient.id}">Id</td>
+                <td><a th:href="${'/patient/info/' + patient.id}" th:text="${patient.id}"></a></td>
                 <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.surname}">Surname</td>
                 <td th:text="${patient.dateBirth}">Date Birth</td>
-                <td><a th:href="${'/patient/info/' + patient.id}">Info</a></td>
             </tr>
+           </tbody>
         </table>
     </div>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/patient.js}"></script>
+    <script type="text/javascript" th:src="@{/js/slimtable.js}"></script>
 </div>
 </body>
 </html>

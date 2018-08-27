@@ -28,12 +28,12 @@ body{
     width: 33%;
 }
 #findBySurName{
-    width: 34%;
-    margin: 0 auto;
-}
-#findByPosition,#findByDoctor{
     float: right;
     width: 33%;
+}
+#findByPosition,#findByDoctor{
+    width: 34%;
+    margin: 0 auto;
 }
 #sort a{
     font-weight: bold;
@@ -49,10 +49,18 @@ body{
 #container-login button{
     margin-left: 110px;
 }
-
+#login,#password{
+    /*margin: 0 auto;*/
+    width: 65%;
+}
 .navbar-brand {
     height: 80px;
 }
+
+#sort thead{
+    background-color: #d9edf7;
+}
+
 #input-name,#input-surname,#input-datebirth,#input-doc,
 #input-login,#input-password,#input-position,#input-id{
     width: 350px;

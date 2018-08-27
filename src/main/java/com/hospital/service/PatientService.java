@@ -7,6 +7,8 @@ import com.hospital.repository.CommentRepository;
 import com.hospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,7 +45,9 @@ public class PatientService {
         HospitalUser doctor = hospitalUserService.findOne(doctorId);
         patientRepository.save(new Patient(name, surname, dateBirth, doctor));
     }
-
+    public Page<Patient> findAll(Pageable pageable) {
+        return patientRepository.findAll(pageable);
+    }
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }

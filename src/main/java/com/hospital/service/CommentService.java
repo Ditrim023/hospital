@@ -7,6 +7,8 @@ import com.hospital.repository.CommentRepository;
 import com.hospital.repository.PatientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -49,7 +51,9 @@ public class CommentService {
         Collections.reverse(reversList);
         return reversList;
     }
-
+    public Page<Comment> findAll(Pageable pageable) {
+        return commentRepository.findAll(pageable);
+    }
     public final String getTextComment(final Long id) {
         return commentRepository.getTextComment(id);
     }
