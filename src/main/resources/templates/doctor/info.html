@@ -50,36 +50,47 @@
             <td class="leftcol">Position:</td>
             <td class="rightcol" th:text="*{doctor.position}">Правая колонка</td>
         </tr>
+        <tr>
+            <td class="leftcol">Status:</td>
+            <td class="rightcol" th:text="*{doctor.status.name}">Правая колонка</td>
+        </tr>
     </table>
 
 </div>
 
 <div id="list-table">
+
     <div class="text-center" th:if="${not #lists.isEmpty(patients)}">
         <h2 class="text-center">Patients</h2>
-        <table class="table table-hover table-bordered">
+        <div id="search">
+            <input type="text" onkeyup="myFunctionId()" class="form-control" id="findById" placeholder="Filter by id"/>
+            <input type="text"  onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
+        </div>
+        <table class="table table-hover table-stripped" id="sort">
+            <thead>
             <tr class="info">
-                <th class="text-center">Id</th>
-                <th class="text-center">Name</th>
-                <th class="text-center">Surname</th>
-                <th class="text-center">Date Birth</th>
-                <th class="text-center">Info</th>
+                <th class="text-center"><a href="#">Id</a></th>
+                <th class="text-center"><a href="#">Surname</a></th>
+                <th class="text-center"><a href="#">Name</a></th>
+                <th class="text-center"><a href="#">Date Birth</a></th>
+                <th class="text-center"><a href="#">Doctor Name</a></th>
             </tr>
+            </thead>
+            <tbody>
             <tr class="text-center" th:each="patient : ${patients}">
-                <td th:text="${patient.id}">Id</td>
-                <td th:text="${patient.name}">Name</td>
+                <td><a th:href="${'/patient/info/' + patient.id}" th:text="${patient.id}"></a></td>
                 <td th:text="${patient.surname}">Surname</td>
+                <td th:text="${patient.name}">Name</td>
                 <td th:text="${patient.dateBirth}">Date Birth</td>
-                <td><a th:href="${'/patient/info/' + patient.id}"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                <td th:text="${patient.getDoctor().surname}">Doctor Surname</td>
             </tr>
+            </tbody>
         </table>
     </div>
-
 </div>
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/patient.js}"></script>
+<script type="text/javascript" th:src="@{/js/slimtable.js}"></script>
 </body>
 </html>

@@ -8,8 +8,6 @@ import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,10 +44,9 @@ public class PatientController {
 
 
     @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
-    public String infoPatient(final Model model, @PathVariable("id") final Long id, final Pageable pageable) {
+    public String infoPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("comment", new Comment());
-        Page<Comment> commentPage = commentService.findAll(pageable);
         model.addAttribute("comments", commentService.getReverseList(id));
         return "patient/info";
     }

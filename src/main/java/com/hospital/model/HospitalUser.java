@@ -39,6 +39,8 @@ public class HospitalUser {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId")
     private UserRole role;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private UserStatus status;
 
     public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position, UserRole role) {
         this.name = name;
@@ -49,14 +51,16 @@ public class HospitalUser {
         this.dateBirth = dateBirth;
         this.role = role;
     }
-
-    public HospitalUser(String name, String surname, String login, String password) {
+    public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position, UserRole role, UserStatus status) {
         this.name = name;
         this.surname = surname;
         this.login = login;
         this.password = password;
+        this.position = position;
+        this.dateBirth = dateBirth;
+        this.role = role;
+        this.status = status;
     }
-
     public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position) {
         this.name = name;
         this.surname = surname;
@@ -65,5 +69,16 @@ public class HospitalUser {
         this.dateBirth = dateBirth;
         this.position = position;
     }
+
+    public HospitalUser(String name, String surname, String login, String password) {
+        this.name = name;
+        this.surname = surname;
+        this.login = login;
+        this.password = password;
+    }
+
+
+
+
 
 }
