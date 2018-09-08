@@ -54,6 +54,7 @@ public class HospitalController {
     @RequestMapping(path = "doctor/add", method = RequestMethod.GET)
     public String createDoctor(final Model model) {
         model.addAttribute("doctor", new HospitalUser());
+        model.addAttribute("statuses", userStatusRepository.findAll());
         return "doctor/add";
     }
 

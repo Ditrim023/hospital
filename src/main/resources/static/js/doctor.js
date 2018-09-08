@@ -1,5 +1,6 @@
 $(function() {$("#sort").slimtable();});
 $.validator.addMethod("duplicate_login", isDuplicate, "This login already exist");
+// $.validator.addMethod("is_free", isFree, "This user in vacation");
 $('#input-form').validate({
     rules: {
         name: {
@@ -75,6 +76,7 @@ function isDuplicate() {
     });
     return result;
 }
+
 
 function myFunctionId() {
     var input, filter, table, tr, td, i;
