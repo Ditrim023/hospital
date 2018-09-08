@@ -1,17 +1,13 @@
 package com.hospital.controller;
 
 import com.hospital.model.HospitalUser;
-import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.UserStatusRepository;
 import com.hospital.service.HospitalUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Nikita Krutoguz
@@ -46,8 +42,8 @@ public class HospitalController {
 
     @RequestMapping(value = "/doctor/update", method = RequestMethod.POST)
     public final String doctorUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname,
-                                     final @RequestParam String position, final @RequestParam Long status) {
-        hospitalUserService.hospitalUserUpdate(id, name, surname, position,status);
+                                     final @RequestParam String login, final @RequestParam String position, final @RequestParam Long status) {
+        hospitalUserService.hospitalUserUpdate(id, name, surname, login ,position, status);
         return "redirect:/doctor/info/" + id;
     }
 
@@ -60,14 +56,19 @@ public class HospitalController {
 
     @RequestMapping(value = "/doctor/save", method = RequestMethod.POST)
     public final String saveDoctor(final @RequestParam("name") String name,
-                                    final @RequestParam("surname") String surname,
-                                    final @RequestParam("login") String login,
-                                    final @RequestParam("password") String password,
-                                    final @RequestParam("position") String position,
+                                   final @RequestParam("surname") String surname,
+                                   final @RequestParam("login") String login,
+                                   final @RequestParam("password") String password,
+                                   final @RequestParam("position") String position,
                                    final @RequestParam("dateBirth") String dateBirth,
                                    final @RequestParam("status") Long status) {
-        hospitalUserService.createDoctor(name, surname, login, password, position,dateBirth,status);
+        hospitalUserService.createDoctor(name, surname, login, password, position, dateBirth, status);
         return "redirect:/doctor/list";
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/is-user-free/{id}", method = RequestMethod.GET, produces = "application/json")
+    public final boolean isDuplicateUser(@PathVariable("id") final Long id) {
+        return hospitalUserService.isFree(id);
+    }
 }

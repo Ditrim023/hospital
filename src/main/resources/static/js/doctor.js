@@ -1,6 +1,6 @@
 $(function() {$("#sort").slimtable();});
 $.validator.addMethod("duplicate_login", isDuplicate, "This login already exist");
-// $.validator.addMethod("is_free", isFree, "This user in vacation");
+$.validator.addMethod("is_free", isFree, "This user have a patients");
 $('#input-form').validate({
     rules: {
         name: {
@@ -20,6 +20,10 @@ $('#input-form').validate({
         },
         position: {
             required: true
+        },
+        status: {
+            required: true,
+            is_free:true
         },
         dateBirth: {
             required: true
@@ -62,7 +66,7 @@ $('#input-datebirth').datetimepicker({
     minView: 2
 });
 
-var result = true;
+var resultDuplicate = true;
 
 function isDuplicate() {
     var login = $('#input-login').val();
@@ -71,10 +75,30 @@ function isDuplicate() {
         type: 'GET',
         url: url,
         success: function (data) {
-            result = data;
+            resultDuplicate = data;
         }
     });
-    return result;
+    return resultDuplicate;
+}
+
+var isFreeResult = true;
+
+function isFree() {
+    var id = $('#input-id').val();
+    var status = $('#input-status').val();
+    var url = "/is-user-free/"+id;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+            if(status==1){
+                isFreeResult = true;
+            }else{
+                isFreeResult = data;
+            }
+        }
+    });
+    return isFreeResult;
 }
 
 
@@ -133,6 +157,3 @@ function myFunctionPosition() {
         }
     }
 }
-$(function() {
-    $("#sort").slimtable();
-});

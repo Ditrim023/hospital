@@ -115,7 +115,3 @@ function myFunctionDoctor() {
         }
     }
 }
-
-$(function() {
-    $("#sort").slimtable();
-});

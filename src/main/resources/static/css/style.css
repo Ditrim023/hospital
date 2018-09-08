@@ -28,12 +28,12 @@ body{
     width: 33%;
 }
 #findBySurName{
-    float: right;
-    width: 33%;
+    width: 34%;
+    float: left;
 }
 #findByPosition,#findByDoctor{
-    width: 34%;
-    margin: 0 auto;
+    float: left;
+    width: 33%;
 }
 #sort a{
     font-weight: bold;
@@ -62,7 +62,7 @@ body{
 }
 
 #input-name,#input-surname,#input-datebirth,#input-doc,
-#input-login,#input-password,#input-position,#input-id{
+#input-login,#input-password,#input-position,#input-id,#input-status{
     width: 350px;
     margin-bottom: 10px;
     float:left;
@@ -112,7 +112,7 @@ body{
 }
 #info-table{
     margin: 15px auto;
-    padding-bottom: 10px;
+    text-align: center;
 }
 #butt-comm{
     width: 135px;

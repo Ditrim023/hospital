@@ -31,7 +31,7 @@
     <h2 class="text-center">Patients</h2>
     <div id="search">
         <input type="text" onkeyup="myFunctionId()" class="form-control" id="findById" placeholder="Filter by id"/>
-        <input type="text"  onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
+        <input type="text" onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
         <input type="text" onkeyup="myFunctionDoctor()" class="form-control" id="findByDoctor" placeholder="Filter by doctor"/>
     </div>
     <div class="text-center" th:if="${not #lists.isEmpty(patients)}">
