@@ -1,4 +1,5 @@
 $(function() {$("#sort").slimtable();});
+$.validator.addMethod("is_free_doc", isFreeDoc, "this doctor on vacation");
 $('#input-form').validate({
     rules:{
         name:{
@@ -12,6 +13,7 @@ $('#input-form').validate({
         },
         doctorId:{
             required:true,
+            is_free_doc:true
         }
     },
     messages:{
@@ -36,6 +38,21 @@ $('#input-form').validate({
         }
     }
 });
+
+var resultSend = true;
+
+function isFreeDoc() {
+    var doc = $('#input-doc').val();
+    var url = "/is-free-doc/" + doc;
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+            resultSend = data;
+        }
+    });
+    return resultSend;
+}
 
 $('#input-datebirth').datetimepicker({
     format: 'dd-mm-yyyy',

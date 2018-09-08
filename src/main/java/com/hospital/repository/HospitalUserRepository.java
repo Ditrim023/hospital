@@ -25,4 +25,7 @@ public interface HospitalUserRepository extends JpaRepository<HospitalUser,Long>
 
     @Query(value = "SELECT COUNT (p.id) FROM Patient p WHERE p.doctor.id = :id")
     Long getCount(final @Param("id") Long id);
+
+    @Query(value = "SELECT p.status.id FROM HospitalUser p WHERE p.id = :id")
+    Long getStatusId(final @Param("id") Long id);
 }

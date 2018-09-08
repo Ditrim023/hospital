@@ -63,6 +63,14 @@ public class HospitalUserService {
         return true;
     }
 
+    public final Boolean isFreeDoc(final Long id) {
+        final Long statusId = hospitalUserRepository.getStatusId(id);
+        if (statusId == 2) {
+            return false;
+        }
+        return true;
+    }
+
     public final Boolean isFree(final Long id) {
         final Long count = hospitalUserRepository.getCount(id);
         if (count!=0){

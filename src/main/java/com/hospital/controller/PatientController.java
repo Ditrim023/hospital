@@ -10,10 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -71,5 +68,11 @@ public class PatientController {
     public final String patientUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
         patientService.patientUpdate(id, name, surname, doctorId);
         return "redirect:/patient/info/" + id;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/is-free-doc/{id}", method = RequestMethod.GET, produces = "application/json")
+    public final boolean isFreeDoc(@PathVariable("id") final Long id) {
+        return hospitalUserService.isFreeDoc(id);
     }
 }
