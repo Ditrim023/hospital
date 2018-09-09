@@ -1,13 +1,9 @@
 package com.hospital.controller;
 
-import com.hospital.model.Comment;
-import com.hospital.repository.CommentRepository;
 import com.hospital.service.CommentService;
-import com.hospital.service.PatientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 /**

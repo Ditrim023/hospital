@@ -25,11 +25,9 @@ public class DataLoader implements ApplicationRunner {
 
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
-    private final List<Comment> comments = new ArrayList<>();
 
     private final UserRole admin = new UserRole("ROLE_ADMIN");
     private final UserRole doctor = new UserRole("ROLE_DOCTOR");
-
     private final UserStatus free = new UserStatus("free");
     private final UserStatus vacation = new UserStatus("vacation");
 
@@ -40,7 +38,6 @@ public class DataLoader implements ApplicationRunner {
         insertStatuses();
         insertHospitalUsers();
         insertPatients();
-
     }
 
     private void insertRoles() {
@@ -70,11 +67,11 @@ public class DataLoader implements ApplicationRunner {
         hospitalUser4.setRole(userRoleRepository.findOne(2L));
         hospitalUser4.setStatus(userStatusRepository.findOne(2L));
         hospitalUsers.add(hospitalUser4);
-        HospitalUser hospitalUser5 = new HospitalUser("Alfred", "All", "user4", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
+        HospitalUser hospitalUser5 = new HospitalUser("Alfred", "All", "user4", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "LOR");
         hospitalUser5.setRole(userRoleRepository.findOne(2L));
         hospitalUser5.setStatus(userStatusRepository.findOne(1L));
         hospitalUsers.add(hospitalUser5);
-        HospitalUser hospitalUser6 = new HospitalUser("Balfred", "All", "user5", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Surgeon");
+        HospitalUser hospitalUser6 = new HospitalUser("Balfred", "All", "user5", new BCryptPasswordEncoder(10).encode("123456"), "15-07-1990", "Therapist");
         hospitalUser6.setRole(userRoleRepository.findOne(2L));
         hospitalUser6.setStatus(userStatusRepository.findOne(2L));
         hospitalUsers.add(hospitalUser6);
@@ -89,7 +86,6 @@ public class DataLoader implements ApplicationRunner {
     private void insertPatients() {
         Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2001");
         patient1.setDoctor(hospitalUserRepository.findOne(4L));
-        patient1.setComments(comments);
         patients.add(patient1);
         Patient patient2 = new Patient("Petr", "Petrov", "01.01.2002");
         patient2.setDoctor(hospitalUserRepository.findOne(2L));

@@ -43,7 +43,7 @@ public class CommentService {
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         String lastEditor = author;
         final Long authorId = currentUser.getId();
-        commentRepository.save(new Comment(text, patient, author,lastEditor, authorId, authorId));
+        commentRepository.save(new Comment(text, patient, author, lastEditor, authorId, authorId));
     }
 
     public final List<Comment> getReverseList(final Long id) {
@@ -51,14 +51,20 @@ public class CommentService {
         Collections.reverse(reversList);
         return reversList;
     }
-    public Page<Comment> findAll(Pageable pageable) {
-        return commentRepository.findAll(pageable);
+
+    public List<Comment> findAll() {
+        return commentRepository.findAll();
     }
+
     public final String getTextComment(final Long id) {
         return commentRepository.getTextComment(id);
     }
 
     public final Comment findOne(final Long commentId) {
         return commentRepository.findOne(commentId);
+    }
+
+    public final Comment add(Comment comment) {
+        return commentRepository.save(comment);
     }
 }

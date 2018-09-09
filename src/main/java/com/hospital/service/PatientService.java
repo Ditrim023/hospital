@@ -45,9 +45,7 @@ public class PatientService {
         HospitalUser doctor = hospitalUserService.findOne(doctorId);
         patientRepository.save(new Patient(name, surname, dateBirth, doctor));
     }
-    public Page<Patient> findAll(Pageable pageable) {
-        return patientRepository.findAll(pageable);
-    }
+
     public List<Patient> findAll() {
         return patientRepository.findAll();
     }
@@ -56,5 +54,7 @@ public class PatientService {
         return patientRepository.findOne(patientId);
     }
 
-
+    public final Patient add(Patient patient) {
+        return patientRepository.save(patient);
+    }
 }

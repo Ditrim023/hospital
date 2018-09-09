@@ -43,7 +43,7 @@ public class HospitalController {
     @RequestMapping(value = "/doctor/update", method = RequestMethod.POST)
     public final String doctorUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname,
                                      final @RequestParam String login, final @RequestParam String position, final @RequestParam Long status) {
-        hospitalUserService.hospitalUserUpdate(id, name, surname, login ,position, status);
+        hospitalUserService.hospitalUserUpdate(id, name, surname, login, position, status);
         return "redirect:/doctor/info/" + id;
     }
 

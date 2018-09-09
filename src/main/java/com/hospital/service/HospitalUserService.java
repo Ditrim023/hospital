@@ -73,7 +73,7 @@ public class HospitalUserService {
 
     public final Boolean isFree(final Long id) {
         final Long count = hospitalUserRepository.getCount(id);
-        if (count!=0){
+        if (count != 0) {
             return false;
         }
         return true;
@@ -81,5 +81,9 @@ public class HospitalUserService {
 
     public final HospitalUser findOne(final Long hospitalUserId) {
         return hospitalUserRepository.findOne(hospitalUserId);
+    }
+
+    public final HospitalUser add(HospitalUser hospitalUser) {
+        return hospitalUserRepository.save(hospitalUser);
     }
 }
