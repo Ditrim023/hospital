@@ -47,12 +47,13 @@ public class HospitalUserServiceTest {
     @Test
     @DirtiesContext
     public void createDoctor() {
-        HospitalUser doctor = new HospitalUser("John", "Smith", "user7", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1995", "LOR");
+        HospitalUser doctor = new HospitalUser("John", "Smith", "user77", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1995", "LOR");
         doctor.setRole(userRoleRepository.findOne(2L));
         hospitalUserService.add(doctor);
-        HospitalUser hospitalUserFromBase = hospitalUserService.findOne(4L);
+        Long docId = Long.valueOf(hospitalUserService.findAll().size());
+        HospitalUser hospitalUserFromBase = hospitalUserService.findOne(docId);
         Assert.assertEquals(hospitalUserFromBase.getName(), "John");
-        Assert.assertEquals(hospitalUserFromBase.getLogin(), "user7");
+        Assert.assertEquals(hospitalUserFromBase.getLogin(), "user77");
     }
 
     @Test

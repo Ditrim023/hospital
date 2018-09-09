@@ -42,6 +42,7 @@
                 <th class="text-center"><a href="#">Surname</a></th>
                 <th class="text-center"><a href="#">Name</a></th>
                 <th class="text-center"><a href="#">Position</a></th>
+                <th class="text-center"><a href="#">Status</a></th>
                 <th class="text-center"><a href="#">Date Birth</a></th>
             </tr>
             </thead>
@@ -51,6 +52,7 @@
                 <td th:text="${doctor.surname}">Surname</td>
                 <td th:text="${doctor.name}">Name</td>
                 <td th:text="${doctor.position}">Position</td>
+                <td th:text="${doctor.status.name}">Status</td>
                 <td th:text="${doctor.dateBirth}">Date Birth</td>
             </tr>
             </tbody>

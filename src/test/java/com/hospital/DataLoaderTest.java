@@ -65,16 +65,16 @@ public class DataLoaderTest implements ApplicationRunner {
     }
 
     public void insertHospitalUsers() {
-        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user0", new BCryptPasswordEncoder(10).encode("123456"), "07-02-1990", "Admin");
+        HospitalUser hospitalUser1 = new HospitalUser("Nikita", "Krutoguz", "user00", new BCryptPasswordEncoder(10).encode("123456"), "07-02-1990", "Admin");
         hospitalUser1.setRole(userRoleRepository.findOne(1L));
         hospitalUser1.setStatus(userStatusRepository.findOne(1L));
         hospitalUsers.add(hospitalUser1);
-        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knish", "user1", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1990", "LOR");
+        HospitalUser hospitalUser2 = new HospitalUser("Yra", "Knish", "user01", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1990", "LOR");
         hospitalUser2.setRole(userRoleRepository.findOne(2L));
         hospitalUser2.setStatus(userStatusRepository.findOne(2L));
         hospitalUser2.setPatients(patients);
         hospitalUsers.add(hospitalUser2);
-        HospitalUser hospitalUser3 = new HospitalUser("DocTest", "Test", "user2", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1990", "LOR");
+        HospitalUser hospitalUser3 = new HospitalUser("DocTest", "Test", "user02", new BCryptPasswordEncoder(10).encode("123456"), "24-05-1990", "LOR");
         hospitalUser3.setRole(userRoleRepository.findOne(2L));
         hospitalUser3.setStatus(userStatusRepository.findOne(2L));
         hospitalUser3.setPatients(patients);
