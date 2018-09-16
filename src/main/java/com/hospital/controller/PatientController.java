@@ -21,14 +21,12 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientController {
     private final PatientService patientService;
-    private final PatientRepository patientRepository;
     private final HospitalUserService hospitalUserService;
     private final CommentService commentService;
 
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String listPatients(final Model model) {
-        List<Patient> patients = patientRepository.findAll();
-        model.addAttribute("patients", patients);
+        model.addAttribute("patients", patientService.findAll());
         return "patient/list";
     }
 
