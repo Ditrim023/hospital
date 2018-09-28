@@ -47,7 +47,7 @@ public class HospitalUserService {
         hospitalUserRepository.save(doctorFromBase);
     }
 
-    public final HospitalUser findUserByLogin() {
+    public final HospitalUser findCurrentUser() {
         return hospitalUserRepository.findUserByLogin(Util.getAuthorizedUserName());
     }
 

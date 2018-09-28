@@ -3,6 +3,7 @@ package com.hospital.controller;
 import com.hospital.model.HospitalUser;
 import com.hospital.repository.UserStatusRepository;
 import com.hospital.service.HospitalUserService;
+import com.hospital.utils.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,10 @@ public class HospitalController {
 
     @RequestMapping(path = "/doctor/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
+        if(hospitalUserService.findOne(id)==hospitalUserService.findCurrentUser()){
+            return "redirect:/profile";
+        }
+        model.addAttribute("position", hospitalUserService.findCurrentUser().getPosition());
         model.addAttribute("doctor", hospitalUserService.findOne(id));
         model.addAttribute("patients", hospitalUserService.patients(id));
         return "doctor/info";

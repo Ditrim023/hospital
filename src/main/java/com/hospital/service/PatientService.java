@@ -27,7 +27,7 @@ public class PatientService {
     public final void patientUpdate(final Long id, final String name, final String surname, final Long doctorId) {
         final Patient patient = patientRepository.findOne(id);
         final HospitalUser doctor = hospitalUserService.findOne(doctorId);
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         String lastEditor = author;
         final Long lastEditorId = currentUser.getId();

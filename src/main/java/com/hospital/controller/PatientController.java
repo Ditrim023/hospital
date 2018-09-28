@@ -40,6 +40,7 @@ public class PatientController {
 
     @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
+        model.addAttribute("position", hospitalUserService.findCurrentUser().getPosition());
         model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentService.getReverseList(id));

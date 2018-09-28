@@ -110,6 +110,9 @@ body{
 #profile h3{
     padding-top: 14px;
 }
+#profile h2{
+    text-align: center;
+}
 #info-table{
     margin: 15px auto;
     text-align: center;
@@ -166,4 +169,8 @@ input.error,select.error {
     border-color: red;
     background: #fff0f0;
 }
-
+.navbar-collapse h2{
+    color: white;
+    float: left;
+    margin-top: 25px;
+}

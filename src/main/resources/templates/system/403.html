@@ -1,7 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
+    <title>Access denied</title>
     <link rel="icon" type="image/png" th:href="@{/images/favicon.ico}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="../../static/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.css"/>
 </head>
 <body>
 
@@ -9,14 +14,16 @@
 
 <div class="container">
 
-    <div class="starter-template">
+    <div style="text-align: center; margin-top: 250px">
         <h1>403 - Access is denied</h1>
-        <div th:inline="text">Hello [[${#httpServletRequest.remoteUser}]], you do not have permission to access this page.</div>
+        <h3 th:inline="text">Hello <span style="font-style: italic">[[${#httpServletRequest.remoteUser}]]</span>, you do not have permission to access this page.</h3>
+        <h3>Go back to <a th:href="@{/profile}">home</a></h3>
     </div>
 
 </div>
 <!-- /.container -->
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -13,10 +13,10 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#" th:href="@{/profile}"> <img src="../../static/images/logo_true.png"
-                                                                         th:src="@{/images/logo_true.png}" /></a>
+                                                                         th:src="@{/images/logo_true.png}"/></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+        <div  class="navbar-collapse collapse">
+            <ul id="bar" class="nav navbar-nav">
                 <li><a th:href="@{/patient/list}">Patients List</a></li>
                 <li><a th:href="@{/doctor/list}">Doctor List</a></li>
                 <li><a th:href="@{/activity}">Activities</a></li>
@@ -29,7 +29,8 @@
     </div>
 </nav>
 <div id="profile">
-    <h2 class="text-center">Patient Info <a class="rightcol" th:href="${'/patient/edit/' + patient.id}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
+    <h2 class="text-center">Patient Info <a class="rightcol" th:href="${'/patient/edit/' + patient.id}"><span
+            class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></h2>
     <table id="info-table">
         <tr>
             <td class="leftcol">Id:</td>
@@ -45,13 +46,18 @@
         </tr>
         <tr>
             <td class="leftcol">Doctor:</td>
-            <td class="rightcol" th:text="${patient.getDoctor().name}+' '+${patient.getDoctor().surname}+' - '+${patient.getDoctor().position}">Правая колонка</td>
+            <td class="rightcol"
+                th:text="${patient.getDoctor().name}+' '+${patient.getDoctor().surname}+' - '+${patient.getDoctor().position}">
+                Правая колонка
+            </td>
         </tr>
     </table>
 
 </div>
 <div id="butt-comm">
-    <button  class="btn btn-info" data-toggle="modal" data-target="#amodal">Write comment  <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button></div>
+    <button class="btn btn-info" data-toggle="modal" data-target="#amodal">Write comment <span
+            class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+</div>
 
 <div id="amodal" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -60,7 +66,7 @@
                 <button class="close" data-dismiss="modal">х</button>
                 <h4 class="modal-title">Write Comment</h4>
             </div>
-            <form id="save-comment" role="form"  th:object="${comment}" th:action="@{/comment/save/}" method="post">
+            <form id="save-comment" role="form" th:object="${comment}" th:action="@{/comment/save/}" method="post">
                 <span><input type="hidden" class="form-input" name="id" th:value="${patient.id}"
                 /></span>
                 <div class="form-group">
@@ -81,11 +87,12 @@
                 <button class="close" data-dismiss="modal">х</button>
                 <h4 class="modal-title">Edit Comment</h4>
             </div>
-            <form id="update-comment" role="form"  th:object="${comment}" th:action="@{/comment/update/}" method="post">
+            <form id="update-comment" role="form" th:object="${comment}" th:action="@{/comment/update/}" method="post">
                 <span><input type="hidden" class="form-input" id="update-id" th:field="*{id}" th:value="${comment.id}"
                 /></span>
                 <div class="form-group">
-                    <textarea class="form-control" id="update-text" th:field="*{text}" th:value="${comment.text}" rows="10"></textarea>
+                    <textarea class="form-control" id="update-text" th:field="*{text}" th:value="${comment.text}"
+                              rows="10"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Edit
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
@@ -96,9 +103,10 @@
 </div>
 
 <div th:replace="/patient/comments::comm"></div>
-
+<input type="hidden" id="position" th:value="*{position}"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" th:src="@{/js/patient.js}"></script>
+<script type="text/javascript" th:src="@{/js/script.js}"></script>
 </body>
 </html>

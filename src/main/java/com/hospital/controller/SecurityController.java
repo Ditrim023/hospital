@@ -42,7 +42,7 @@ public class SecurityController {
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("patients", currentUser.getPatients());
         return "/system/profile";

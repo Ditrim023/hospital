@@ -27,7 +27,7 @@ public class CommentService {
     public final void commentUpdate(final Long id, final String text) {
         final Comment fromBase = commentRepository.findOne(id);
         final Patient patient = patientRepository.findOne(fromBase.getPatient().getId());
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         final String lastEditor = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         fromBase.setText(text);
         fromBase.setPatient(patient);
@@ -39,7 +39,7 @@ public class CommentService {
 
     public final void saveComment(final Long patientId, final String text) {
         final Patient patient = patientRepository.findOne(patientId);
-        final HospitalUser currentUser = hospitalUserService.findUserByLogin();
+        final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
         String lastEditor = author;
         final Long authorId = currentUser.getId();
