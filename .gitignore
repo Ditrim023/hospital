@@ -8,8 +8,7 @@ db.properties
 target/
 out/
 
-mvnw.cmd
-mvnw
+
 
 # Package Files #
 *.jar
