@@ -30,7 +30,6 @@ public class HospitalController {
         if(hospitalUserService.findOne(id)==hospitalUserService.findCurrentUser()){
             return "redirect:/profile";
         }
-        model.addAttribute("position", hospitalUserService.findCurrentUser().getPosition());
         model.addAttribute("doctor", hospitalUserService.findOne(id));
         model.addAttribute("patients", hospitalUserService.patients(id));
         return "doctor/info";

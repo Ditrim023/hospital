@@ -62,6 +62,11 @@ $('#input-datebirth').datetimepicker({
 
 function showEditModal(index) {
     var editUrl = "/patient/comment/" + index;
+    if(index==1){
+        console.log("Pravilno")
+    }else{
+        console.log("Yje ne Odin")
+    }
     $.ajax({
         type: 'GET',
         url: editUrl,
@@ -78,24 +83,33 @@ function showEditModal(index) {
     });
 }
 
-function myFunctionId() {
-    var input, filter, table, tr, td, i;
-    input = document.getElementById("findById");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("sort");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
+// function myFunctionId() {
+//     var input, filter, table, tr, td, i;
+//     input = document.getElementById("findById");
+//     filter = input.value.toUpperCase();
+//     table = document.getElementById("sort");
+//     tr = table.getElementsByTagName("tr");
+//     for (i = 0; i < tr.length; i++) {
+//         td = tr[i].getElementsByTagName("td")[0];
+//         if (td) {
+//             if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//                 tr[i].style.display = "";
+//             } else {
+//                 tr[i].style.display = "none";
+//             }
+//         }
+//     }
+// }
 
+
+$(document).ready(function(){
+    $("#findById").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+});
 function myFunctionSurName() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("findBySurName");

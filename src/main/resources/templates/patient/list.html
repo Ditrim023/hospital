@@ -30,7 +30,7 @@
 <div id="list-table">
     <h2 class="text-center">Patients</h2>
     <div id="search">
-        <input type="text" onkeyup="myFunctionId()" class="form-control" id="findById" placeholder="Filter by id"/>
+        <input type="text"  class="form-control" id="findById" placeholder="Filter by id"/>
         <input type="text" onkeyup="myFunctionSurName()" class="form-control" id="findBySurName" placeholder="Filter by surname"/>
         <input type="text" onkeyup="myFunctionDoctor()" class="form-control" id="findByDoctor" placeholder="Filter by doctor"/>
     </div>
@@ -45,7 +45,7 @@
                 <th class="text-center">Doctor Name</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
             <tr class="text-center" th:each="patient : ${patients}">
                 <td><a th:href="${'/patient/info/' + patient.id}" th:text="${patient.id}"></a></td>
                 <td th:text="${patient.surname}">Surname</td>
