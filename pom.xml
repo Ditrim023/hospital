@@ -68,11 +68,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
-			<artifactId>datatables</artifactId>
-			<version>${webjars-datatables.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
 			<artifactId>jquery-validation</artifactId>
 			<version>${webjars-jquery-validation.version}</version>
 		</dependency>
