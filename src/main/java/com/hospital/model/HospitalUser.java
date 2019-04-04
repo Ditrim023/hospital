@@ -28,7 +28,7 @@ public class HospitalUser {
     private String login;
     @Column(nullable = false)
     private String password;
-    /*@Column(nullable = false)*/
+    @Column(nullable = false)
     private String dateBirth;
     @Column(nullable = false)
     private String position;
