@@ -1,4 +1,5 @@
 Hospital base with doctors and patients.
 
-login: user0
-password: 123456
+Login: user0
+
+Password: 123456
