@@ -34,10 +34,10 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-        insertRoles();
-        insertStatuses();
-        insertHospitalUsers();
-        insertPatients();
+//        insertRoles();
+//        insertStatuses();
+//        insertHospitalUsers();
+//        insertPatients();
     }
 
     private void insertRoles() {

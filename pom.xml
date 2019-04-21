@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>serv</name>
+	<name>hospital</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -77,15 +77,24 @@
 			<version>${webjars-jquery-ui.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.196</version>
-			<scope>test</scope>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>5.1.4</version>
 		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
+			<!--<plugin>-->
+				<!--<groupId>org.flywaydb</groupId>-->
+				<!--<artifactId>flyway-maven-plugin</artifactId>-->
+				<!--<version>5.1.4</version>-->
+				<!--<configuration>-->
+					<!--<user>root</user>-->
+					<!--<password>qwerty</password>-->
+					<!--<url>127.0.0.1</url>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

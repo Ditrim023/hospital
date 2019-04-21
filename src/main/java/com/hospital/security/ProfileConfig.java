@@ -28,7 +28,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
 
-        http.csrf().disable().
+        http.
                 authorizeRequests()
                 .antMatchers("/index").permitAll()
                 .antMatchers("/profile","patient/edit/{id}","/patient/info/{id}","/doctor/info/{id}").hasAnyRole("ADMIN", "DOCTOR")
@@ -53,7 +53,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/images/**");
     }
 
-    public BCryptPasswordEncoder getPasswordEncoder() {
+    private BCryptPasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 }

@@ -15,19 +15,19 @@ public class CommentController {
     private final CommentService commentService;
 
     @ResponseBody
-    @RequestMapping(value = "/patient/comment/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/patient/comment/{id}")
     public String getComment(@PathVariable("id") final Long id) {
         return commentService.getTextComment(id);
     }
 
-    @RequestMapping(value = "/comment/update", method = RequestMethod.POST)
+    @PostMapping(value = "/comment/update")
     public final String commentUpdate(final @RequestParam Long id, final @RequestParam String text) {
         commentService.commentUpdate(id, text);
         final Long patientId = commentService.findOne(id).getPatient().getId();
         return "redirect:/patient/info/" + patientId;
     }
 
-    @RequestMapping(value = "/comment/save/", method = RequestMethod.POST)
+    @PostMapping(value = "/comment/save/")
     public final String saveComment(final @RequestParam Long id, final @RequestParam String text) {
         commentService.saveComment(id, text);
         return "redirect:/patient/info/" + id;

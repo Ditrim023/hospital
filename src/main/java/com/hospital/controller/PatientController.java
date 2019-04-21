@@ -24,13 +24,13 @@ public class PatientController {
     private final HospitalUserService hospitalUserService;
     private final CommentService commentService;
 
-    @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
+    @GetMapping(value = "/patient/list")
     public String listPatients(final Model model) {
         model.addAttribute("patients", patientService.findAll());
         return "patient/list";
     }
 
-    @RequestMapping(path = "patient/add", method = RequestMethod.GET)
+    @GetMapping(path = "patient/add")
     public String createPatient(final Model model) {
         model.addAttribute("patient", new Patient());
         model.addAttribute("doctors", hospitalUserService.getDoctors());
@@ -38,7 +38,7 @@ public class PatientController {
     }
 
 
-    @RequestMapping(path = "/patient/info/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/patient/info/{id}")
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("comment", new Comment());
@@ -46,14 +46,14 @@ public class PatientController {
         return "patient/info";
     }
 
-    @RequestMapping(path = "/patient/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/patient/edit/{id}")
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         model.addAttribute("patient", patientService.findOne(id));
         model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "patient/edit";
     }
 
-    @RequestMapping(value = "/patient/save", method = RequestMethod.POST)
+    @PostMapping(value = "/patient/save")
     public final String savePatient(final @RequestParam("name") String name,
                                     final @RequestParam("surname") String surname,
                                     final @RequestParam("dateBirth") String dateBirth,
@@ -62,14 +62,14 @@ public class PatientController {
         return "redirect:/patient/list";
     }
 
-    @RequestMapping(value = "/patient/update", method = RequestMethod.POST)
+    @PostMapping(value = "/patient/update")
     public final String patientUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname, final @RequestParam Long doctorId) {
         patientService.patientUpdate(id, name, surname, doctorId);
         return "redirect:/patient/info/" + id;
     }
 
     @ResponseBody
-    @RequestMapping(value = "/is-free-doc/{id}", method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = "/is-free-doc/{id}",  produces = "application/json")
     public final boolean isFreeDoc(@PathVariable("id") final Long id) {
         return hospitalUserService.isFreeDoc(id);
     }
