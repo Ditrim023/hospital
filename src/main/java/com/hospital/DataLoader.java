@@ -10,7 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Nikita Krutoguz
@@ -34,10 +36,10 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
-//        insertRoles();
-//        insertStatuses();
-//        insertHospitalUsers();
-//        insertPatients();
+        insertRoles();
+        insertStatuses();
+        insertHospitalUsers();
+        insertPatients();
     }
 
     private void insertRoles() {
@@ -104,6 +106,7 @@ public class DataLoader implements ApplicationRunner {
         patients.add(patient6);
         patientRepository.save(patients);
     }
+
 
 }
 

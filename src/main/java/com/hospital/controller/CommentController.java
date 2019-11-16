@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.*;
  * @author Nikita Krutoguz
  */
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CommentController {
     private final CommentService commentService;
+
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @ResponseBody
     @GetMapping(value = "/patient/comment/{id}")

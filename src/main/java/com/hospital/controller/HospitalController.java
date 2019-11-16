@@ -3,31 +3,36 @@ package com.hospital.controller;
 import com.hospital.model.HospitalUser;
 import com.hospital.repository.UserStatusRepository;
 import com.hospital.service.HospitalUserService;
-import com.hospital.utils.Util;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Nikita Krutoguz
  */
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HospitalController {
     private final HospitalUserService hospitalUserService;
     private final UserStatusRepository userStatusRepository;
 
-    @RequestMapping(value = "/doctor/list", method = RequestMethod.GET)
+    public HospitalController(HospitalUserService hospitalUserService, UserStatusRepository userStatusRepository) {
+        this.hospitalUserService = hospitalUserService;
+        this.userStatusRepository = userStatusRepository;
+    }
+
+    @GetMapping(value = "/doctor/list")
     public String listPatients(final Model model) {
         model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "doctor/list";
     }
 
-    @RequestMapping(path = "/doctor/info/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/doctor/info/{id}")
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
-        if(hospitalUserService.findOne(id)==hospitalUserService.findCurrentUser()){
+        if (hospitalUserService.findOne(id) == hospitalUserService.findCurrentUser()) {
             return "redirect:/profile";
         }
         model.addAttribute("doctor", hospitalUserService.findOne(id));
@@ -35,7 +40,7 @@ public class HospitalController {
         return "doctor/info";
     }
 
-    @RequestMapping(path = "/doctor/edit/{id}", method = RequestMethod.GET)
+    @GetMapping(path = "/doctor/edit/{id}")
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         final HospitalUser doctor = hospitalUserService.findOne(id);
         model.addAttribute("doctor", doctor);
@@ -44,21 +49,21 @@ public class HospitalController {
         return "doctor/edit";
     }
 
-    @RequestMapping(value = "/doctor/update", method = RequestMethod.POST)
+    @PostMapping(value = "/doctor/update")
     public final String doctorUpdate(final @RequestParam Long id, final @RequestParam String name, final @RequestParam String surname,
                                      final @RequestParam String login, final @RequestParam String position, final @RequestParam Long status) {
         hospitalUserService.hospitalUserUpdate(id, name, surname, login, position, status);
         return "redirect:/doctor/info/" + id;
     }
 
-    @RequestMapping(path = "doctor/add", method = RequestMethod.GET)
+    @GetMapping(path = "doctor/add")
     public String createDoctor(final Model model) {
         model.addAttribute("doctor", new HospitalUser());
         model.addAttribute("statuses", userStatusRepository.findAll());
         return "doctor/add";
     }
 
-    @RequestMapping(value = "/doctor/save", method = RequestMethod.POST)
+    @PostMapping(value = "/doctor/save")
     public final String saveDoctor(final @RequestParam("name") String name,
                                    final @RequestParam("surname") String surname,
                                    final @RequestParam("login") String login,
@@ -71,7 +76,7 @@ public class HospitalController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/is-user-free/{id}", method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = "/is-user-free/{id}", produces = "application/json")
     public final boolean isDuplicateUser(@PathVariable("id") final Long id) {
         return hospitalUserService.isFree(id);
     }

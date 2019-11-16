@@ -6,8 +6,6 @@ import com.hospital.repository.HospitalUserRepository;
 import com.hospital.repository.UserRoleRepository;
 import com.hospital.repository.UserStatusRepository;
 import com.hospital.utils.Util;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -17,20 +15,23 @@ import java.util.List;
  * @author Nikita Krutoguz
  */
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class HospitalUserService {
     private final HospitalUserRepository hospitalUserRepository;
     private final UserRoleRepository userRoleRepository;
     private final UserStatusRepository userStatusRepository;
 
+    public HospitalUserService(HospitalUserRepository hospitalUserRepository, UserRoleRepository userRoleRepository, UserStatusRepository userStatusRepository) {
+        this.hospitalUserRepository = hospitalUserRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.userStatusRepository = userStatusRepository;
+    }
+
     public final List<HospitalUser> getDoctors() {
-        final List<HospitalUser> doctors = hospitalUserRepository.findAllUserByRoleId(2L);
-        return doctors;
+        return hospitalUserRepository.findAllUserByRoleId(2L);
     }
 
     public final List<Patient> patients(final Long id) {
-        List<Patient> patients = hospitalUserRepository.findAllPatientsByTransfer(id);
-        return patients;
+        return hospitalUserRepository.findAllPatientsByTransfer(id);
     }
 
     public final void createDoctor(final String name, final String surname, final String login, final String password, final String position, final String dateBirth, final Long status) {
@@ -57,26 +58,17 @@ public class HospitalUserService {
 
     public final Boolean isDuplicateUser(String login) {
         final HospitalUser hospitalUser = hospitalUserRepository.findUserByLogin(login);
-        if (hospitalUser != null) {
-            return false;
-        }
-        return true;
+        return hospitalUser == null;
     }
 
     public final Boolean isFreeDoc(final Long id) {
         final Long statusId = hospitalUserRepository.getStatusId(id);
-        if (statusId == 2) {
-            return false;
-        }
-        return true;
+        return statusId != 2;
     }
 
     public final Boolean isFree(final Long id) {
         final Long count = hospitalUserRepository.getCount(id);
-        if (count != 0) {
-            return false;
-        }
-        return true;
+        return count == 0;
     }
 
     public final HospitalUser findOne(final Long hospitalUserId) {

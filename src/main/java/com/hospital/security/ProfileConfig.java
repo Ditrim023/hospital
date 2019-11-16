@@ -15,8 +15,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class ProfileConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
+
     private UserService userDetailsService;
+
+    public ProfileConfig(UserService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Autowired
     public void registerAuthenticationManager(AuthenticationManagerBuilder managerBuilder) throws Exception {
@@ -47,7 +51,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web){
         web
                 .ignoring()
                 .antMatchers("/css/**", "/images/**");

@@ -18,8 +18,14 @@ import java.util.List;
  * @author Nikita Krutoguz
  */
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class CommentService {
+
+    public CommentService(CommentRepository commentRepository, PatientRepository patientRepository, HospitalUserService hospitalUserService) {
+        this.commentRepository = commentRepository;
+        this.patientRepository = patientRepository;
+        this.hospitalUserService = hospitalUserService;
+    }
+
     private final CommentRepository commentRepository;
     private final PatientRepository patientRepository;
     private final HospitalUserService hospitalUserService;
@@ -41,9 +47,8 @@ public class CommentService {
         final Patient patient = patientRepository.findOne(patientId);
         final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
-        String lastEditor = author;
         final Long authorId = currentUser.getId();
-        commentRepository.save(new Comment(text, patient, author, lastEditor, authorId, authorId));
+        commentRepository.save(new Comment(text, patient, author, author, authorId, authorId));
     }
 
     public final List<Comment> getReverseList(final Long id) {

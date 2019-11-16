@@ -2,27 +2,31 @@ package com.hospital.controller;
 
 import com.hospital.model.Comment;
 import com.hospital.model.Patient;
-import com.hospital.repository.PatientRepository;
 import com.hospital.service.CommentService;
 import com.hospital.service.HospitalUserService;
 import com.hospital.service.PatientService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * @author Nikita Krutoguz
  */
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PatientController {
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
     private final CommentService commentService;
+
+    public PatientController(PatientService patientService, HospitalUserService hospitalUserService, CommentService commentService) {
+        this.patientService = patientService;
+        this.hospitalUserService = hospitalUserService;
+        this.commentService = commentService;
+    }
 
     @GetMapping(value = "/patient/list")
     public String listPatients(final Model model) {
@@ -69,7 +73,7 @@ public class PatientController {
     }
 
     @ResponseBody
-    @GetMapping(value = "/is-free-doc/{id}",  produces = "application/json")
+    @GetMapping(value = "/is-free-doc/{id}", produces = "application/json")
     public final boolean isFreeDoc(@PathVariable("id") final Long id) {
         return hospitalUserService.isFreeDoc(id);
     }

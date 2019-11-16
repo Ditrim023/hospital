@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"com.hospital.repository"})
 @SpringBootApplication
 public class HospitalApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(HospitalApplication.class, args);
     }

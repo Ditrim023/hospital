@@ -4,8 +4,6 @@ import com.hospital.model.Activity;
 import com.hospital.model.HospitalUser;
 import com.hospital.repository.ActivityRepository;
 import com.hospital.repository.HospitalUserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,11 +16,15 @@ import java.util.Set;
 
 
 @Service
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class UserService implements UserDetailsService {
 
     private final HospitalUserRepository hospitalUserRepository;
     private final ActivityRepository activityRepository;
+
+    public UserService(HospitalUserRepository hospitalUserRepository, ActivityRepository activityRepository) {
+        this.hospitalUserRepository = hospitalUserRepository;
+        this.activityRepository = activityRepository;
+    }
 
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         final HospitalUser user = hospitalUserRepository.findUserByLogin(userName);
@@ -34,5 +36,4 @@ public class UserService implements UserDetailsService {
         activityRepository.save(new Activity(user.getLogin()));
         return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), roles);
     }
-
 }

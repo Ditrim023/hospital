@@ -14,7 +14,6 @@ public final class Util {
     }
     public static String getRealDate(String dateFromForm){
         String temp [] = dateFromForm.split("-");
-        String myDate = temp[2]+"."+temp[1]+"."+temp[0];
-        return myDate;
+        return temp[2]+"."+temp[1]+"."+temp[0];
     }
 }

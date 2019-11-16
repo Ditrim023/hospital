@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,28 +20,32 @@ import java.util.List;
  * @author Nikita Krutoguz
  */
 @Controller
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class SecurityController {
 
     private final HospitalUserService hospitalUserService;
     private final ActivityRepository activityRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public SecurityController(HospitalUserService hospitalUserService, ActivityRepository activityRepository) {
+        this.hospitalUserService = hospitalUserService;
+        this.activityRepository = activityRepository;
+    }
+
+    @GetMapping(value = "/")
     public String index() {
         return "index";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @GetMapping(value = "/login")
     public String login() {
         return "/system/login";
     }
 
-    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @GetMapping(value = "/403")
     public String error() {
         return "/system/403";
     }
 
-    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    @GetMapping(value = "/profile")
     public String profile(Model model) {
         final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         model.addAttribute("currentUser", currentUser);
@@ -48,7 +53,7 @@ public class SecurityController {
         return "/system/profile";
     }
 
-    @RequestMapping(value = "/activity", method = RequestMethod.GET)
+    @GetMapping(value = "/activity")
     public String activity(Model model) {
         final List<Activity> activities = activityRepository.findAll();
         model.addAttribute("activities", activities);
@@ -56,7 +61,7 @@ public class SecurityController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/is-duplicate-user-login/{login}", method = RequestMethod.GET, produces = "application/json")
+    @GetMapping(value = "/is-duplicate-user-login/{login}", produces = "application/json")
     public final boolean isDuplicateUser(@PathVariable("login") String login) {
         return hospitalUserService.isDuplicateUser(login);
     }

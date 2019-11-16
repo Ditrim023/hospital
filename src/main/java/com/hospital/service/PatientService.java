@@ -29,13 +29,12 @@ public class PatientService {
         final HospitalUser doctor = hospitalUserService.findOne(doctorId);
         final HospitalUser currentUser = hospitalUserService.findCurrentUser();
         final String author = currentUser.getName() + " " + currentUser.getSurname() + " - " + currentUser.getPosition();
-        String lastEditor = author;
         final Long lastEditorId = currentUser.getId();
         patient.setName(name);
         patient.setSurname(surname);
         patient.setDateTransfer(System.currentTimeMillis());
         if (patient.getDoctor() != doctor) {
-            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, lastEditor, doctorId, lastEditorId));
+            commentRepository.save(new Comment("Sent from " + patient.getDoctor().getSurname() + " to " + doctor.getSurname(), patient, author, author, doctorId, lastEditorId));
         }
         patient.setDoctor(doctor);
         patientRepository.save(patient);
