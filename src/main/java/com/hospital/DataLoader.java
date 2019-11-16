@@ -1,7 +1,13 @@
 package com.hospital;
 
-import com.hospital.model.*;
-import com.hospital.repository.*;
+import com.hospital.model.HospitalUser;
+import com.hospital.model.Patient;
+import com.hospital.model.UserRole;
+import com.hospital.model.UserStatus;
+import com.hospital.repository.HospitalUserRepository;
+import com.hospital.repository.PatientRepository;
+import com.hospital.repository.UserRoleRepository;
+import com.hospital.repository.UserStatusRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -10,9 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Nikita Krutoguz
