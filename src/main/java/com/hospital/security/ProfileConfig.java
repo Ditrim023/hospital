@@ -16,48 +16,52 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class ProfileConfig extends WebSecurityConfigurerAdapter {
 
 
-    private UserService userDetailsService;
+  private UserService userDetailsService;
 
-    public ProfileConfig(UserService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
+  public ProfileConfig(UserService userDetailsService) {
+    this.userDetailsService = userDetailsService;
+  }
 
-    @Autowired
-    public void registerAuthenticationManager(AuthenticationManagerBuilder managerBuilder) throws Exception {
-        managerBuilder
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(getPasswordEncoder());
-    }
+  @Autowired
+  public void registerAuthenticationManager(AuthenticationManagerBuilder managerBuilder) throws Exception {
+    managerBuilder
+        .userDetailsService(userDetailsService)
+        .passwordEncoder(getPasswordEncoder());
+  }
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+  @Override
+  protected void configure(final HttpSecurity http) throws Exception {
 
-        http.
-                authorizeRequests()
-                .antMatchers("/index").permitAll()
-                .antMatchers("/profile","patient/edit/{id}","/patient/info/{id}","/doctor/info/{id}").hasAnyRole("ADMIN", "DOCTOR")
-                .antMatchers("/patient/list","/patient/add" ,"/activity","/doctor/add","/doctor/edit/{id}","/doctor/list").hasAnyRole("ADMIN")
-                .and().exceptionHandling().accessDeniedPage("/403")
-                .and().formLogin()
-                .loginPage("/login").failureUrl("/")
-                .loginProcessingUrl("/j_spring_security_check")
-                .usernameParameter("login")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/profile")
-                .and().logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login");
+    http.
+        authorizeRequests()
 
-    }
+        .antMatchers("/index").permitAll()
+        .antMatchers("/profile", "patient/edit/{id}", "/patient/info/{id}", "/doctor/info/{id}").hasAnyRole("ADMIN", "DOCTOR")
+        .antMatchers("/patient/list", "/patient/add", "/activity", "/doctor/add", "/doctor/edit/{id}", "/doctor/list").hasAnyRole("ADMIN")
+        .and().exceptionHandling().accessDeniedPage("/403")
+        .and().formLogin()
 
-    @Override
-    public void configure(WebSecurity web){
-        web
-                .ignoring()
-                .antMatchers("/css/**", "/images/**");
-    }
+        .loginPage("/login").failureUrl("/")
+        .loginProcessingUrl("/j_spring_security_check")
+        .usernameParameter("login")
+        .passwordParameter("password")
+        .defaultSuccessUrl("/profile")
+        .and().logout()
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        .logoutSuccessUrl("/login")
+        .and().requiresChannel()
+        .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
 
-    private BCryptPasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(10);
-    }
+  }
+
+  @Override
+  public void configure(WebSecurity web) {
+    web
+        .ignoring()
+        .antMatchers("/css/**", "/images/**");
+  }
+
+  private BCryptPasswordEncoder getPasswordEncoder() {
+    return new BCryptPasswordEncoder(10);
+  }
 }
