@@ -26,10 +26,10 @@ public class SecurityController {
         this.activityRepository = activityRepository;
     }
 
-//    @GetMapping(value = "/")
-//    public String index() {
-//        return "index";
-//    }
+    @GetMapping(value = "/")
+    public String index() {
+        return "index";
+    }
 
     @GetMapping(value = "/login")
     public String login() {
