@@ -33,7 +33,7 @@ public class SecurityController {
 
   @GetMapping(value = "/login")
   public String login() {
-    return "/system/login";
+    return "/login";
   }
 
   @GetMapping(value = "/403")
