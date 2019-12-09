@@ -46,7 +46,8 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         .defaultSuccessUrl("/profile")
         .and().logout()
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .logoutSuccessUrl("/login");
+        .logoutSuccessUrl("/login")
+        .and().requiresChannel().anyRequest().requiresSecure();
   }
 
   @Override
