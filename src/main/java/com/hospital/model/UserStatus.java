@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 public class UserStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
