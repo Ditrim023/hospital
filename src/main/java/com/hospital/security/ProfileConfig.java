@@ -40,6 +40,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/patient/list", "/patient/add", "/activity", "/doctor/add", "/doctor/edit/{id}", "/doctor/list").hasAnyRole("ADMIN")
         .and().exceptionHandling().accessDeniedPage("/403")
         .and().formLogin()
+
         .loginPage("/login").failureUrl("/")
         .loginProcessingUrl("/j_spring_security_check")
         .usernameParameter("login")
@@ -47,9 +48,9 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         .defaultSuccessUrl("/profile")
         .and().logout()
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-        .logoutSuccessUrl("/login");
-//        .and().requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
-
+        .logoutSuccessUrl("/login")
+        .and().requiresChannel()
+        .requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
   }
 
   @Override

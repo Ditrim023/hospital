@@ -22,12 +22,18 @@ import java.util.List;
  * @author Nikita Krutoguz
  */
 @Component
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DataLoader implements ApplicationRunner {
     private final PatientRepository patientRepository;
     private final HospitalUserRepository hospitalUserRepository;
     private final UserRoleRepository userRoleRepository;
     private final UserStatusRepository userStatusRepository;
+
+    public DataLoader(PatientRepository patientRepository, HospitalUserRepository hospitalUserRepository, UserRoleRepository userRoleRepository, UserStatusRepository userStatusRepository) {
+        this.patientRepository = patientRepository;
+        this.hospitalUserRepository = hospitalUserRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.userStatusRepository = userStatusRepository;
+    }
 
     private final List<Patient> patients = new ArrayList<>();
     private final List<HospitalUser> hospitalUsers = new ArrayList<>();
