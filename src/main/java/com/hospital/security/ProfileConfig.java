@@ -40,7 +40,6 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/patient/list", "/patient/add", "/activity", "/doctor/add", "/doctor/edit/{id}", "/doctor/list").hasAnyRole("ADMIN")
         .and().exceptionHandling().accessDeniedPage("/403")
         .and().formLogin()
-
         .loginPage("/login").failureUrl("/")
         .loginProcessingUrl("/j_spring_security_check")
         .usernameParameter("login")

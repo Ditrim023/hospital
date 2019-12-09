@@ -32,7 +32,7 @@ public class SecurityController {
         return "index";
     }
 
-    @GetMapping(value = "/login")
+    @GetMapping(value = "/system/login")
     public String login() {
         return "/system/login";
     }
