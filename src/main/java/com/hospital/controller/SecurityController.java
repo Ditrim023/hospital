@@ -33,7 +33,7 @@ public class SecurityController {
 
   @GetMapping(value = "/login")
   public String login() {
-    return "/login";
+    return "system/login";
   }
 
   @GetMapping(value = "/403")
@@ -46,7 +46,7 @@ public class SecurityController {
     final HospitalUser currentUser = hospitalUserService.findCurrentUser();
     model.addAttribute("currentUser", currentUser);
     model.addAttribute("patients", currentUser.getPatients());
-    return "/system/profile";
+    return "system/profile";
   }
 
   @GetMapping(value = "/activity")
