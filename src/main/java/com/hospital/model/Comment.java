@@ -11,9 +11,6 @@ import javax.persistence.*;
  * @author Nikita Krutoguz
  */
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "comments")
 public class Comment {
     @Id
@@ -38,7 +35,8 @@ public class Comment {
     private String lastEditor;
     private Long lastEditorId;
 
-
+    public Comment() {
+    }
 
     public Comment(String text) {
         this.text = text;
@@ -66,6 +64,78 @@ public class Comment {
         this.author = author;
         this.lastEditor = lastEditor;
         this.authorId = authorId;
+        this.lastEditorId = lastEditorId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Long getDateCreate() {
+        return dateCreate;
+    }
+
+    public void setDateCreate(Long dateCreate) {
+        this.dateCreate = dateCreate;
+    }
+
+    public Long getDateLastChange() {
+        return dateLastChange;
+    }
+
+    public void setDateLastChange(Long dateLastChange) {
+        this.dateLastChange = dateLastChange;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Long getAuthorId() {
+        return authorId;
+    }
+
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
+    }
+
+    public String getLastEditor() {
+        return lastEditor;
+    }
+
+    public void setLastEditor(String lastEditor) {
+        this.lastEditor = lastEditor;
+    }
+
+    public Long getLastEditorId() {
+        return lastEditorId;
+    }
+
+    public void setLastEditorId(Long lastEditorId) {
         this.lastEditorId = lastEditorId;
     }
 }

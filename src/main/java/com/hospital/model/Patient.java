@@ -11,9 +11,6 @@ import java.util.List;
  * @author Nikita Krutoguz
  */
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
 @Table(name = "patients")
 public class Patient {
     @Id
@@ -32,6 +29,9 @@ public class Patient {
     private List<Comment> comments;
     @Column(nullable = false)
     private Long dateTransfer = System.currentTimeMillis();
+
+    public Patient() {
+    }
 
     public Patient(String name, String surname, String dateBirth) {
         this.name = name;
@@ -63,5 +63,61 @@ public class Patient {
         this.surname = surname;
         this.dateBirth = dateBirth;
         this.comments = comments;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getDateBirth() {
+        return dateBirth;
+    }
+
+    public void setDateBirth(String dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
+    public HospitalUser getDoctor() {
+        return doctor;
+    }
+
+    public void setDoctor(HospitalUser doctor) {
+        this.doctor = doctor;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public Long getDateTransfer() {
+        return dateTransfer;
+    }
+
+    public void setDateTransfer(Long dateTransfer) {
+        this.dateTransfer = dateTransfer;
     }
 }

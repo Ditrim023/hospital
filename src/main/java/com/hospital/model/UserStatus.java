@@ -24,7 +24,34 @@ public class UserStatus {
     @OneToMany(mappedBy = "status")
     private List<HospitalUser> user;
 
+    public UserStatus() {
+    }
+
     public UserStatus(String name) {
         this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<HospitalUser> getUser() {
+        return user;
+    }
+
+    public void setUser(List<HospitalUser> user) {
+        this.user = user;
     }
 }
