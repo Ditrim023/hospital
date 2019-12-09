@@ -47,7 +47,7 @@ public class ProfileConfig extends WebSecurityConfigurerAdapter {
         .and().logout()
         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
         .logoutSuccessUrl("/login")
-        .and().requiresChannel().anyRequest().requiresSecure();
+        .and().requiresChannel().requestMatchers(r -> r.getHeader("X-Forwarded-Proto") != null).requiresSecure();
   }
 
   @Override
