@@ -26,7 +26,7 @@ public class UserService implements UserDetailsService {
         this.activityRepository = activityRepository;
     }
 
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String userName){
         final HospitalUser user = hospitalUserRepository.findUserByLogin(userName);
         if (user == null) {
             throw new UsernameNotFoundException("User " + userName + " does not exist");

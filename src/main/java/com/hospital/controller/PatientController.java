@@ -21,7 +21,7 @@ public class PatientController {
     private final PatientService patientService;
     private final HospitalUserService hospitalUserService;
     private final CommentService commentService;
-
+    private static final String PATIENT = "patient";
     public PatientController(PatientService patientService, HospitalUserService hospitalUserService, CommentService commentService) {
         this.patientService = patientService;
         this.hospitalUserService = hospitalUserService;
@@ -36,7 +36,7 @@ public class PatientController {
 
     @GetMapping(path = "patient/add")
     public String createPatient(final Model model) {
-        model.addAttribute("patient", new Patient());
+        model.addAttribute(PATIENT, new Patient());
         model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "patient/add";
     }
@@ -44,7 +44,7 @@ public class PatientController {
 
     @GetMapping(path = "/patient/info/{id}")
     public String infoPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientService.findOne(id));
+        model.addAttribute(PATIENT, patientService.findOne(id));
         model.addAttribute("comment", new Comment());
         model.addAttribute("comments", commentService.getReverseList(id));
         return "patient/info";
@@ -52,7 +52,7 @@ public class PatientController {
 
     @GetMapping(path = "/patient/edit/{id}")
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
-        model.addAttribute("patient", patientService.findOne(id));
+        model.addAttribute(PATIENT, patientService.findOne(id));
         model.addAttribute("doctors", hospitalUserService.getDoctors());
         return "patient/edit";
     }

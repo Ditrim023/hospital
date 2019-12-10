@@ -43,16 +43,6 @@ public class HospitalUser {
   public HospitalUser() {
   }
 
-  public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position, UserRole role) {
-    this.name = name;
-    this.surname = surname;
-    this.login = login;
-    this.password = password;
-    this.position = position;
-    this.dateBirth = dateBirth;
-    this.role = role;
-  }
-
   public HospitalUser(String name, String surname, String login, String password, String dateBirth, String position, UserRole role, UserStatus status) {
     this.name = name;
     this.surname = surname;
@@ -71,13 +61,6 @@ public class HospitalUser {
     this.password = password;
     this.dateBirth = dateBirth;
     this.position = position;
-  }
-
-  public HospitalUser(String name, String surname, String login, String password) {
-    this.name = name;
-    this.surname = surname;
-    this.login = login;
-    this.password = password;
   }
 
   public Long getId() {

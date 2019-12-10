@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HospitalController {
     private final HospitalUserService hospitalUserService;
     private final UserStatusRepository userStatusRepository;
-
+    private static final String DOCTOR = "doctor";
     public HospitalController(HospitalUserService hospitalUserService, UserStatusRepository userStatusRepository) {
         this.hospitalUserService = hospitalUserService;
         this.userStatusRepository = userStatusRepository;
@@ -35,7 +35,7 @@ public class HospitalController {
         if (hospitalUserService.findOne(id) == hospitalUserService.findCurrentUser()) {
             return "redirect:/profile";
         }
-        model.addAttribute("doctor", hospitalUserService.findOne(id));
+        model.addAttribute(DOCTOR, hospitalUserService.findOne(id));
         model.addAttribute("patients", hospitalUserService.patients(id));
         return "doctor/info";
     }
@@ -43,7 +43,7 @@ public class HospitalController {
     @GetMapping(path = "/doctor/edit/{id}")
     public String editPatient(final Model model, @PathVariable("id") final Long id) {
         final HospitalUser doctor = hospitalUserService.findOne(id);
-        model.addAttribute("doctor", doctor);
+        model.addAttribute(DOCTOR, doctor);
         model.addAttribute("patients", doctor.getPatients());
         model.addAttribute("statuses", userStatusRepository.findAll());
         return "doctor/edit";
@@ -58,7 +58,7 @@ public class HospitalController {
 
     @GetMapping(path = "doctor/add")
     public String createDoctor(final Model model) {
-        model.addAttribute("doctor", new HospitalUser());
+        model.addAttribute(DOCTOR, new HospitalUser());
         model.addAttribute("statuses", userStatusRepository.findAll());
         return "doctor/add";
     }
