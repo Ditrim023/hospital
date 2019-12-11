@@ -96,7 +96,7 @@ public class DataLoader implements ApplicationRunner {
 
 
   private void insertPatients() {
-    Patient patient1 = new Patient("Ivan", "Ivanov", "01.01.2001");
+    Patient patient1  = new Patient("Ivan", "Ivanov", "01.01.2001");
     patient1.setDoctor(hospitalUserRepository.findOne(4L));
     patients.add(patient1);
     Patient patient2 = new Patient("Petr", "Petrov", "01.01.2002");
